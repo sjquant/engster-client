@@ -14,6 +14,7 @@
   color: $gray-dark;
   padding: 0 0.4rem;
   font-size: 1.4rem;
+  margin-right: 0.4rem;
 
   &:hover {
     cursor: pointer;
