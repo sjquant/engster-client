@@ -1,9 +1,7 @@
 <template>
   <LineCard>
     <div class="line">
-      <a
-        href="#"
-      >When I saw what you do to Tony Stark on that track how you stepped up to him in front of god and everybody, that was wow!</a>
+      <a href="#">{{ line }}</a>
     </div>
     <div class="line-info">
       <div class="title-category">
@@ -47,6 +45,12 @@ export default {
     Pencil,
     Like,
     Share
+  },
+  props: {
+    line: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{$route.params.keyword}}</h1>
+    <h1>{{$route.params.searchWord}}</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { mapActions } from "vuex";
 
 export default {
   created() {
-    this.FETCH_LINE_KOREAN(this.$route.params.keyword);
+    this.FETCH_LINE_KOREAN(this.$route.params.searchWord);
   },
   methods: {
     ...mapActions({
