@@ -1,17 +1,15 @@
 <template>
   <LineCard>
     <div class="line">
-      <a href="#">{{ line }}</a>
+      <a href="#">{{ line.line }}</a>
     </div>
     <div class="line-info">
       <div class="title-category">
-        <span>IronMan3</span> |
-        <span>Film</span>
+        <span>{{ line.content.title }}</span> |
+        <span>{{ line.category.category }}</span>
       </div>
       <div>
-        <Tag>#Action</Tag>
-        <Tag>#Fantasy</Tag>
-        <Tag>#Horror</Tag>
+        <Tag v-for="each in line.genres" :key="each.id">#{{ each.genre }}</Tag>
       </div>
     </div>
     <div class="line-action-container">
@@ -48,7 +46,7 @@ export default {
   },
   props: {
     line: {
-      type: String,
+      type: Object,
       required: true
     }
   }
@@ -60,17 +58,18 @@ export default {
 @import "~styles/utils.scss";
 .line-info {
   padding-top: 1.6rem;
-  padding-bottom: 2.4em;
+  padding-bottom: 1.6rem;
   color: $gray-dark;
 
   > .title-category {
     color: $gray-darkest;
     margin-bottom: 0.4rem;
+    font-weight: 700;
   }
 }
 
 .line-action-container {
-  padding-bottom: 1.6rem;
+  padding-bottom: 2rem;
   display: flex;
 
   .action-box {

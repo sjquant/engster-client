@@ -1,5 +1,5 @@
 export default {
-  searchWord: "",
+  keyword: "",
   searchResult: {
     lines: [],
     max_page: null,

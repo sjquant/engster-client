@@ -11,7 +11,7 @@
 .line-card-container {
   border-bottom: 1px solid $gray-light;
   min-height: 8rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
 
   &:first-child {
     padding-top: 0;

@@ -1,10 +1,18 @@
 import axios from "../plugins/axios.js";
 
 export const search = {
-  fetchEnglish(searchWord) {
-    return axios.get(`/search/english/${searchWord}`);
+  fetchEnglish(keyword) {
+    return axios.get(`/search/english`, {
+      params: {
+        keyword: keyword
+      }
+    });
   },
-  fetchKorean(searchWord) {
-    return axios.get(`/search/korean/${searchWord}`);
+  fetchKorean(keyword) {
+    return axios.get(`/search/korean`, {
+      params: {
+        keyword: keyword
+      }
+    });
   }
 };

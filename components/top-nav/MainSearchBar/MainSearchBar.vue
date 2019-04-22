@@ -7,37 +7,39 @@
 
 <script>
 import SearchGlass from "./SearchGlass.vue";
-import { mapMutations } from "vuex";
 export default {
   components: {
     SearchGlass
   },
   methods: {
-    ...mapMutations(["SET_SEARCH_WORD"]),
     onClickSearch() {
-      let searchWord = this.$refs.inputSearch.value;
-      this.search(searchWord);
+      let keyword = this.$refs.inputSearch.value;
+      this.search(keyword);
     },
     onEnterSearch(e) {
-      let searchWord = e.target.value;
-      this.search(searchWord);
+      let keyword = e.target.value;
+      this.search(keyword);
     },
-    search(searchWord) {
-      if (searchWord.length < 2) {
+    search(keyword) {
+      if (keyword.length < 2) {
         // doNothing
         return;
       }
 
-      this.SET_SEARCH_WORD(searchWord);
-
       let krCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-      if (krCheck.test(searchWord)) {
+      if (krCheck.test(keyword)) {
         this.$router.push({
-          path: `/search/korean/${searchWord}`
+          path: `/search/korean`,
+          query: {
+            keyword: keyword
+          }
         });
       } else {
         this.$router.push({
-          path: `/search/english/${searchWord}`
+          path: `/search/english`,
+          query: {
+            keyword: keyword
+          }
         });
       }
     }
