@@ -1,7 +1,7 @@
 <template>
   <LineCard>
-    <div class="line">
-      <a href="#">{{ line.line }}</a>
+    <div class="line-content">
+      <div class="line">{{ line.line }}</div>
     </div>
     <div class="line-info">
       <div class="title-category">
@@ -52,43 +52,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="scss" scoped>
-@import "~styles/utils.scss";
-.line-info {
-  padding-top: 1.6rem;
-  padding-bottom: 1.6rem;
-  color: $gray-dark;
-
-  > .title-category {
-    color: $gray-darkest;
-    margin-bottom: 0.4rem;
-    font-weight: 700;
-  }
-}
-
-.line-action-container {
-  padding-bottom: 2rem;
-  display: flex;
-
-  .action-box {
-    margin-right: 3.2rem;
-    color: #8795a1;
-    display: flex;
-    align-items: center;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    > span {
-      padding-left: 0.8rem;
-    }
-  }
-}
-</style>

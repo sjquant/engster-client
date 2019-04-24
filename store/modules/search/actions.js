@@ -7,8 +7,8 @@ export default {
     });
   },
   FETCH_LINE_KOREAN({ commit }, searchWord) {
-    return search.fetchKorean(searchWord).then(data => {
-      console.log(data);
+    return search.fetchKorean(searchWord).then(({ data }) => {
+      commit("SET_SEARCH_RESULT", data);
     });
   }
 };

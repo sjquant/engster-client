@@ -2,24 +2,24 @@
   <div>
     <SearchResult :keyword="keyword" :count="lines.length"></SearchResult>
     <section>
-      <EnglishCard v-for="line in lines" :key="line.id" :line="line"></EnglishCard>
+      <KoreanCard v-for="line in lines" :key="line.id" :line="line"></KoreanCard>
     </section>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import EnglishCard from "~/components/search/EnglishCard.vue";
+import KoreanCard from "~/components/search/KoreanCard.vue";
 import SearchResult from "~/components/search/SearchResult.vue";
 
 export default {
   components: {
-    EnglishCard,
+    KoreanCard,
     SearchResult
   },
   watchQuery: ["keyword"],
   async fetch({ store, query }) {
-    await store.dispatch("FETCH_LINE_ENGLISH", query.keyword);
+    await store.dispatch("FETCH_LINE_KOREAN", query.keyword);
     store.commit("SET_KEYWORD", query.keyword);
   },
   computed: {
@@ -32,7 +32,6 @@ export default {
   }
 };
 </script>
-
 <style lang="scss">
 @import "./search.scss"
 </style>
