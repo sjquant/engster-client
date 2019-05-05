@@ -15,16 +15,16 @@
     <div class="line-action-container">
       <div class="action-box">
         <Like/>
-        <span>10</span>
+        <span>{{ line.like_count }}</span>
       </div>
       <div class="action-box">
         <Pencil/>
         <span>4</span>
       </div>
-      <div class="action-box">
+      <!-- <div class="action-box">
         <Share/>
         <span>0</span>
-      </div>
+      </div>-->
     </div>
   </LineCard>
 </template>
