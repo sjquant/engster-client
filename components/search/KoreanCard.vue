@@ -20,7 +20,7 @@
       </div>
       <div class="action-box">
         <Pencil/>
-        <span>4</span>
+        <span>{{ line.translation_count }}</span>
       </div>
       <!-- <div class="action-box">
         <Share/>
