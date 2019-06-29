@@ -17,12 +17,18 @@ export const search = {
       }
     });
   },
-  fetchTranslations(line_id, page) {
-    return axios.get("search/translations", {
+  fetchTranslations(lineid, page = 1) {
+    return axios.get("/translations", {
       params: {
-        line_id: line_id,
+        line_id: lineid,
         page: page
       }
+    });
+  },
+  createTranslation(lineid, translation) {
+    return axios.post("/translations", {
+      line_id: lineid,
+      translation: translation
     });
   }
 };
