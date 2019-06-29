@@ -14,11 +14,11 @@
     </div>
     <div class="line-action-container">
       <div class="action-box">
-        <Like/>
+        <Like />
         <span>{{ line.like_count }}</span>
       </div>
-      <div class="action-box">
-        <Pencil/>
+      <div class="action-box" @click="updateTranslationOn(line.id)">
+        <Pencil />
         <span>{{ line.translation_count }}</span>
       </div>
       <!-- <div class="action-box">
@@ -26,6 +26,12 @@
         <span>0</span>
       </div>-->
     </div>
+    <TranslationCard
+      v-if="translationOn"
+      :comments="translations"
+      contentKey="translation"
+      userKey="translator"
+    ></TranslationCard>
   </LineCard>
 </template>
 
@@ -35,19 +41,38 @@ import Tag from "~/components/common/Tag.vue";
 import Pencil from "~/components/icons/Pencil";
 import Like from "~/components/icons/Like";
 import Share from "~/components/icons/Share";
+import TranslationCard from "../common/CommentCard";
 
+import { search } from "~/api";
 export default {
   components: {
     LineCard,
     Tag,
     Pencil,
     Like,
-    Share
+    Share,
+    TranslationCard
   },
   props: {
     line: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      translationOn: false,
+      translations: []
+    };
+  },
+  methods: {
+    async updateTranslationOn(lineId) {
+      this.translationOn = !this.translationOn;
+      if (this.translationOn) {
+        this.translations = await search
+          .fetchTranslations(lineId)
+          .then(({ data }) => data);
+      }
     }
   }
 };

@@ -6,7 +6,8 @@ module.exports = {
    */
   head: {
     title: "Engster",
-    meta: [{
+    meta: [
+      {
         charset: "utf-8"
       },
       {
@@ -19,16 +20,22 @@ module.exports = {
         content: "Learn Real English with Engster!"
       }
     ],
-    link: [{
-      rel: "icon",
-      type: "image/x-icon",
-      href: "/favicon.ico"
-    }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
   modules: [
-    ['@nuxtjs/dotenv', {
-      filename: process.env.NODE_ENV !== 'production' ? '.env.dev' : '.env.prod'
-    }],
+    [
+      "@nuxtjs/dotenv",
+      {
+        filename:
+          process.env.NODE_ENV !== "production" ? ".env.dev" : ".env.prod"
+      }
+    ]
   ],
   css: ["@/assets/scss/main.scss"],
   loading: {
@@ -38,11 +45,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['axios'],
-    extend(config, {
-      isDev,
-      isClient
-    }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: "pre",
@@ -53,5 +56,6 @@ module.exports = {
       }
       config.resolve.alias["~styles"] = path.join(__dirname, "assets/scss");
     }
-  }
+  },
+  plugins: [{ src: "~plugins/time-ago" }]
 };
