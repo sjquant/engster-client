@@ -15,11 +15,11 @@
     </div>
     <div class="line-action-container">
       <div class="action-box">
-        <Like/>
+        <Like />
         <span>{{ line.like_count }}</span>
       </div>
       <div class="action-box">
-        <Pencil/>
+        <Pencil />
         <span>{{ line.translation_count }}</span>
       </div>
       <!-- <div class="action-box">
@@ -32,10 +32,10 @@
 
 <script>
 import LineCard from "../common/LineCard.vue";
-import Tag from "~/components/common/Tag.vue";
-import Pencil from "~/components/icons/Pencil";
-import Like from "~/components/icons/Like";
-import Share from "~/components/icons/Share";
+import Tag from "../common/Tag.vue";
+import Pencil from "./Pencil.vue";
+import Like from "./Like.vue";
+import Share from "./Share.vue";
 
 export default {
   components: {

@@ -37,12 +37,11 @@
 
 <script>
 import LineCard from "../common/LineCard.vue";
-import Tag from "~/components/common/Tag.vue";
-import Pencil from "~/components/icons/Pencil";
-import Like from "~/components/icons/Like";
-import Share from "~/components/icons/Share";
+import Tag from "../common/Tag.vue";
+import Pencil from "./Pencil.vue";
+import Like from "./Like.vue";
+import Share from "./Share.vue";
 import TranslationCard from "../common/CommentCard";
-
 import { search } from "~/api";
 export default {
   components: {
