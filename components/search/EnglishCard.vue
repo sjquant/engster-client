@@ -17,7 +17,7 @@
         <Like />
         <span>{{ line.like_count }}</span>
       </div>
-      <div class="action-box" @click="updateTranslationOn(line.id)">
+      <div class="action-box" @click="updateTranslationOn">
         <Pencil />
         <span>{{ line.translation_count }}</span>
       </div>
@@ -28,9 +28,12 @@
     </div>
     <TranslationCard
       v-if="translationOn"
+      ref="transCard"
       :comments="translations"
+      inputPlaceholder="자신만의 번역을 추가해보세요!"
       contentKey="translation"
       userKey="translator"
+      @comment-created="createTranslation"
     ></TranslationCard>
   </LineCard>
 </template>
@@ -43,6 +46,8 @@ import Like from "./Like.vue";
 import Share from "./Share.vue";
 import TranslationCard from "../common/CommentCard";
 import { search } from "~/api";
+import { mapMutations } from "vuex";
+
 export default {
   components: {
     LineCard,
@@ -65,12 +70,24 @@ export default {
     };
   },
   methods: {
-    async updateTranslationOn(lineId) {
+    ...mapMutations("search", ["INCREASE_TRANSLATION_COUNT"]),
+    async updateTranslationOn() {
       this.translationOn = !this.translationOn;
       if (this.translationOn) {
         this.translations = await search
-          .fetchTranslations(lineId)
+          .fetchTranslations(this.line.id)
           .then(({ data }) => data);
+      }
+    },
+    async createTranslation(translation) {
+      if (translation !== "") {
+        let resp = await search
+          .createTranslation(this.line.id, translation)
+          .then(({ data }) => data);
+        this.translations.unshift(resp);
+        // remove translation
+        this.$refs.transCard.$refs.commentInput.$refs.input.value = "";
+        this.INCREASE_TRANSLATION_COUNT(this.line.id);
       }
     }
   }

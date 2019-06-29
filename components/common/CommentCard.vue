@@ -1,26 +1,41 @@
 <template>
-  <div class="comment-container">
-    <section class="content-container">
-      <div class="comment-box" v-for="comment in comments" :key="comment.id">
-        <span class="user">{{comment[userKey]}}</span>
-        <div class="comment-content">
-          <span class="comment">{{comment[contentKey]}}</span>
-          <div class="action-box">
-            <span class="action">좋아요</span>
-            <timeago class="updated-at" :datetime="comment[updatedAtKey]"></timeago>
+  <div>
+    <CommentInput
+      ref="commentInput"
+      :placeholder="inputPlaceholder"
+      @comment-created="(value) => $emit('comment-created', value)"
+    ></CommentInput>
+    <div class="comment-container">
+      <section class="content-container">
+        <div class="comment-box" v-for="comment in comments" :key="comment.id">
+          <span class="user">{{comment[userKey]}}</span>
+          <div class="comment-content">
+            <span class="comment">{{comment[contentKey]}}</span>
+            <div class="action-box">
+              <span class="action">좋아요</span>
+              <timeago class="updated-at" :datetime="comment[updatedAtKey]"></timeago>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
+import CommentInput from "./CommentInput.vue";
+
 export default {
+  components: {
+    CommentInput
+  },
   props: {
     comments: {
       type: Array,
       default: () => []
+    },
+    inputPlaceholder: {
+      type: String
     },
     userKey: {
       type: String,
@@ -56,6 +71,9 @@ export default {
     display: flex;
     span {
       &.user {
+        width: 10rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-weight: 700;
       }
     }
