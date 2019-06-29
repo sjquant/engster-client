@@ -1,7 +1,9 @@
 <template>
   <div class="search-bar-container">
-    <input type="text" placeholder="찾고싶은 표현을 입력하세요!" @keyup.enter="onEnterSearch" ref="inputSearch">
-    <SearchGlass @click="onClickSearch"/>
+    <input type="text" placeholder="찾고싶은 표현을 입력하세요!" @keyup.enter="onEnterSearch" ref="inputSearch" />
+    <div class="search-glass" @click="onClickSearch">
+      <SearchGlass />
+    </div>
   </div>
 </template>
 
@@ -87,8 +89,6 @@ export default {
 }
 
 .search-glass {
-  width: 1.6rem;
-  height: 1.6rem;
   position: absolute;
   right: 1.2rem;
   cursor: pointer;

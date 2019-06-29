@@ -1,10 +1,10 @@
 <template>
   <div class="main-head-container">
     <div class="main-head-content-container">
-      <MainLogo/>
-      <MainSearchBar/>
+      <MainLogo />
+      <MainSearchBar />
       <div class="side-head-container">
-        <MobileMenuIcon/>
+        <MobileMenuIcon />
       </div>
     </div>
   </div>
@@ -29,6 +29,9 @@ export default {
   border-bottom: 1px solid $gray-lighter;
   height: 6.4rem;
   display: flex;
+  position: sticky;
+  background: #fff;
+  top: 0;
   align-items: center;
 
   .main-head-content-container {

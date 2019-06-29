@@ -1,12 +1,12 @@
 <template>
   <div>
-    <MainHead/>
+    <MainHead />
     <div class="container">
       <SideContentContainer>
         <div></div>
       </SideContentContainer>
       <MainContentContainer>
-        <nuxt/>
+        <nuxt />
       </MainContentContainer>
       <SideContentContainer>
         <div></div>
@@ -31,6 +31,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   display: flex;
+  max-height: calc(100vh - 6.4rem);
+  overflow: auto;
 }
 </style>
 
