@@ -10,5 +10,15 @@ export default {
     return search.fetchKorean(searchWord).then(({ data }) => {
       commit("SET_SEARCH_RESULT", data);
     });
+  },
+  LIKE_LINE_ENGLISH({ commit }, lineid) {
+    return search.likeEnglish(lineid).then(() => {
+      commit("ADD_USER_LIKED", lineid);
+    });
+  },
+  UNLIKE_LINE_ENGLISH({ commit }, lineid) {
+    return search.unlikeEnglish(lineid).then(() => {
+      commit("REMOVE_USER_LIKED", lineid);
+    });
   }
 };

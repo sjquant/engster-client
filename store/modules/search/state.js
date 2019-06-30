@@ -3,6 +3,7 @@ export default {
   searchResult: {
     lines: [],
     max_page: null,
-    page: null
+    page: null,
+    user_liked: []
   }
 };

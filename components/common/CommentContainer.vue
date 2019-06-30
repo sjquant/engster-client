@@ -21,31 +21,5 @@
     max-height: 24rem;
     overflow: auto;
   }
-  .comment-box {
-    padding: 0.4rem 0;
-    display: flex;
-    span {
-      &.user {
-        width: 10rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: 700;
-      }
-    }
-  }
-}
-
-.comment-content {
-  padding-left: 1.6rem;
-  .action-box {
-    padding-top: 0.4rem;
-    color: $gray-darker;
-    span {
-      padding-right: 1.6rem;
-      &.action:hover {
-        cursor: pointer;
-      }
-    }
-  }
 }
 </style>

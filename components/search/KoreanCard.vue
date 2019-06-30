@@ -28,7 +28,7 @@
       </div>-->
     </div>
     <TranslationCard
-      v-if="translationOn"
+      v-if="isTranslationOn"
       ref="transCard"
       :comments="translations"
       inputPlaceholder="자신만의 번역을 추가해보세요!"

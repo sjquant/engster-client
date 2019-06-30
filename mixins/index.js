@@ -4,15 +4,15 @@ import { mapMutations } from "vuex";
 export const translationMixin = {
   data() {
     return {
-      translationOn: false,
+      isTranslationOn: false,
       translations: []
     };
   },
   methods: {
     ...mapMutations("search", ["INCREASE_TRANSLATION_COUNT"]),
     async updateTranslationOn() {
-      this.translationOn = !this.translationOn;
-      if (this.translationOn) {
+      this.isTranslationOn = !this.isTranslationOn;
+      if (this.isTranslationOn) {
         this.translations = await search
           .fetchTranslations(this.line.id)
           .then(({ data }) => data);
