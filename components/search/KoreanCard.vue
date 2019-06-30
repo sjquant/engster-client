@@ -6,7 +6,7 @@
     </div>
     <div class="line-info">
       <div class="title-category">
-        <span>{{ line.content.title }}</span> |
+        <span>{{ `${line.content.title} (${line.content.year})`}}</span> |
         <span>{{ line.category.category }}</span>
       </div>
       <div>
@@ -18,7 +18,7 @@
         <Like />
         <span>{{ line.like_count }}</span>
       </div>
-      <div class="action-box">
+      <div class="action-box" @click="updateTranslationOn">
         <Pencil />
         <span>{{ line.translation_count }}</span>
       </div>
@@ -27,6 +27,15 @@
         <span>0</span>
       </div>-->
     </div>
+    <TranslationCard
+      v-if="translationOn"
+      ref="transCard"
+      :comments="translations"
+      inputPlaceholder="자신만의 번역을 추가해보세요!"
+      contentKey="translation"
+      userKey="translator"
+      @comment-created="createTranslation"
+    ></TranslationCard>
   </LineCard>
 </template>
 
@@ -36,6 +45,8 @@ import Tag from "../common/Tag.vue";
 import Pencil from "./Pencil.vue";
 import Like from "./Like.vue";
 import Share from "./Share.vue";
+import TranslationCard from "./TranslationCard";
+import { translationMixin } from "~/mixins";
 
 export default {
   components: {
@@ -43,14 +54,16 @@ export default {
     Tag,
     Pencil,
     Like,
-    Share
+    Share,
+    TranslationCard
   },
   props: {
     line: {
       type: Object,
       required: true
     }
-  }
+  },
+  mixins: [translationMixin]
 };
 </script>
 
