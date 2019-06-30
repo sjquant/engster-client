@@ -30,5 +30,11 @@ export const search = {
       line_id: lineid,
       translation: translation
     });
+  },
+  likeEnglish(lineid) {
+    return axios.post(`/like/english/${lineid}`, {});
+  },
+  unlikeEnglish(lineid) {
+    return axios.delete(`/like/english/${lineid}`, {});
   }
 };
