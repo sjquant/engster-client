@@ -39,6 +39,7 @@ body {
 
 button {
   @include unstyle-button();
+  cursor: pointer;
 }
 
 input {
@@ -55,5 +56,5 @@ input {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: $gray-light;
+  background-color: $gray;
 }

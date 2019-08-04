@@ -7,6 +7,11 @@ const mutations = {
   SET_SEARCH_RESULT(state, result) {
     state.searchResult = result;
   },
+  APPEND_SEARCH_RESULT(state, result) {
+    Vue.set(state.searchResult, "page", result.page)
+    state.searchResult.lines.push(...result.lines)
+    state.searchResult.user_liked.push(...result.user_liked);
+  },
   INCREASE_TRANSLATION_COUNT(state, lineid) {
     let line = state.searchResult.lines.find(line => line.id === lineid);
     if (line) Vue.set(line, "translation_count", line.translation_count + 1);

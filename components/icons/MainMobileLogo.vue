@@ -1,11 +1,5 @@
 <template>
-  <svg
-    viewBox="0 0 37 51"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    class="main-mobile-logo"
-    @click="toHome"
-  >
+  <svg viewBox="0 0 37 51" fill="none" xmlns="http://www.w3.org/2000/svg" class="main-mobile-logo">
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -41,13 +35,3 @@
     />
   </svg>
 </template>
-
-<script>
-export default {
-  methods: {
-    toHome() {
-      location.replace("/");
-    }
-  }
-};
-</script>

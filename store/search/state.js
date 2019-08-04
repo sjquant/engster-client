@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   keyword: "",
   searchResult: {
     lines: [],
@@ -6,4 +6,4 @@ export default {
     page: null,
     user_liked: []
   }
-};
+});

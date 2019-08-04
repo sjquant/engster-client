@@ -1,0 +1,12 @@
+.wrap-center {
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.loading-bar {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+}

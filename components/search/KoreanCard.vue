@@ -1,7 +1,7 @@
 <template>
   <LineCard>
     <div class="translation-content">
-      <div class="translation">{{ line.translation }}</div>
+      <div class="translation" v-html="processedLine"></div>
       <div class="line">{{ line.line.line }}</div>
     </div>
     <div class="line-info">
@@ -47,6 +47,7 @@ import Like from "./Like.vue";
 import Share from "./Share.vue";
 import TranslationCard from "./TranslationCard";
 import { translationMixin } from "~/mixins";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -63,7 +64,20 @@ export default {
       required: true
     }
   },
-  mixins: [translationMixin]
+  mixins: [translationMixin],
+  computed: {
+    ...mapState("search", ["keyword"]),
+    processedLine() {
+      let regexp = new RegExp("(" + this.keyword + ")", "i");
+
+      try {
+        return this.line.translation.replace(
+          regexp,
+          '<span class="highlighted">$1</span>'
+        );
+      } catch (error) {}
+    }
+  }
 };
 </script>
 

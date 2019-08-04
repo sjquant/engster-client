@@ -3,21 +3,31 @@
     <div class="main-head-content-container">
       <MainLogo />
       <MainSearchBar />
-      <div class="side-head-container">
+      <div class="side-head-container" @click="mobileMenuOn = !mobileMenuOn">
         <MobileMenuIcon />
       </div>
     </div>
+    <no-ssr>
+      <MobileMenu v-if="mobileMenuOn" @overlayClick="mobileMenuOn=false" />
+    </no-ssr>
   </div>
 </template>
 <script>
-import MainLogo from "./MainLogo/MainLogo.vue";
-import MainSearchBar from "./MainSearchBar/MainSearchBar.vue";
-import MobileMenuIcon from "./MobileMenu/MobileMenuIcon.vue";
+import MainLogo from "./MainLogo.vue";
+import MainSearchBar from "./MainSearchBar.vue";
+import MobileMenuIcon from "./MobileMenuIcon.vue";
+import MobileMenu from "./MobileMenu.vue";
 export default {
   components: {
     MainLogo,
     MainSearchBar,
-    MobileMenuIcon
+    MobileMenuIcon,
+    MobileMenu
+  },
+  data() {
+    return {
+      mobileMenuOn: false
+    };
   }
 };
 </script>

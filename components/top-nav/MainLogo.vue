@@ -1,18 +1,23 @@
 <template>
-  <div class="main-logo-container">
-    <MainMobileLogo/>
-    <MainFullLogo/>
+  <div class="main-logo-container" @click="toHome">
+    <MainMobileLogo />
+    <MainFullLogo />
   </div>
 </template>
 
 <script>
-import MainMobileLogo from "./MainMobileLogo.vue";
-import MainFullLogo from "./MainFullLogo.vue";
+import MainMobileLogo from "../icons/MainMobileLogo.vue";
+import MainFullLogo from "../icons/MainFullLogo.vue";
 
 export default {
   components: {
     MainMobileLogo,
     MainFullLogo
+  },
+  methods: {
+    toHome() {
+      location.replace("/");
+    }
   }
 };
 </script>

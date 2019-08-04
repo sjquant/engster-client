@@ -1,7 +1,7 @@
 <template>
   <LineCard>
     <div class="line-content">
-      <div class="line">{{ line.line }}</div>
+      <div class="line" v-html="processedLine"></div>
     </div>
     <div class="line-info">
       <div class="title-category">
@@ -74,10 +74,20 @@ export default {
     }
   },
   computed: {
-    ...mapState("search", ["searchResult"]),
+    ...mapState("search", ["searchResult", "keyword"]),
     isLiked() {
       if (this.searchResult.user_liked.includes(this.line.id)) return true;
       else false;
+    },
+    processedLine() {
+      let regexp = new RegExp("(" + this.keyword + ")", "i");
+
+      try {
+        return this.line.line.replace(
+          regexp,
+          '<span class="highlighted">$1</span>'
+        );
+      } catch (error) {}
     }
   }
 };
