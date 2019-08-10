@@ -2,7 +2,7 @@
   <div class="mobile-overlay" @click="overlayClick">
     <div class="mobile-menu">
       <ul>
-        <nuxt-link to="/login">
+        <nuxt-link to="/sign-in">
           <li>로그인</li>
         </nuxt-link>
         <li>로그아웃</li>
