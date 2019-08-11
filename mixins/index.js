@@ -15,14 +15,12 @@ export const translationMixin = {
       if (this.isTranslationOn) {
         this.translations = await search
           .fetchTranslations(this.line.id)
-          .then(({ data }) => data);
       }
     },
     async createTranslation(translation) {
       if (translation !== "") {
         let resp = await search
           .createTranslation(this.line.id, translation)
-          .then(({ data }) => data);
         this.translations.unshift(resp);
         // remove translation
         this.$refs.transCard.$refs.commentInput.$refs.input.value = "";

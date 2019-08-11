@@ -1,40 +1,60 @@
-import axios from "../plugins/axios.js";
+import { request } from "../utils";
+
+export const auth = {
+  register(email, password, nickname) {
+    return request.post("/auth/register", {
+      email,
+      password,
+      nickname
+    }).then(({ data }) => data)
+  },
+  obtainToken(email, password) {
+    return request.post("/auth/obtain-token", {
+      email,
+      password
+    }
+    ).then(({ data }) => data)
+  },
+  refreshToken() {
+    request.post("/auth/refresh-token").then(({ data }) => data)
+  }
+}
 
 export const search = {
   fetchEnglish(keyword, page = 1) {
-    return axios.get("/search/english", {
+    return request.get("/search/english", {
       params: {
         keyword: keyword,
         page: page
       }
-    });
+    }).then(({ data }) => data);
   },
   fetchKorean(keyword, page = 1) {
-    return axios.get("/search/korean", {
+    return request.get("/search/korean", {
       params: {
         keyword: keyword,
         page: page
       }
-    });
+    }).then(({ data }) => data);
   },
   fetchTranslations(lineid, page = 1) {
-    return axios.get("/translations", {
+    return request.get("/translations", {
       params: {
         line_id: lineid,
         page: page
       }
-    });
+    }).then(({ data }) => data);
   },
   createTranslation(lineid, translation) {
-    return axios.post("/translations", {
+    return request.post("/translations", {
       line_id: lineid,
       translation: translation
-    });
+    }).then(({ data }) => data);
   },
   likeEnglish(lineid) {
-    return axios.post(`/like/english/${lineid}`, {});
+    return request.post(`/like/english/${lineid}`, {}).then(({ data }) => data);
   },
   unlikeEnglish(lineid) {
-    return axios.delete(`/like/english/${lineid}`, {});
+    return request.delete(`/like/english/${lineid}`, {}).then(({ data }) => data);
   }
 };

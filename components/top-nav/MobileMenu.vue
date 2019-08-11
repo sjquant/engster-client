@@ -1,19 +1,30 @@
 <template>
   <div class="mobile-overlay" @click="overlayClick">
     <div class="mobile-menu">
-      <ul>
-        <nuxt-link to="/sign-in">
-          <li>로그인</li>
-        </nuxt-link>
-        <li>로그아웃</li>
-      </ul>
+      <no-ssr>
+        <ul>
+          <nuxt-link to="/sign-in" v-if="!user">
+            <li>로그인</li>
+          </nuxt-link>
+          <li v-if="user" @click="logout">로그아웃</li>
+        </ul>
+      </no-ssr>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
+  computed: {
+    ...mapState("auth", ["user"])
+  },
   methods: {
+    ...mapActions("auth", ["LOGOUT"]),
+    logout() {
+      this.LOGOUT()
+    },
     overlayClick() {
       this.$emit("overlayClick");
     }

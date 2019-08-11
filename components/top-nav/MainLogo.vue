@@ -16,7 +16,9 @@ export default {
   },
   methods: {
     toHome() {
-      location.replace("/");
+      if (process.client) {
+        window.location.replace("/");
+      }
     }
   }
 };

@@ -57,5 +57,10 @@ module.exports = {
       config.resolve.alias["~styles"] = path.join(__dirname, "assets/scss");
     }
   },
-  plugins: [{ src: "~plugins/time-ago" }, { src: "~plugins/infinite-scroll", mode: 'client' }]
+  plugins: [
+    { src: "~plugins/time-ago" },
+    { src: "~plugins/infinite-scroll", mode: 'client' },
+    { src: "~plugins/vee-validate" },
+    { src: '~plugins/nuxt-client-init.js', ssr: false }
+  ]
 };

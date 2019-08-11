@@ -4562,6 +4562,11 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -7924,6 +7929,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vee-validate@^2.2.14:
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.2.14.tgz#94f914cd30db5928887be98eee4eb635ad617b08"
+  integrity sha512-EDiEk8/PthLn9/1FISLCcviCzjvsc9Jv9B4wmyz0GoGqa0DT8yiTWuTORjSFQQ+UW0GLhXcPNfRhG3EdEOx0gw==
 
 vendors@^1.0.0:
   version "1.0.3"

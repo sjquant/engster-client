@@ -1,8 +1,9 @@
 import { search } from "~/api";
+import { setAuthInHeader } from "~/utils"
 
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
-    return search.fetchEnglish(searchWord, page).then(({ data }) => {
+    return search.fetchEnglish(searchWord, page).then(data => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data)
       } else {
@@ -11,7 +12,7 @@ export default {
     });
   },
   FETCH_LINE_KOREAN({ commit }, { searchWord, page = 1, append = false }) {
-    return search.fetchKorean(searchWord, page).then(({ data }) => {
+    return search.fetchKorean(searchWord, page).then(data => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data)
       } else {
