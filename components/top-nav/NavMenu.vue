@@ -21,9 +21,9 @@ export default {
     ...mapState("auth", ["user"])
   },
   methods: {
-    ...mapActions("auth", ["LOGOUT"]),
+    ...mapActions("auth", ["SIGNOUT"]),
     logout() {
-      this.LOGOUT()
+      this.SIGNOUT();
     },
     overlayClick() {
       this.$emit("overlayClick");
@@ -48,9 +48,7 @@ export default {
   background-color: #fff;
   right: 0;
 
-  @include media(">=lg") {
-    display: none;
-  }
+  border-radius: 4px;
 
   ul {
     list-style-type: none;

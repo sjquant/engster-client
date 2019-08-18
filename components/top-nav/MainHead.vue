@@ -1,32 +1,36 @@
 <template>
   <div class="main-head-container">
     <div class="main-head-content-container">
-      <MainLogo />
-      <MainSearchBar />
-      <div class="side-head-container" @click="mobileMenuOn = !mobileMenuOn">
-        <MobileMenuIcon />
+      <main-logo />
+      <main-search-bar />
+      <div class="side-head-container">
+        <div @click="menuOn = !menuOn">
+          <div>
+            <profile-icon></profile-icon>
+          </div>
+        </div>
       </div>
+      <no-ssr>
+        <nav-menu v-if="menuOn" @overlayClick="menuOn=false" />
+      </no-ssr>
     </div>
-    <no-ssr>
-      <MobileMenu v-if="mobileMenuOn" @overlayClick="mobileMenuOn=false" />
-    </no-ssr>
   </div>
 </template>
 <script>
 import MainLogo from "./MainLogo.vue";
 import MainSearchBar from "./MainSearchBar.vue";
-import MobileMenuIcon from "./MobileMenuIcon.vue";
-import MobileMenu from "./MobileMenu.vue";
+import NavMenu from "./NavMenu.vue";
+import ProfileIcon from "../common/ProfileIcon";
 export default {
   components: {
     MainLogo,
     MainSearchBar,
-    MobileMenuIcon,
-    MobileMenu
+    NavMenu,
+    ProfileIcon
   },
   data() {
     return {
-      mobileMenuOn: false
+      menuOn: false
     };
   }
 };
@@ -60,9 +64,13 @@ export default {
   padding-right: 1.6rem;
   display: flex;
   align-items: center;
-
+  justify-content: flex-end;
   @include media(">=lg") {
     width: 16rem;
+  }
+
+  .profile-icon-container {
+    cursor: pointer;
   }
 }
 </style>
