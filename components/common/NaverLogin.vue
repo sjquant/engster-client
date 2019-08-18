@@ -1,7 +1,7 @@
 <template>
   <button class="naver-login-btn" @click.prevent>
     <div>
-      <img src="../../assets/iamges/naver.svg" />
+      <img src="../../assets/images/naver.svg" />
       <span>네이버로 로그인</span>
     </div>
   </button>

@@ -1,7 +1,7 @@
 <template>
   <button class="fb-login-btn" @click.prevent>
     <div>
-      <img src="../../assets/iamges/facebook.svg" />
+      <img src="../../assets/images/facebook.svg" />
       <span>페이스북으로 로그인</span>
     </div>
   </button>
