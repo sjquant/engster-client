@@ -33,7 +33,7 @@ module.exports = {
       "@nuxtjs/dotenv",
       {
         filename:
-          process.env.NODE_ENV !== "production" ? ".env.dev" : ".env.prod"
+          process.env.NODE_ENV !== "production" ? ".env.development" : ".env.production"
       }
     ]
   ],
