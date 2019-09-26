@@ -1,26 +1,28 @@
 <template>
-  <div class="main-head-container">
+  <header class="main-head-container">
     <div class="main-head-content-container">
       <main-logo />
       <main-search-bar />
       <div class="side-head-container">
-        <div @click="menuOn = !menuOn">
-          <div>
-            <profile-icon></profile-icon>
-          </div>
+        <nuxt-link to="/sign-in" v-show="!user">
+          로그인
+        </nuxt-link>
+        <div v-show="user" @click="menuOn = !menuOn">
+          <profile-icon></profile-icon>
         </div>
       </div>
       <no-ssr>
-        <nav-menu v-if="menuOn" @overlayClick="menuOn=false" />
+        <nav-menu v-if="menuOn" @closeMenu="menuOn=false" />
       </no-ssr>
     </div>
-  </div>
+  </header>
 </template>
 <script>
 import MainLogo from "./MainLogo.vue";
 import MainSearchBar from "./MainSearchBar.vue";
 import NavMenu from "./NavMenu.vue";
 import ProfileIcon from "../common/ProfileIcon";
+import { mapState } from "vuex"
 export default {
   components: {
     MainLogo,
@@ -32,6 +34,9 @@ export default {
     return {
       menuOn: false
     };
+  },
+  computed: {
+    ...mapState("auth", ["user"])
   }
 };
 </script>
@@ -59,7 +64,6 @@ export default {
 }
 
 .side-head-container {
-  min-width: 5.6rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   display: flex;
@@ -69,8 +73,14 @@ export default {
     width: 16rem;
   }
 
+  a {
+    white-space: nowrap
+  }
   .profile-icon-container {
     cursor: pointer;
+    .profile-icon {
+      width: 3.2rem;
+    }
   }
 }
 </style>
