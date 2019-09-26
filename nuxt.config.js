@@ -61,6 +61,7 @@ module.exports = {
     { src: "~plugins/time-ago" },
     { src: "~plugins/infinite-scroll", mode: 'client' },
     { src: "~plugins/vee-validate" },
+    { src: "~plugins/v-click-outside" },
     { src: '~plugins/nuxt-client-init.js', ssr: false }
   ]
 };
