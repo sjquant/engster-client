@@ -57,11 +57,12 @@ export default {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    border-bottom: $gray-light solid 1px;
     li {
       cursor: pointer;
       padding-left: 0.8rem;
       &:hover {
-        background-color: $gray-lighter;
+        background-color: $gray-lightest;
       }
       line-height: 3;
     }
@@ -82,6 +83,9 @@ export default {
     .user-email {
       font-size: 1.4rem;
     }
+  }
+  .profile-icon-container > .profile-icon {
+    width: 4rem;
   }
 }
 </style>

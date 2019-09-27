@@ -4,7 +4,11 @@
       <profile-icon></profile-icon>
       <div class="user-info">
         <h1 class="user-nickname">{{ user ? user.nickname : "" }}님</h1>
-        <button>프로필 편집</button>
+        <button class="edit-profile-btn">프로필 편집</button>
+        <div class="activity-info">
+          <span class="title">번역</span>
+          <span class="value">45</span>
+        </div>
       </div>
     </header>
     <section></section>
@@ -26,13 +30,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~styles/utils.scss";
 .my-page-container {
   margin-top: 4.8rem;
   header {
     display: flex;
+    border-bottom: $gray-light solid 1px;
+    padding-bottom: 4.8rem;
     .profile-icon-container {
-      flex: 1;
-      max-width: 20.8rem;
+      margin: 0 2.4rem;
+      @include media(">=lg") {
+        margin: 0 4.8rem;
+      }
       > img.profile-icon {
         display: block;
         margin: 0 auto;
@@ -41,9 +50,26 @@ export default {
     }
 
     .user-info {
-      flex: 2;
       > h1.user-nickname {
-        margin-top: 0;
+        display: inline;
+      }
+      .edit-profile-btn {
+        display: inline;
+        margin-left: 2.4rem;
+        padding: 0.4rem 0.8rem;
+        color: $gray-darker;
+        border: $gray-light solid 1px;
+        border-radius: 4px;
+        &:hover {
+          color: $gray-darkest;
+        }
+      }
+      .activity-info {
+        margin-top: 2.4rem;
+        font-size: 1.8rem;
+        > .value {
+          font-weight: 700;
+        }
       }
     }
   }

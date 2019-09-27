@@ -79,7 +79,7 @@ export default {
     }
 
     &::placeholder {
-      color: $gray;
+      color: $gray-dark;
     }
 
     @include media("<=sm") {
