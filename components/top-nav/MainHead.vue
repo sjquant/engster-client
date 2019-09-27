@@ -4,9 +4,7 @@
       <main-logo />
       <main-search-bar />
       <div class="side-head-container">
-        <nuxt-link to="/sign-in" v-show="!user">
-          로그인
-        </nuxt-link>
+        <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
           <profile-icon></profile-icon>
         </div>
@@ -22,7 +20,7 @@ import MainLogo from "./MainLogo.vue";
 import MainSearchBar from "./MainSearchBar.vue";
 import NavMenu from "./NavMenu.vue";
 import ProfileIcon from "../common/ProfileIcon";
-import { mapState } from "vuex"
+import { mapState } from "vuex";
 export default {
   components: {
     MainLogo,
@@ -74,11 +72,11 @@ export default {
   }
 
   a {
-    white-space: nowrap
+    white-space: nowrap;
   }
   .profile-icon-container {
     cursor: pointer;
-    .profile-icon {
+    > .profile-icon {
       width: 3.2rem;
     }
   }

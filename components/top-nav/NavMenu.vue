@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-menu" v-click-outside="onClickOutside">
+  <div class="mobile-menu" v-click-outside="closeMenu">
     <div class="active-account-header">
       <profile-icon></profile-icon>
       <div class="account-info">
@@ -7,8 +7,10 @@
         <div class="user-email">{{ user ? user.email : "" }}</div>
       </div>
     </div>
-    <ul>
-      <li>마이페이지</li>
+    <ul @click="closeMenu">
+      <nuxt-link to="/my-page">
+        <li>마이페이지</li>
+      </nuxt-link>
       <li @click="logout">로그아웃</li>
     </ul>
   </div>
@@ -29,9 +31,8 @@ export default {
     ...mapActions("auth", ["SIGNOUT"]),
     logout() {
       this.SIGNOUT();
-      this.$emit("closeMenu");
     },
-    onClickOutside() {
+    closeMenu() {
       this.$emit("closeMenu");
     }
   }
@@ -52,7 +53,6 @@ export default {
   border: $gray-light solid 1px;
   border-radius: 4px;
 
-
   ul {
     list-style-type: none;
     padding: 0;
@@ -69,19 +69,19 @@ export default {
 }
 
 .mobile-menu > .active-account-header {
-    padding: 0 1.6rem;
-    padding-bottom: 1.6rem;
-    border-bottom: $gray-light solid 1px;
-    display: flex;
-    .account-info {
-      padding-left: 1.6rem;
-      line-height: 1.3;
-      .user-nickname {
-        font-weight: 700;
-      }
-      .user-email {
-        font-size: 1.4rem;
-      }
+  padding: 0 1.6rem;
+  padding-bottom: 1.6rem;
+  border-bottom: $gray-light solid 1px;
+  display: flex;
+  .account-info {
+    padding-left: 1.6rem;
+    line-height: 1.3;
+    .user-nickname {
+      font-weight: 700;
+    }
+    .user-email {
+      font-size: 1.4rem;
     }
   }
+}
 </style>

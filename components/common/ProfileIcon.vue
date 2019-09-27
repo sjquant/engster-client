@@ -9,7 +9,6 @@
 .profile-icon-container {
   border-radius: 100%;
   img.profile-icon {
-    width: 40px;
     object-fit: cover;
   }
 }

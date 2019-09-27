@@ -49,7 +49,7 @@ import FacebookLogin from "../components/common/FacebookLogin";
 import NaverLogin from "../components/common/NaverLogin";
 import { mapActions } from "vuex";
 export default {
-  layout: "login",
+  layout: "wrap-center",
   components: {
     Logo,
     GoogleLogin,

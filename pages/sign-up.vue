@@ -81,7 +81,7 @@ import NaverLogin from "../components/common/NaverLogin";
 import { mapActions } from "vuex";
 
 export default {
-  layout: "login",
+  layout: "wrap-center",
   data() {
     return {
       agreed: false,
