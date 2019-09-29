@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .mobile-menu {
   @include material-shadow(1);

@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .main-content-container {
   width: 100%;

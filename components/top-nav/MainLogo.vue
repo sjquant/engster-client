@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "~styles/utils.scss";
+@import "~utils";
 .main-logo-container {
   min-width: 5.6rem;
   padding-left: 1.6rem;

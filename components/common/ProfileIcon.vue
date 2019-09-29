@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 .profile-icon-container {
   border-radius: 100%;
   img.profile-icon {

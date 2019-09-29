@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .main-head-container {
   border-bottom: 1px solid $gray-lighter;

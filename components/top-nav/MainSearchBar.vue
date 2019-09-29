@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import "~styles/utils.scss";
+@import "~utils";
 
 .search-bar-container {
   width: 100%;

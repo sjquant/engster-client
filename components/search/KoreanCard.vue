@@ -83,7 +83,7 @@ export default {
 
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .translation-content {
   .line {

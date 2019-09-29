@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .side-content-container {
   display: none;

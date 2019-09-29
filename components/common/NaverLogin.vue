@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "~styles/utils.scss";
+@import "~utils";
 .naver-login-btn {
   background-color: #00c73c;
   color: #fff;

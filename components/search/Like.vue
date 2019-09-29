@@ -22,7 +22,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 #like-icon {
   .color {

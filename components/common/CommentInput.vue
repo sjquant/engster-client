@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 
 .comment-input-container {
   position: relative;

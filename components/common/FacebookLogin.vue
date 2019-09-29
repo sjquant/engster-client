@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "~styles/utils.scss";
+@import "~utils";
 .fb-login-btn {
   display: flex;
   justify-content: center;

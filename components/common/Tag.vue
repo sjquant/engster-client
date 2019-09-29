@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "~styles/utils.scss";
+@import "~utils";
 .tag {
   border-radius: 3px;
   border: 1px solid $gray;

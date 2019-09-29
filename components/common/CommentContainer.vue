@@ -9,7 +9,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 .comment-container {
   width: 100%;
   background-color: $gray-lighter;

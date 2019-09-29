@@ -7,7 +7,7 @@
 </template>
 
 <style lang="scss">
-@import "~styles/utils.scss";
+@import "~utils";
 .line-card-container {
   border-bottom: 1px solid $gray-light;
   min-height: 8rem;

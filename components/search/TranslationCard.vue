@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~styles/utils.scss";
+@import "~utils";
 
 .comment-box {
   padding: 0.4rem 0;

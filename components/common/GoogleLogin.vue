@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "~styles/utils.scss";
+@import "~utils";
 
 .google-login-btn {
   background-color: #fff;

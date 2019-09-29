@@ -54,7 +54,7 @@ module.exports = {
           exclude: /(node_modules)/
         });
       }
-      config.resolve.alias["~styles"] = path.join(__dirname, "assets/scss");
+      config.resolve.alias["~utils"] = path.join(__dirname, "assets/scss/utils.scss");
     }
   },
   plugins: [
