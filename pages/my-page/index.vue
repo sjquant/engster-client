@@ -1,3 +1,4 @@
-<template>
-  <h1>Hello World</h1>
-</template>
+<script>
+import Likes from "./likes";
+export default Likes;
+</script>

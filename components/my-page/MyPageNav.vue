@@ -1,10 +1,6 @@
 <template>
   <nav class="my-page-nav">
-    <nuxt-link
-      to="/my-page/likes"
-      class="nav-menu"
-      :class="{active: $route.path === '/my-page/likes'}"
-    >좋아요</nuxt-link>
+    <nuxt-link to="/my-page/likes" class="nav-menu" :class="{active: isActive}">좋아요</nuxt-link>
     <nuxt-link
       to="/my-page/translations"
       class="nav-menu"
@@ -12,6 +8,17 @@
     >번역</nuxt-link>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    isActive() {
+      let re = /(^\/my-page\/?$)|(^\/my-page\/likes\/?$)/g;
+      return this.$route.path.match(re);
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 @import "~utils";
