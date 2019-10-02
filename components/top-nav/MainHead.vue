@@ -9,9 +9,9 @@
           <profile-icon></profile-icon>
         </div>
       </div>
-      <no-ssr>
+      <client-only>
         <nav-menu v-if="menuOn" @closeMenu="menuOn=false" />
-      </no-ssr>
+      </client-only>
     </div>
   </header>
 </template>
