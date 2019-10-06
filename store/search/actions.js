@@ -29,5 +29,15 @@ export default {
     return search.unlikeEnglish(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
+  },
+  LIKE_LINE_KOREAN({ commit }, lineid) {
+    return search.likeKorean(lineid).then(() => {
+      commit("ADD_USER_LIKED", lineid);
+    });
+  },
+  UNLIKE_LINE_KOREAN({ commit }, lineid) {
+    return search.unlikeKorean(lineid).then(() => {
+      commit("REMOVE_USER_LIKED", lineid);
+    });
   }
 };

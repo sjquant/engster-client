@@ -14,8 +14,8 @@
       </div>
     </div>
     <div class="line-action-container">
-      <div class="action-box">
-        <Like />
+      <div class="action-box" @click="updateLike">
+        <Like :class="{ active: isLiked }" />
         <span>{{ line.like_count }}</span>
       </div>
       <div class="action-box" @click="updateTranslationOn">
@@ -47,7 +47,7 @@ import Like from "./Like.vue";
 import Share from "./Share.vue";
 import TranslationCard from "./TranslationCard";
 import { translationMixin } from "~/mixins";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -65,8 +65,22 @@ export default {
     }
   },
   mixins: [translationMixin],
+  methods: {
+    ...mapActions("search", ["LIKE_LINE_KOREAN", "UNLIKE_LINE_KOREAN"]),
+    updateLike() {
+      if (!this.isLiked) {
+        this.LIKE_LINE_KOREAN(this.line.id);
+      } else {
+        this.UNLIKE_LINE_KOREAN(this.line.id);
+      }
+    }
+  },
   computed: {
-    ...mapState("search", ["keyword"]),
+    ...mapState("search", ["keyword", "searchResult"]),
+    isLiked() {
+      if (this.searchResult.user_liked.includes(this.line.id)) return true;
+      else false;
+    },
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
 

@@ -56,5 +56,11 @@ export const search = {
   },
   unlikeEnglish(lineid) {
     return request.delete(`/like/english/${lineid}`, {}).then(({ data }) => data);
+  },
+  likeKorean(lineid) {
+    return request.post(`/like/korean/${lineid}`, {}).then(({ data }) => data);
+  },
+  unlikeKorean(lineid) {
+    return request.delete(`/like/korean/${lineid}`, {}).then(({ data }) => data);
   }
 };
