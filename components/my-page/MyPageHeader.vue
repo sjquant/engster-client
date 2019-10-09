@@ -14,7 +14,7 @@
 
 <script>
 import ProfileIcon from "../common/ProfileIcon";
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: {

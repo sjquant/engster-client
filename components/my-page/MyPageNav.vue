@@ -26,6 +26,7 @@ nav.my-page-nav {
   display: flex;
   width: 100%;
   justify-content: flex-start;
+  margin-bottom: 4.8rem;
 
   .nav-menu {
     margin-top: -1px;
