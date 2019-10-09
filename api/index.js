@@ -64,3 +64,27 @@ export const search = {
     return request.delete(`/like/korean/${lineid}`, {}).then(({ data }) => data);
   }
 };
+
+export const mypage = {
+  fetchEnglishLikes(userid, page = 1) {
+    return request.get(`/my-page/${userid}/line-likes/english`, {
+      params: {
+        page: page
+      }
+    }).then(({ data }) => data);
+  },
+  fetchKoreanLikes(userid, page = 1) {
+    return request.get(`/my-page/${userid}/line-likes/korean`, {
+      params: {
+        page: page
+      }
+    }).then(({ data }) => data);
+  },
+  fetchTranslations(userid, page = 1) {
+    return request.get(`/my-page/${userid}/translations`, {
+      params: {
+        page: page
+      }
+    }).then(({ data }) => data);
+  }
+};
