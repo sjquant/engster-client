@@ -1,7 +1,7 @@
 <template>
   <div>
     <MainHead />
-    <div class="container">
+    <div class="body-container" id="body-container">
       <SideContentContainer>
         <div></div>
       </SideContentContainer>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.body-container {
   display: flex;
   max-height: calc(100vh - 6.4rem);
   overflow: auto;

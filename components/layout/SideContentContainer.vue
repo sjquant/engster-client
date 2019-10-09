@@ -9,7 +9,7 @@
 
 .side-content-container {
   display: none;
-
+  height: 100%;
   @include media(">=lg") {
     display: block;
     width: 20%;

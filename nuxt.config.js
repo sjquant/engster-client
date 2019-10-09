@@ -41,6 +41,9 @@ module.exports = {
   loading: {
     color: "#3B8070"
   },
+  router: {
+    middleware: ["scroll"]
+  },
   /*
    ** Build configuration
    */
