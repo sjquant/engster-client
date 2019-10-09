@@ -1,5 +1,4 @@
 import { search } from "~/api";
-import { setAuthInHeader } from "~/utils"
 
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
