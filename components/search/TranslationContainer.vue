@@ -1,10 +1,10 @@
 <template>
   <div>
-    <CommentInput
+    <comment-input
       ref="commentInput"
       :placeholder="inputPlaceholder"
       @comment-created="(value) => $emit('comment-created', value)"
-    ></CommentInput>
+    ></comment-input>
     <TranslationCard :comments="comments"></TranslationCard>
   </div>
 </template>

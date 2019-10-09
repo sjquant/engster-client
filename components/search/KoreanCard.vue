@@ -1,5 +1,5 @@
 <template>
-  <LineCard>
+  <line-card>
     <div class="translation-content">
       <div class="translation" v-html="processedLine"></div>
       <div class="line">{{ line.line.line }}</div>
@@ -27,7 +27,7 @@
         <span>0</span>
       </div>-->
     </div>
-    <TranslationCard
+    <translation-card>
       v-if="isTranslationOn"
       ref="transCard"
       :comments="translations"
@@ -35,8 +35,9 @@
       contentKey="translation"
       userKey="translator"
       @comment-created="createTranslation"
-    ></TranslationCard>
-  </LineCard>
+      >
+    </translation-card>
+  </line-card>
 </template>
 
 <script>

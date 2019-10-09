@@ -1,5 +1,5 @@
 <template>
-  <CommentContainer>
+  <comment-container>
     <div v-for="comment in comments" :key="comment.id">
       <div class="comment-box" v-if="comment.is_accepted">
         <span class="user">{{comment.translator}}</span>
@@ -17,7 +17,7 @@
         <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
       </div>
     </div>
-  </CommentContainer>
+  </comment-container>
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
   <div class="search-result-container">
     <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
-    <SearchResult :keyword="keyword" :count="count"></SearchResult>
+    <search-result :keyword="keyword" :count="count"></search-result>
     <section v-infinite-scroll="fetchMoreLines">
-      <KoreanCard v-for="line in lines" :key="line.id" :line="line"></KoreanCard>
+      <korean-card v-for="line in lines" :key="line.id" :line="line"></korean-card>
     </section>
   </div>
 </template>
