@@ -8,6 +8,13 @@ const mutations = {
     Vue.set(state.likeResult, "page", result.page)
     state.likeResult.lines.push(...result.lines)
   },
+  CLEAR_STATE(state) {
+    state.likeResult = {
+      lines: [],
+      max_page: null,
+      page: null
+    }
+  }
 };
 
 export default mutations;

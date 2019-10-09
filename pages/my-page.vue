@@ -9,11 +9,18 @@
 <script>
 import MyPageHeader from "../components/my-page/MyPageHeader";
 import MyPageNav from "../components/my-page/MyPageNav";
+import { mapMutations } from "vuex";
 
 export default {
   components: {
     MyPageHeader,
     MyPageNav
+  },
+  beforeDestroy() {
+    this.CLEAR_STATE();
+  },
+  methods: {
+    ...mapMutations("mypage", ["CLEAR_STATE"])
   }
 };
 </script>
