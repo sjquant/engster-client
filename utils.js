@@ -31,7 +31,7 @@ export const request = {
         });
     },
     delete(path, data = {}, options = {}) {
-        return axios.delete(`${path}`, data, options).catch(({ response }) => {
+        return axios.delete(`${path}`, { data: data, ...options }).catch(({ response }) => {
             const { status } = response;
             if (status === Unauthorized || status === Unprocessable)
                 return requireLogin();
