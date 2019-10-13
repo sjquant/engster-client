@@ -37,6 +37,10 @@ module.exports = {
       }
     ]
   ],
+  buildModules: [
+    // With options
+    ['@nuxtjs/router', { /* module options */ }]
+  ],
   css: ["@/assets/scss/main.scss"],
   loading: {
     color: "#3B8070"

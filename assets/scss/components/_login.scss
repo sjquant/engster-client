@@ -34,11 +34,15 @@ form.login-form {
     }
   }
 
+  .block-link > a {
+    display: block;
+  }
+  
   a {
     font-size: 1.4rem;
     color: $gray-darker;
     text-decoration: underline;
-    display: block;
+  
     &.lost-password-btn {
       float: left;
     }

@@ -1,14 +1,14 @@
 <template>
-  <section class="like-result-container">
+  <div>
     <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
     <div v-infinite-scroll="fetchMoreLines">
       <like-english-card v-for="line in lines" :key="line.id" :line="line"></like-english-card>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import LikeEnglishCard from "../../components/my-page/LikeEnglishCard";
+import LikeEnglishCard from "~/components/my-page/LikeEnglishCard";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapActions } from "vuex";
 export default {
@@ -52,7 +52,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import "../search/search.scss";
-</style>

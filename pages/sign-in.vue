@@ -30,7 +30,7 @@
         class="login-error-message"
         v-show="errors.collect('비밀번호').length > 0"
       >{{ errors.first('비밀번호') }}</div>
-      <div>
+      <div class="block-link">
         <a href="#" class="lost-password-btn">비밀번호를 잊으셨나요?</a>
         <nuxt-link to="/sign-up" class="sign-up-btn">회원 가입하기</nuxt-link>
       </div>

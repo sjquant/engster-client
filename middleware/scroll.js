@@ -1,5 +1,8 @@
 export default function () {
     if (!process.server) {
-        document.querySelector("#body-container").scrollTop = 0
+        let element = document.querySelector("#body-container")
+        if (element) {
+            element.scrollTop = 0
+        }
     }
 }
