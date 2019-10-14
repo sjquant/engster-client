@@ -8,12 +8,6 @@
         <span>{{ `${line.content.title} (${line.content.year})` }}</span>
       </div>
     </div>
-    <!-- <div class="line-action-container">
-      <div class="action-box" @click="updateLike">
-        <Like :class="{ active: isLiked }" />
-        <span>{{ line.like_count }}</span>
-      </div>
-    </div>-->
   </line-card>
 </template>
 
