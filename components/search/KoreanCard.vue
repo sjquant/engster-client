@@ -19,7 +19,7 @@
         <span>{{ line.like_count }}</span>
       </div>
       <div class="action-box" @click="updateTranslationOn">
-        <Pencil />
+        <Pencil :class="{ active: isTranslationOn }" />
         <span>{{ line.translation_count }}</span>
       </div>
       <!-- <div class="action-box">
@@ -27,16 +27,13 @@
         <span>0</span>
       </div>-->
     </div>
-    <translation-card>
+    <translation-container
       v-if="isTranslationOn"
       ref="transCard"
       :comments="translations"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
-      contentKey="translation"
-      userKey="translator"
       @comment-created="createTranslation"
-      >
-    </translation-card>
+    ></translation-container>
   </line-card>
 </template>
 
@@ -47,6 +44,7 @@ import Pencil from "./Pencil.vue";
 import Like from "./Like.vue";
 import Share from "./Share.vue";
 import TranslationCard from "./TranslationCard";
+import TranslationContainer from "./TranslationContainer";
 import { translationMixin } from "~/mixins";
 import { mapState, mapActions } from "vuex";
 
@@ -57,7 +55,8 @@ export default {
     Pencil,
     Like,
     Share,
-    TranslationCard
+    TranslationCard,
+    TranslationContainer
   },
   props: {
     line: {
