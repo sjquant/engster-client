@@ -1,5 +1,5 @@
 export default () => ({
-  likeResult: {
+  lineResult: {
     lines: [],
     max_page: null,
     page: null

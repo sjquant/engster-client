@@ -2,18 +2,18 @@
   <div>
     <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
     <div v-infinite-scroll="fetchMoreLines">
-      <like-korean-card v-for="line in lines" :key="line.id" :line="line"></like-korean-card>
+      <korean-card v-for="line in lines" :key="line.id" :line="line"></korean-card>
     </div>
   </div>
 </template>
 
 <script>
-import LikeKoreanCard from "~/components/my-page/LikeKoreanCard.vue";
+import KoreanCard from "~/components/my-page/KoreanCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapActions } from "vuex";
 export default {
   components: {
-    LikeKoreanCard,
+    KoreanCard,
     PulseLoader
   },
   async fetch({ store }) {
@@ -28,10 +28,10 @@ export default {
   },
   computed: {
     ...mapState({
-      lines: state => state.mypage.likeResult.lines,
-      page: state => state.mypage.likeResult.page,
-      maxPage: state => state.mypage.likeResult.max_page,
-      count: state => state.mypage.likeResult.count,
+      lines: state => state.mypage.lineResult.lines,
+      page: state => state.mypage.lineResult.page,
+      maxPage: state => state.mypage.lineResult.max_page,
+      count: state => state.mypage.lineResult.count,
       userid: state => state.auth.user.id
     })
   },

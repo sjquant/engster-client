@@ -1,15 +1,15 @@
 import Vue from "vue";
 
 const mutations = {
-  SET_LIKE_RESULT(state, result) {
-    state.likeResult = result;
+  SET_LINE_RESULT(state, result) {
+    state.lineResult = result;
   },
-  APPEND_LIKE_RESULT(state, result) {
-    Vue.set(state.likeResult, "page", result.page)
-    state.likeResult.lines.push(...result.lines)
+  APPEND_LINE_RESULT(state, result) {
+    Vue.set(state.lineResult, "page", result.page)
+    state.lineResult.lines.push(...result.lines)
   },
   CLEAR_STATE(state) {
-    state.likeResult = {
+    state.lineResult = {
       lines: [],
       max_page: null,
       page: null
