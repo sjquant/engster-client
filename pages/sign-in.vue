@@ -8,6 +8,7 @@
     <form class="login-form">
       <label>이메일</label>
       <input
+        id="email-fieled"
         v-validate="'required'"
         type="email"
         name="이메일"
@@ -55,6 +56,10 @@ export default {
     GoogleLogin,
     FacebookLogin,
     NaverLogin
+  },
+  mounted() {
+    let emailField = document.querySelector("#email-fieled");
+    emailField.focus();
   },
   data() {
     return {

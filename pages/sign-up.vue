@@ -8,11 +8,13 @@
     <form class="login-form">
       <label>이메일</label>
       <input
+        id="email-fieled"
         v-validate="'required|email'"
         type="email"
         name="이메일"
         placeholder="example@naver.com"
         v-model="email"
+        autocomplete="new-password"
       />
       <div
         class="login-error-message"
@@ -25,6 +27,7 @@
         name="닉네임"
         placeholder="잉스터"
         v-model="nickname"
+        autocomplete="new-password"
       />
       <div
         class="login-error-message"
@@ -37,6 +40,7 @@
         type="password"
         placeholder="********"
         v-model="password1"
+        autocomplete="new-password"
       />
       <div
         class="login-error-message"
@@ -49,6 +53,7 @@
         type="password"
         placeholder="********"
         v-model="password2"
+        autocomplete="new-password"
       />
       <div
         class="login-error-message"
@@ -97,6 +102,10 @@ export default {
     GoogleLogin,
     FacebookLogin,
     NaverLogin
+  },
+  mounted() {
+    let emailField = document.querySelector("#email-fieled");
+    emailField.focus();
   },
   methods: {
     ...mapActions("auth", ["SIGNUP"]),
