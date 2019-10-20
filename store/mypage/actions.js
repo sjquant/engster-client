@@ -1,6 +1,11 @@
 import { mypage } from "~/api";
 
 export default {
+  FETCH_ACTIVITY_SUMMARY({ commit }, userid) {
+    return mypage.fetchActivitySummary(userid).then(data => {
+      commit("SET_ACTIVITIY_SUMMARY", data)
+    })
+  },
   FETCH_ENGLISH_LIKES({ commit }, { userid, page = 1, append = false }) {
     return mypage.fetchEnglishLikes(userid, page).then(data => {
       if (append) {

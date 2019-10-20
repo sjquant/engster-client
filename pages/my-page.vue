@@ -12,6 +12,10 @@ import MyPageNav from "../components/my-page/MyPageNav";
 import { mapMutations } from "vuex";
 
 export default {
+  async fetch({ store }) {
+    let userid = store.state.auth.user.id;
+    store.dispatch("mypage/FETCH_ACTIVITY_SUMMARY", userid);
+  },
   components: {
     MyPageHeader,
     MyPageNav

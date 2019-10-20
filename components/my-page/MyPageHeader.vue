@@ -6,7 +6,7 @@
       <button class="edit-profile-btn">프로필 편집</button>
       <div class="activity-info">
         <span class="title">번역</span>
-        <span class="value">45</span>
+        <span class="value">{{ activitySummary.translation_count }}</span>
       </div>
     </div>
   </header>
@@ -21,7 +21,10 @@ export default {
     ProfileIcon
   },
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState({
+      user: state => state.auth.user,
+      activitySummary: state => state.mypage.activitySummary
+    })
   }
 };
 </script>

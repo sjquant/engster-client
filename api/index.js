@@ -66,6 +66,9 @@ export const search = {
 };
 
 export const mypage = {
+  fetchActivitySummary(userid) {
+    return request.get(`/my-page/${userid}/activity-summary`).then(({ data }) => data)
+  },
   fetchEnglishLikes(userid, page = 1) {
     return request.get(`/my-page/${userid}/line-likes/english`, {
       params: {

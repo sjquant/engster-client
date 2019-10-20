@@ -1,6 +1,10 @@
 import Vue from "vue";
 
 const mutations = {
+  SET_ACTIVITIY_SUMMARY(state, data) {
+    console.log(data)
+    state.activitySummary = data
+  },
   SET_LINE_RESULT(state, result) {
     state.lineResult = result;
   },
