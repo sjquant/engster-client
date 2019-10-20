@@ -11,6 +11,16 @@
           </div>
         </div>
       </div>
+      <div class="comment-box" v-else-if="!comment.is_accepted && userid === comment.translator_id">
+        <span class="user">{{comment.translator}}</span>
+        <div class="comment-content">
+          <span class="comment">{{comment.translation}}</span>
+          <div class="action-box">
+            <span>승인대기중</span>
+            <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
+          </div>
+        </div>
+      </div>
       <div class="waiting-comment-box" v-else>
         <span class="user">{{comment.translator}}</span>
         <span>승인을 기다리고 있는 번역입니다.</span>
@@ -22,6 +32,8 @@
 
 <script>
 import CommentContainer from "../common/CommentContainer";
+import { mapState } from "vuex";
+
 export default {
   components: {
     CommentContainer
@@ -30,6 +42,11 @@ export default {
     comments: {
       type: Array
     }
+  },
+  computed: {
+    ...mapState({
+      userid: state => (state.auth.user ? state.auth.user.id : null)
+    })
   }
 };
 </script>
