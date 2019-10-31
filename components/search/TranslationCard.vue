@@ -1,12 +1,12 @@
 <template>
-  <comment-container>
-    <div v-for="comment in comments" :key="comment.id">
+  <div>
+    <div>
       <div class="comment-box" v-if="comment.is_accepted">
         <span class="user">{{comment.translator}}</span>
         <div class="comment-content">
           <span class="comment">{{comment.translation}}</span>
           <div class="action-box">
-            <span class="action">좋아요</span>
+            <span class="action" @click="updateLike(comment.id)">좋아요</span>
             <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
           </div>
         </div>
@@ -27,26 +27,33 @@
         <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
       </div>
     </div>
-  </comment-container>
+  </div>
 </template>
 
 <script>
-import CommentContainer from "../common/CommentContainer";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  components: {
-    CommentContainer
-  },
-  props: {
-    comments: {
-      type: Array
-    }
-  },
   computed: {
     ...mapState({
       userid: state => (state.auth.user ? state.auth.user.id : null)
-    })
+    }),
+    isLiked() {
+      return True;
+    }
+  },
+  props: {
+    comment: Object
+  },
+  methods: {
+    ...mapActions("search", ["LIKE_LINE_KOREAN", "UNLIKE_LINE_KOREAN"]),
+    updateLike(lineid) {
+      if (!this.isLiked) {
+        this.LIKE_LINE_KOREAN(lineid);
+      } else {
+        this.UNLIKE_LINE_KOREAN(lineid);
+      }
+    }
   }
 };
 </script>

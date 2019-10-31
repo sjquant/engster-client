@@ -5,7 +5,12 @@ export const translationMixin = {
   data() {
     return {
       isTranslationOn: false,
-      translations: []
+      translationResult: {
+        translations: [],
+        max_page: null,
+        page: null,
+        user_liked: []
+      }
     };
   },
   methods: {
@@ -13,7 +18,7 @@ export const translationMixin = {
     async updateTranslationOn() {
       this.isTranslationOn = !this.isTranslationOn;
       if (this.isTranslationOn) {
-        this.translations = await search
+        this.translationResult = await search
           .fetchTranslations(this.line.id)
       }
     },
@@ -21,10 +26,10 @@ export const translationMixin = {
       if (translation !== "") {
         let resp = await search
           .createTranslation(this.line.id, translation)
-        this.translations.unshift(resp);
+        this.translationResult = await search
+          .fetchTranslations(this.line.id)
         // remove translation
         this.$refs.transCard.$refs.commentInput.$refs.input.value = "";
-        this.INCREASE_TRANSLATION_COUNT(this.line.id);
       }
     }
   }

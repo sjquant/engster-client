@@ -29,7 +29,8 @@
     <translation-container
       v-if="isTranslationOn"
       ref="transCard"
-      :comments="translations"
+      :commentResult="translationResult"
+      :commentKey="translations"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
     ></translation-container>
@@ -76,8 +77,11 @@ export default {
   computed: {
     ...mapState("search", ["searchResult", "keyword"]),
     isLiked() {
-      if (this.searchResult.user_liked.includes(this.line.id)) return true;
-      else false;
+      if (this.searchResult.user_liked.includes(this.line.id)) {
+        return true;
+      } else {
+        return false;
+      }
     },
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
