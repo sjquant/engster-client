@@ -6,6 +6,7 @@
       type="text"
       :placeholder="placeholder"
       @keyup.enter="createComment"
+      @focus="$emit('focus')"
     />
     <div class="plus-btn" @click="createComment">
       <Plus />

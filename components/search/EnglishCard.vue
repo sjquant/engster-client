@@ -29,8 +29,7 @@
     <translation-container
       v-if="isTranslationOn"
       ref="transCard"
-      :commentResult="translationResult"
-      :commentKey="translations"
+      :transResult="translationResult"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
     ></translation-container>

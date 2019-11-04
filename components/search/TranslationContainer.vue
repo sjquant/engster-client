@@ -4,9 +4,10 @@
       ref="commentInput"
       :placeholder="inputPlaceholder"
       @comment-created="(value) => $emit('comment-created', value)"
+      @focus="checkLogin"
     ></comment-input>
     <comment-container>
-      <TranslationCard :comment="comment" v-for="comment in comments" :key="comment.id"></TranslationCard>
+      <TranslationCard :comment="each" v-for="each in translations" :key="each.id"></TranslationCard>
     </comment-container>
   </div>
 </template>
@@ -14,6 +15,7 @@
 import CommentInput from "../common/CommentInput.vue";
 import TranslationCard from "./TranslationCard.vue";
 import CommentContainer from "../common/CommentContainer";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -25,21 +27,24 @@ export default {
     inputPlaceholder: {
       type: String
     },
-    commentResult: {
+    transResult: {
       type: Object
-    },
-    commentKey: {
-      type: String,
-      default: "comments"
     }
   },
   computed: {
-    comments() {
-      console.log(this.commentResult);
-      if (this.commentResult) {
-        return this.commentResult[this.commentKey];
+    ...mapState("auth", ["user"]),
+    translations() {
+      if (this.transResult) {
+        return this.transResult.translations;
       } else {
         return null;
+      }
+    }
+  },
+  methods: {
+    checkLogin() {
+      if (!this.user) {
+        this.$router.push({ path: "/sign-in" });
       }
     }
   }
