@@ -5,7 +5,7 @@
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    id="like-icon"
+    class="like-icon"
   >
     <g clip-path="url(#clip0)">
       <path
@@ -24,7 +24,7 @@
 <style lang="scss">
 @import "~utils";
 
-#like-icon {
+.like-icon {
   .color {
     fill: $gray-dark;
   }
