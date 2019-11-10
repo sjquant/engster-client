@@ -3,7 +3,7 @@
     <profile-icon></profile-icon>
     <div class="user-info">
       <h1 class="user-nickname">{{ user ? user.nickname : "" }}님</h1>
-      <button class="edit-profile-btn">프로필 편집</button>
+      <button class="edit-profile-btn" @click="$router.push('/my-page/edit')">프로필 편집</button>
       <div class="activity-info">
         <span class="title">번역</span>
         <span class="value">{{ activitySummary.translation_count }}</span>

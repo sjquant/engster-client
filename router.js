@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '~/pages/index.vue'
 import SignUp from '~/pages/sign-up.vue'
 import SignIn from '~/pages/sign-in.vue'
+import ProfileEdit from '~/pages/my-page/profile-edit.vue'
 import SearchEnglish from '~/pages/search/english.vue'
 import SearchKorean from '~/pages/search/korean.vue'
 import MyPage from '~/pages/my-page.vue'
@@ -57,7 +58,11 @@ export function createRouter() {
                         component: MyPageTranslations
                     },
                 ]
-            }
+            },
+            {
+                path: "/my-page/edit",
+                component: ProfileEdit
+            },
         ]
     })
 }
