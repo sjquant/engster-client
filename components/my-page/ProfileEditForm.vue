@@ -59,7 +59,6 @@ export default {
       height: 3.2rem;
     }
     > button {
-      margin-left: 2.4rem;
       padding: 0 0.8rem;
       color: $gray-dark;
       border: $gray-light solid 1px;
