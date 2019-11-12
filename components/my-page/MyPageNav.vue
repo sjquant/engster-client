@@ -38,12 +38,14 @@ nav.my-page-nav {
   margin-bottom: 1.6rem;
 
   .nav-menu {
+    min-width: 9.6rem;
     margin-top: -1px;
     padding-top: 0.8rem;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
-    margin-right: 5.6rem;
+    margin-right: 0.4rem;
     font-weight: 700;
+    text-align: center;
     cursor: pointer;
     color: $gray-dark;
 

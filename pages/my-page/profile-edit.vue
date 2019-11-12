@@ -41,7 +41,6 @@ export default {
       color: $gray-darker;
     }
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid $gray;
   }
 }
 </style>

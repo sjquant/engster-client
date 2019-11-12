@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 .body-container {
   display: flex;
-  max-height: calc(100vh - 6.4rem);
+  height: calc(100vh - 6.4rem);
   overflow: auto;
 }
 </style>
