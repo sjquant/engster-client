@@ -23,7 +23,7 @@
               />
             </div>
             <div
-              class="login-error-message"
+              class="error-message"
               v-show="errors.collect('기존 비밀번호').length > 0"
             >{{ errors.first('기존 비밀번호') }}</div>
             <div class="password-input-wrapper">
@@ -38,7 +38,7 @@
               />
             </div>
             <div
-              class="login-error-message"
+              class="error-message"
               v-show="errors.collect('비밀번호').length > 0"
             >{{ errors.first('비밀번호') }}</div>
             <div class="password-input-wrapper">
@@ -53,7 +53,7 @@
               />
             </div>
             <div
-              class="login-error-message"
+              class="error-message"
               v-show="errors.collect('비밀번호 확인').length > 0"
             >{{ errors.first('비밀번호 확인') }}</div>
           </div>

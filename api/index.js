@@ -16,7 +16,10 @@ export const auth = {
     ).then(({ data }) => data)
   },
   refreshToken() {
-    request.post("/auth/refresh-token").then(({ data }) => data)
+    return request.post("/auth/refresh-token").then(({ data }) => data)
+  },
+  updateProfile(profileBody) {
+    return request.put("/auth/profile", profileBody).then(({ data }) => data)
   }
 }
 

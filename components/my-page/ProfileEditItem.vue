@@ -4,7 +4,7 @@
       <label>{{ label }}</label>
       <div class="value-container">
         <span>{{ value }}</span>
-        <button @click.prevent="editItem">수정</button>
+        <button @click.prevent="editable=true">수정</button>
       </div>
     </div>
     <div v-show="editable">
@@ -17,16 +17,14 @@
             :name="label"
             :placeholder="placeholder"
             :value="value"
+            @input="$emit('update:value', $event.target.value)"
             ref="itemInput"
           />
-          <div
-            class="profile-edit-error-message"
-            v-show="errors.collect(label).length > 0"
-          >{{ errors.first(label) }}</div>
         </div>
-        <button @click.prevent="editable=!editable">저장</button>
+        <button @click.prevent="updateItem">저장</button>
       </div>
     </div>
+    <div class="error-message" v-show="errors.collect(label).length > 0">{{ errors.first(label) }}</div>
   </div>
 </template>
 
@@ -60,9 +58,13 @@ export default {
     }
   },
   methods: {
-    editItem() {
-      this.editable = !this.editable;
-      this.$nextTick(() => this.$refs.itemInput.select());
+    async updateItem() {
+      let validated = await this.$validator.validateAll();
+      if (validated) {
+        this.$emit("update", this.$refs.itemInput.value);
+        this.newValue = null;
+        this.editable = false;
+      }
     }
   }
 };

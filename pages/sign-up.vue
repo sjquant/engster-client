@@ -16,10 +16,7 @@
         v-model="email"
         autocomplete="new-password"
       />
-      <div
-        class="login-error-message"
-        v-show="errors.collect('이메일').length > 0"
-      >{{ errors.first('이메일') }}</div>
+      <div class="error-message" v-show="errors.collect('이메일').length > 0">{{ errors.first('이메일') }}</div>
       <label>닉네임</label>
       <input
         v-validate="'required'"
@@ -29,10 +26,7 @@
         v-model="nickname"
         autocomplete="new-password"
       />
-      <div
-        class="login-error-message"
-        v-show="errors.collect('닉네임').length > 0"
-      >{{ errors.first('닉네임') }}</div>
+      <div class="error-message" v-show="errors.collect('닉네임').length > 0">{{ errors.first('닉네임') }}</div>
       <label>비밀번호 (8자 이상)</label>
       <input
         v-validate="'required|min:8'"
@@ -43,7 +37,7 @@
         autocomplete="new-password"
       />
       <div
-        class="login-error-message"
+        class="error-message"
         v-show="errors.collect('비밀번호').length > 0"
       >{{ errors.first('비밀번호') }}</div>
       <label>비밀번호 확인</label>
@@ -56,7 +50,7 @@
         autocomplete="new-password"
       />
       <div
-        class="login-error-message"
+        class="error-message"
         v-show="errors.collect('비밀번호 확인').length > 0"
       >{{ errors.first('비밀번호 확인') }}</div>
       <div class="check-agree">

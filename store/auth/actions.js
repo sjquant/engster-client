@@ -51,6 +51,11 @@ const actions = {
         resolve(false);
       }
     })
+  },
+  UPDATE_PROFILE({ commit }, profileBody) {
+    auth.updateProfile(profileBody).then(user => {
+      commit("SET_USER", user)
+    })
   }
 };
 

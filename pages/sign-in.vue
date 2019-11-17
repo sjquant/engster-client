@@ -15,10 +15,7 @@
         placeholder="example@naver.com"
         v-model="email"
       />
-      <div
-        class="login-error-message"
-        v-show="errors.collect('이메일').length > 0"
-      >{{ errors.first('이메일') }}</div>
+      <div class="error-message" v-show="errors.collect('이메일').length > 0">{{ errors.first('이메일') }}</div>
       <label>비밀번호</label>
       <input
         v-validate="'required'"
@@ -28,7 +25,7 @@
         v-model="password"
       />
       <div
-        class="login-error-message"
+        class="error-message"
         v-show="errors.collect('비밀번호').length > 0"
       >{{ errors.first('비밀번호') }}</div>
       <div class="block-link">

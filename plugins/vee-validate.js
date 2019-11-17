@@ -13,5 +13,5 @@ Vue.use(VeeValidate, {
             }
         }
     },
-    events: 'change|blur'
+    events: 'change|blur|input'
 });
