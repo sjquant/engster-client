@@ -69,6 +69,7 @@ module.exports = {
     { src: "~plugins/infinite-scroll", mode: 'client' },
     { src: "~plugins/vee-validate" },
     { src: "~plugins/v-click-outside" },
-    { src: '~plugins/nuxt-client-init.js', ssr: false }
+    { src: '~plugins/nuxt-client-init', ssr: false },
+    { src: '~plugins/vue-js-modal', ssr: false }
   ]
 };

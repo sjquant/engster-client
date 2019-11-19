@@ -1,32 +1,38 @@
 <template>
-  <form class="profile-edit-form">
-    <div class="profile-item-container">
-      <profile-icon></profile-icon>
-      <profile-edit-item
-        :label="'이메일'"
-        :value.sync="email"
-        inputValidate="required|email"
-        @update="updateEmail"
-      ></profile-edit-item>
-    </div>
-    <div class="profile-item-container">
-      <profile-edit-item
-        :label="'닉네임'"
-        :value.sync="nickname"
-        inputValidate="required"
-        @update="updateNickname"
-      ></profile-edit-item>
-    </div>
-    <div class="profile-item-container">
-      <password-edit-item @update="updatePassword"></password-edit-item>
-    </div>
-  </form>
+  <div>
+    <form class="profile-edit-form">
+      <div class="profile-item-container">
+        <div @click="openAvatarEditModal">
+          <profile-icon></profile-icon>
+        </div>
+        <profile-edit-item
+          :label="'이메일'"
+          :value.sync="email"
+          inputValidate="required|email"
+          @update="updateEmail"
+        ></profile-edit-item>
+      </div>
+      <div class="profile-item-container">
+        <profile-edit-item
+          :label="'닉네임'"
+          :value.sync="nickname"
+          inputValidate="required"
+          @update="updateNickname"
+        ></profile-edit-item>
+      </div>
+      <div class="profile-item-container">
+        <password-edit-item @update="updatePassword"></password-edit-item>
+      </div>
+    </form>
+    <avatar-edit-modal></avatar-edit-modal>
+  </div>
 </template>
 
 <script>
 import ProfileIcon from "../common/ProfileIcon";
 import ProfileEditItem from "./ProfileEditItem.vue";
 import PasswordEditItem from "./PasswordEditItem.vue";
+import AvatarEditModal from "./AvatarEditModal.vue";
 import { mapState, mapActions } from "vuex";
 import { auth } from "~/api";
 
@@ -34,7 +40,8 @@ export default {
   components: {
     ProfileIcon,
     ProfileEditItem,
-    PasswordEditItem
+    PasswordEditItem,
+    AvatarEditModal
   },
   data() {
     return {
@@ -63,6 +70,9 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["UPDATE_PROFILE"]),
+    openAvatarEditModal() {
+      this.$modal.show("avatar-edit-modal");
+    },
     updateEmail(email) {
       if (email !== this.user.email) {
         this.UPDATE_PROFILE({ email });
@@ -86,6 +96,10 @@ export default {
 .profile-item-container {
   .profile-icon-container {
     margin-bottom: 2.4rem;
+    width: 12.8rem;
+    > img {
+      cursor: pointer;
+    }
   }
 }
 .profile-edit-item {
