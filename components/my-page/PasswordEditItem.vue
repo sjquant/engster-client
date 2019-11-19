@@ -4,7 +4,7 @@
       <label>비밀번호</label>
       <div class="value-container">
         <span>********</span>
-        <button @click.prevent="editItem">수정</button>
+        <button @click.prevent="editable=true">수정</button>
       </div>
     </div>
     <div v-show="editable">
@@ -58,7 +58,7 @@
             >{{ errors.first('비밀번호 확인') }}</div>
           </div>
           <div class="btn-wrapper">
-            <button @click.prevent="editable=!editable">저장</button>
+            <button @click.prevent="updatePassword">저장</button>
           </div>
         </form>
       </div>
@@ -77,8 +77,19 @@ export default {
     };
   },
   methods: {
-    editItem() {
-      this.editable = !this.editable;
+    async updatePassword() {
+      let validated = await this.$validator.validateAll();
+      let paswordMatched =
+        this.originalPassword !== this.newPassword &&
+        this.newPassword === this.newPassword2;
+      if (validated && paswordMatched) {
+        this.$emit("update", {
+          originalPassword: this.originalPassword,
+          newPassword: this.newPassword
+        });
+        this.newValue = null;
+        this.editable = false;
+      }
     }
   }
 };

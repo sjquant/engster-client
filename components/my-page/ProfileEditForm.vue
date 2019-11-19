@@ -18,7 +18,7 @@
       ></profile-edit-item>
     </div>
     <div class="profile-item-container">
-      <password-edit-item></password-edit-item>
+      <password-edit-item @update="updatePassword"></password-edit-item>
     </div>
   </form>
 </template>
@@ -28,6 +28,7 @@ import ProfileIcon from "../common/ProfileIcon";
 import ProfileEditItem from "./ProfileEditItem.vue";
 import PasswordEditItem from "./PasswordEditItem.vue";
 import { mapState, mapActions } from "vuex";
+import { auth } from "~/api";
 
 export default {
   components: {
@@ -63,14 +64,17 @@ export default {
   methods: {
     ...mapActions("auth", ["UPDATE_PROFILE"]),
     updateEmail(email) {
-      if (email != this.user.email) {
+      if (email !== this.user.email) {
         this.UPDATE_PROFILE({ email });
       }
     },
     updateNickname(nickname) {
-      if (nickname != this.nickname) {
+      if (nickname !== this.nickname) {
         this.UPDATE_PROFILE({ nickname });
       }
+    },
+    updatePassword({ originalPassword, newPassword }) {
+      auth.resetPassword({ originalPassword, newPassword });
     }
   }
 };
