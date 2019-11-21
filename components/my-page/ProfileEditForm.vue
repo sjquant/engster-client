@@ -2,8 +2,14 @@
   <div>
     <form class="profile-edit-form">
       <div class="profile-item-container">
-        <div @click="openAvatarEditModal">
-          <profile-icon></profile-icon>
+        <div
+          class="profile-avatar-container"
+          @mouseover="profileIconHovered=true"
+          @mouseleave="profileIconHovered=false"
+          @click="openAvatarEditModal"
+        >
+          <profile-camera v-show="profileIconHovered"></profile-camera>
+          <profile-icon v-show="!profileIconHovered"></profile-icon>
         </div>
         <profile-edit-item
           :label="'이메일'"
@@ -30,6 +36,7 @@
 
 <script>
 import ProfileIcon from "../common/ProfileIcon";
+import ProfileCamera from "./ProfileCamera";
 import ProfileEditItem from "./ProfileEditItem.vue";
 import PasswordEditItem from "./PasswordEditItem.vue";
 import AvatarEditModal from "./AvatarEditModal.vue";
@@ -39,6 +46,7 @@ import { auth } from "~/api";
 export default {
   components: {
     ProfileIcon,
+    ProfileCamera,
     ProfileEditItem,
     PasswordEditItem,
     AvatarEditModal
@@ -46,7 +54,8 @@ export default {
   data() {
     return {
       tEmail: null,
-      tNickname: null
+      tNickname: null,
+      profileIconHovered: false
     };
   },
   computed: {
@@ -94,11 +103,12 @@ export default {
 @import "~utils";
 
 .profile-item-container {
-  .profile-icon-container {
-    margin-bottom: 2.4rem;
+  > .profile-avatar-container {
     width: 12.8rem;
-    > img {
-      cursor: pointer;
+    cursor: pointer;
+    > .profile-icon-container,
+    > .profile-camera-container {
+      margin-bottom: 2.4rem;
     }
   }
 }
