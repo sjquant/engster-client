@@ -22,6 +22,7 @@ export default {
   border-radius: 100%;
   img.profile-icon {
     object-fit: cover;
+    width: 128px;
   }
 }
 </style>
