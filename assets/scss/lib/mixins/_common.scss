@@ -23,3 +23,24 @@
     padding: 0;
   }
 }
+
+@mixin default-button() {
+  padding: 0 0.8rem;
+  color: $gray-dark;
+  border: $gray-dark solid 1px;
+  border-radius: 2px;
+  height: 3.2rem;
+  line-height: 1;
+  &:hover {
+    color: $gray-darker;
+    border-color: $gray-darker;
+    transition: all 0.1s ease-in;
+  }
+}
+
+@mixin colored-button($color) {
+  padding: 0 0.8rem;
+  border-color: $color;
+  background-color: $color;
+  color: #fff;
+}

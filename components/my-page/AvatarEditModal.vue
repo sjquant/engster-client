@@ -1,15 +1,19 @@
 <template>
-  <modal name="avatar-edit-modal" :width="'320'" :height="'360'">
+  <modal name="avatar-edit-modal" :width="'320'" :height="'400'">
     <div class="avatar-edit-modal">
       <h2>프로필 이미지 변경</h2>
       <section class="cropper-area">
-        <img :src="photo" />
-        <!-- <vue-cropper ref="cropper" :src="photo" /> -->
+        <img :src="imgSrc" v-show="!cropping" />
+        <vue-cropper ref="cropper" :src="imgSrc" v-show="cropping" :aspect-ratio="16 / 16" />
       </section>
       <button class="photo-upload-btn">
         <span>사진업로드</span>
-        <input type="file" accept="photo" />
+        <input ref="input" type="file" accept="image/*" @change="setImage" />
       </button>
+      <div class="command-btn-container">
+        <button class="cancel-btn" @click="closeModal">취소</button>
+        <button class="save-btn">저장</button>
+      </div>
     </div>
   </modal>
 </template>
@@ -21,20 +25,49 @@ import { mapState } from "vuex";
 
 export default {
   components: { VueCropper },
+  created() {
+    this.initPhoto();
+  },
   data() {
     return {
-      imgSrc: ""
+      imgSrc: "",
+      cropping: false
     };
   },
   computed: {
-    ...mapState("auth", ["user"]),
-    photo() {
-      if (this.user) {
-        return require("~/assets/images/null-avatar.png");
-      } else {
-        return require("~/assets/images/null-avatar.png");
+    ...mapState("auth", ["user"])
+  },
+  methods: {
+    setImage(e) {
+      const file = e.target.files[0];
+      if (file.type.indexOf("image/") === -1) {
+        alert("Please select an image file");
+        return;
       }
-      return this.user.photo;
+      if (typeof FileReader === "function") {
+        const reader = new FileReader();
+        reader.onload = event => {
+          this.imgSrc = event.target.result;
+          this.cropping = true;
+          // rebuild cropperjs with the updated source
+          this.$refs.cropper.replace(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Sorry, FileReader API not supported");
+      }
+    },
+    initPhoto() {
+      if (this.user.photo && this.user.photo !== "") {
+        this.imgSrc = this.user.photo;
+      } else {
+        this.imgSrc = require("~/assets/images/null-avatar.png");
+      }
+    },
+    closeModal() {
+      this.cropping = false;
+      this.initPhoto();
+      this.$modal.hide("avatar-edit-modal");
     }
   }
 };
@@ -48,25 +81,24 @@ export default {
     display: flex;
     justify-content: center;
     margin-bottom: 2.4rem;
+    min-height: 196px;
+    max-height: 196px;
     img {
       width: 196px;
     }
   }
   .photo-upload-btn {
+    @include colored-button($black);
     position: relative;
     width: 100%;
+    margin: 0 auto;
     height: 4rem;
     line-height: 3.6rem;
-    margin: 0 auto;
-    background-color: $black;
-    border: 1px solid $gray-darker;
-    border-radius: 4px;
     > span {
       position: absolute;
       top: 0;
       width: 100%;
       height: 100%;
-      color: #fff;
       text-align: center;
     }
     > input {
@@ -76,6 +108,18 @@ export default {
       height: 100%;
       opacity: 0;
       cursor: pointer;
+    }
+  }
+
+  .command-btn-container {
+    width: 100%;
+    margin-top: 1.6rem;
+    display: flex;
+    justify-content: center;
+
+    > button {
+      @include default-button();
+      margin: 0 0.8rem;
     }
   }
 }

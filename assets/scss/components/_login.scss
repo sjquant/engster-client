@@ -63,8 +63,7 @@ form.login-form {
 
     &.login-btn {
       margin-top: 1.6rem;
-      background-color: $black;
-      color: #fff;
+      @include colored-button($black);
     }
   }
   hr {

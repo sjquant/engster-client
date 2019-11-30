@@ -52,17 +52,10 @@ header.my-page-header {
       display: inline;
     }
     .edit-profile-btn {
+      @include default-button();
       display: inline;
       margin-left: 2.4rem;
       padding: 0.4rem 0.8rem;
-      color: $gray-dark;
-      border: $gray-light solid 1px;
-      border-radius: 4px;
-      &:hover {
-        color: $gray-darker;
-        border-color: $gray-darker;
-        transition: 0.1;
-      }
     }
     .activity-info {
       margin-top: 2.4rem;

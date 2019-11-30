@@ -124,7 +124,7 @@ export default {
     height: 4.8rem;
     padding: 0.8rem 0;
     line-height: 2;
-    border-bottom: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-dark;
     margin-bottom: 1.6rem;
     display: flex;
     justify-content: space-between;
@@ -144,31 +144,21 @@ export default {
       height: 3.2rem;
     }
     > button {
-      padding: 0 0.8rem;
-      color: $gray-dark;
-      border: $gray-light solid 1px;
-      border-radius: 2px;
-      height: 3.2rem;
-      line-height: 1;
-      &:hover {
-        color: $gray-darker;
-        border-color: $gray-darker;
-        transition: 0.1;
-      }
+      @include default-button();
     }
   }
 
   &.editable {
     div.value-container {
-      border-color: $gray-dark;
-      transition: 0.1;
+      border-color: $gray-darker;
+      transition: all 0.1s ease-in;
       > button {
-        color: $gray-dark;
-        border-color: $gray-dark;
+        color: $gray-darker;
+        border-color: $gray-darker;
         &:hover {
-          color: $gray-darker;
-          border-color: $gray-darker;
-          transition: 0.1;
+          color: $gray-darkest;
+          border-color: $gray-darkest;
+          transition: all 0.1s ease-in;
         }
       }
     }
@@ -182,7 +172,7 @@ export default {
     }
 
     div.password-input-wrapper {
-      border-color: $gray-dark;
+      border-color: $gray-darker;
     }
   }
 
@@ -198,18 +188,7 @@ export default {
       display: flex;
       justify-content: flex-end;
       button {
-        color: $gray-dark;
-        margin-top: 0.8rem;
-        padding: 0 0.8rem;
-        border: $gray-dark solid 1px;
-        border-radius: 2px;
-        height: 3.2rem;
-        line-height: 1;
-        &:hover {
-          color: $gray-darker;
-          border-color: $gray-darker;
-          transition: 0.1;
-        }
+        @include default-button();
       }
     }
   }
