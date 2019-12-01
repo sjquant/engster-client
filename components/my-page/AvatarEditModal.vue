@@ -12,7 +12,7 @@
       </button>
       <div class="command-btn-container">
         <button class="cancel-btn" @click="closeModal">취소</button>
-        <button class="save-btn">저장</button>
+        <button class="save-btn" @click="savePhoto">저장</button>
       </div>
     </div>
   </modal>
@@ -22,6 +22,7 @@
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import { mapState } from "vuex";
+import { upload } from "~/api";
 
 export default {
   components: { VueCropper },
@@ -68,6 +69,12 @@ export default {
       this.cropping = false;
       this.initPhoto();
       this.$modal.hide("avatar-edit-modal");
+    },
+    savePhoto() {
+      let cropped = this.$refs.cropper.getCroppedCanvas().toDataURL();
+      if (this.cropping) {
+        upload.uploadPhoto({ photo: cropped });
+      }
     }
   }
 };

@@ -100,3 +100,9 @@ export const mypage = {
     }).then(({ data }) => data);
   }
 };
+
+export const upload = {
+  uploadPhoto({ photo }) {
+    return request.post(`/upload/upload-photo`, { photo }).then(({ data }) => data)
+  }
+}
