@@ -53,7 +53,7 @@ const actions = {
     })
   },
   UPDATE_PROFILE({ commit }, body) {
-    auth.updateProfile(body).then(user => {
+    return auth.updateProfile(body).then(user => {
       commit("SET_USER", user)
     })
   }

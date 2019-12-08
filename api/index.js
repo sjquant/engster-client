@@ -102,7 +102,7 @@ export const mypage = {
 };
 
 export const upload = {
-  uploadPhoto({ photo }) {
-    return request.post(`/upload/upload-photo`, { photo }).then(({ data }) => data)
+  uploadPhoto(photoData) {
+    return request.post(`/upload/upload-photo`, photoData).then(({ data }) => data)
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-menu" v-click-outside="closeMenu">
     <div class="active-account-header">
-      <profile-icon></profile-icon>
+      <profile-icon :profilePath="user ? user.photo : ''"></profile-icon>
       <div class="account-info">
         <div class="user-nickname">{{ user ? user.nickname : "" }}</div>
         <div class="user-email">{{ user ? user.email : "" }}</div>

@@ -21,7 +21,7 @@
 <script>
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { upload } from "~/api";
 
 export default {
@@ -39,6 +39,7 @@ export default {
     ...mapState("auth", ["user"])
   },
   methods: {
+    ...mapActions("auth", ["UPDATE_PROFILE"]),
     setImage(e) {
       const file = e.target.files[0];
       if (file.type.indexOf("image/") === -1) {
@@ -71,9 +72,26 @@ export default {
       this.$modal.hide("avatar-edit-modal");
     },
     savePhoto() {
-      let cropped = this.$refs.cropper.getCroppedCanvas().toDataURL();
       if (this.cropping) {
-        upload.uploadPhoto({ photo: cropped });
+        let data;
+        let cropped = this.$refs.cropper
+          .getCroppedCanvas({
+            width: 196,
+            height: 196
+          })
+          .toBlob(
+            blob => {
+              const formData = new FormData();
+              formData.append("photo", blob);
+              data = upload.uploadPhoto(formData).then(data => {
+                this.UPDATE_PROFILE({ photo: data.path }).then(() => {
+                  this.closeModal();
+                });
+              });
+            },
+            "image/png",
+            1
+          );
       }
     }
   }

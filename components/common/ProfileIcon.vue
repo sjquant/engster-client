@@ -1,6 +1,6 @@
 <template>
   <div class="profile-icon-container">
-    <img :src="profileUrl" class="profile-icon" v-if="profileUrl !== ''" />
+    <img :src="profilePath" class="profile-icon" v-if="profilePath !== ''" />
     <img src="../../assets/images/null-avatar.png" class="profile-icon" v-else />
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 export default {
   props: {
-    profileUrl: {
+    profilePath: {
       type: String,
       default: ""
     }
@@ -19,8 +19,8 @@ export default {
 <style lang="scss">
 @import "~utils";
 .profile-icon-container {
-  border-radius: 100%;
   img.profile-icon {
+    border-radius: 100%;
     object-fit: cover;
     width: 128px;
   }

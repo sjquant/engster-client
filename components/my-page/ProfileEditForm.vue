@@ -9,7 +9,7 @@
           @click="openAvatarEditModal"
         >
           <profile-camera v-show="profileIconHovered"></profile-camera>
-          <profile-icon v-show="!profileIconHovered"></profile-icon>
+          <profile-icon :profilePath="user ? user.photo : ''" v-show="!profileIconHovered"></profile-icon>
         </div>
         <profile-edit-item
           :label="'이메일'"

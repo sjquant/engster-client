@@ -6,7 +6,7 @@
       <div class="side-head-container">
         <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
-          <profile-icon></profile-icon>
+          <profile-icon :profilePath="user ? user.photo : ''"></profile-icon>
         </div>
       </div>
       <client-only>

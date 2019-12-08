@@ -1,6 +1,6 @@
 <template>
   <header class="my-page-header">
-    <profile-icon></profile-icon>
+    <profile-icon :profilePath="user ? user.photo : ''"></profile-icon>
     <div class="user-info">
       <h1 class="user-nickname">{{ user ? user.nickname : "" }}님</h1>
       <button class="edit-profile-btn" @click="$router.push('/my-page/edit')">프로필 편집</button>

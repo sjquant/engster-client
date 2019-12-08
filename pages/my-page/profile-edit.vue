@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
 import ProfileEditForm from "../../components/my-page/ProfileEditForm.vue";
 export default {
   components: {
