@@ -105,6 +105,7 @@ export default {
 .profile-item-container {
   > .profile-avatar-container {
     width: 12.8rem;
+    height: 12.8rem;
     cursor: pointer;
     > .profile-icon-container,
     > .profile-camera-container {
