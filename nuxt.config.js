@@ -70,6 +70,7 @@ module.exports = {
     { src: "~plugins/vee-validate" },
     { src: "~plugins/v-click-outside" },
     { src: '~plugins/nuxt-client-init', ssr: false },
-    { src: '~plugins/vue-js-modal', ssr: false }
+    { src: '~plugins/vue-js-modal', ssr: false },
+    { src: '~plugins/vue-authenticate', ssr: false }
   ]
 };
