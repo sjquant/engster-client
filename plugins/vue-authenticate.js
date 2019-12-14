@@ -19,4 +19,5 @@ Vue.use(VueAuthenticate, {
             redirectUri: process.env.VUE_APP_CLIENT_URL,
             url: "/auth/google"
         }
-    })
+    }
+})
