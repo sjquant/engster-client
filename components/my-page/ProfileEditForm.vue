@@ -11,12 +11,6 @@
           <profile-camera v-show="profileIconHovered"></profile-camera>
           <profile-icon :profilePath="user ? user.photo : ''" v-show="!profileIconHovered"></profile-icon>
         </div>
-        <profile-edit-item
-          :label="'이메일'"
-          :value.sync="email"
-          inputValidate="required|email"
-          @update="updateEmail"
-        ></profile-edit-item>
       </div>
       <div class="profile-item-container">
         <profile-edit-item
@@ -53,27 +47,22 @@ export default {
   },
   data() {
     return {
-      tEmail: null,
       tNickname: null,
       profileIconHovered: false
     };
   },
   computed: {
     ...mapState("auth", ["user"]),
-    email: {
-      set(value) {
-        this.tEmail = value;
-      },
-      get() {
-        return this.tEmail || this.user.email;
-      }
-    },
     nickname: {
       set(value) {
         this.tNickname = value;
       },
       get() {
-        return this.tNickname || this.user.nickname;
+        if (typeof this.tNickname === "string") {
+          return this.tNickname;
+        } else {
+          return this.user.nickname;
+        }
       }
     }
   },
@@ -88,12 +77,14 @@ export default {
       }
     },
     updateNickname(nickname) {
-      if (nickname !== this.nickname) {
+      if (nickname !== this.user.nickname) {
         this.UPDATE_PROFILE({ nickname });
       }
     },
     updatePassword({ originalPassword, newPassword }) {
-      auth.resetPassword({ originalPassword, newPassword });
+      auth.resetPassword({ originalPassword, newPassword }).catch(() => {
+        alert("비밀번호가 틀립니다.");
+      });
     }
   }
 };
@@ -107,6 +98,7 @@ export default {
     width: 12.8rem;
     height: 12.8rem;
     cursor: pointer;
+    margin-bottom: 2.4rem;
     > .profile-icon-container,
     > .profile-camera-container {
       margin-bottom: 2.4rem;
@@ -154,6 +146,9 @@ export default {
       border-color: $gray-darker;
       transition: all 0.1s ease-in;
       > button {
+        &.cancel-btn {
+          margin-right: 0.8rem;
+        }
         color: $gray-darker;
         border-color: $gray-darker;
         &:hover {
@@ -190,6 +185,9 @@ export default {
       justify-content: flex-end;
       button {
         @include default-button();
+        &.cancel-btn {
+          margin-right: 0.8rem;
+        }
       }
     }
   }

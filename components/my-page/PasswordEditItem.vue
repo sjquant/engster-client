@@ -58,7 +58,8 @@
             >{{ errors.first('비밀번호 확인') }}</div>
           </div>
           <div class="btn-wrapper">
-            <button @click.prevent="updatePassword">저장</button>
+            <button class="cancel-btn" @click.prevent="cancel">취소</button>
+            <button class="save-btn" @click.prevent="updatePassword">저장</button>
           </div>
         </form>
       </div>
@@ -87,9 +88,17 @@ export default {
           originalPassword: this.originalPassword,
           newPassword: this.newPassword
         });
-        this.newValue = null;
+        this.originalPassword = "";
+        this.newPassword = "";
+        this.newPassword2 = "";
         this.editable = false;
       }
+    },
+    cancel() {
+      this.editable = false;
+      this.originalPassword = "";
+      this.newPassword = "";
+      this.newPassword2 = "";
     }
   }
 };

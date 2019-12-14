@@ -21,7 +21,8 @@
             ref="itemInput"
           />
         </div>
-        <button @click.prevent="updateItem">저장</button>
+        <button class="cancel-btn" @click.prevent="cancel">취소</button>
+        <button class="save-btn" @click.prevent="updateItem">저장</button>
       </div>
     </div>
     <div class="error-message" v-show="errors.collect(label).length > 0">{{ errors.first(label) }}</div>
@@ -62,9 +63,12 @@ export default {
       let validated = await this.$validator.validateAll();
       if (validated) {
         this.$emit("update", this.$refs.itemInput.value);
-        this.newValue = null;
         this.editable = false;
       }
+    },
+    cancel() {
+      this.editable = false;
+      this.$emit("update:value", null);
     }
   }
 };
