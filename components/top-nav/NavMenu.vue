@@ -31,6 +31,7 @@ export default {
     ...mapActions("auth", ["SIGNOUT"]),
     logout() {
       this.SIGNOUT();
+      this.$router.push("/");
     },
     closeMenu() {
       this.$emit("closeMenu");
