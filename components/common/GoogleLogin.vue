@@ -1,5 +1,5 @@
 <template>
-  <button class="google-login-btn" @click.prevent>
+  <button class="google-login-btn" @click.prevent="socialSignin('google')">
     <div>
       <img src="../../assets/images/google.svg" />
       <span>구글로 로그인</span>
@@ -7,6 +7,13 @@
   </button>
 </template>
 
+<script>
+import { socialAuthMixin } from "../../mixins";
+
+export default {
+  mixins: [socialAuthMixin]
+};
+</script>
 <style lang="scss" scoped>
 @import "~utils";
 
