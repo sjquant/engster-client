@@ -6,7 +6,6 @@
     </div>
   </button>
 </template>
-
 <script>
 import { socialAuthMixin } from "../../mixins";
 

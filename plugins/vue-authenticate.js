@@ -11,13 +11,27 @@ Vue.use(VueAuthenticate, {
     providers: {
         facebook: {
             clientId: process.env.FB_CLIENT_ID,
-            redirectUri: process.env.CLIENT_URL,
+            redirectUri: `${process.env.CLIENT_URL}/`,
             url: "/auth/obtain-token/facebook"
         },
         google: {
             clientId: process.env.GOOGLE_CLIENT_ID,
             redirectUri: process.env.CLIENT_URL,
             url: "/auth/obtain-token/google"
-        }
+        },
+        naver: {
+            name: 'naver',
+            url: '/auth/obtain-token/naver',
+            authorizationEndpoint: 'https://nid.naver.com/oauth2.0/authorize',
+            redirectUri: process.env.CLIENT_URL,
+            requiredUrlParams: ['state'],
+            optionalUrlParams: [],
+            state: "STATE",
+            clientId: process.env.NAVER_CLIENT_ID,
+            display: 'popup',
+            oauthType: '2.0',
+            popupOptions: { width: 452, height: 633 },
+
+        },
     }
 })
