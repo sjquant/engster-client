@@ -55,7 +55,7 @@ export default {
     display: flex;
     width: 100%;
 
-    @include media(">=lg") {
+    @include media(">=md") {
       justify-content: space-between;
     }
   }

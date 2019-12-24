@@ -10,7 +10,7 @@
 .main-content-container {
   width: 100%;
   height: 100%;
-  @include media(">=lg") {
+  @include media(">=md") {
     width: 60%;
     margin-left: 0;
     margin-right: 0;

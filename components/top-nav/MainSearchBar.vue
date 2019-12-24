@@ -58,9 +58,9 @@ export default {
   display: flex;
   align-items: center;
 
-  @include media(">=lg") {
+  @include media(">=md") {
     width: 60%;
-    // max-width: $large-w;
+    max-width: $large-w;
   }
 
   input {
