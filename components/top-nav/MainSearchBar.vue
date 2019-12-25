@@ -60,7 +60,9 @@ export default {
 
   @include media(">=md") {
     width: 60%;
-    max-width: $large-w;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    max-width: $x-large-w;
   }
 
   input {
@@ -91,6 +93,9 @@ export default {
 .search-glass {
   position: absolute;
   right: 1.2rem;
+  @include media(">=md") {
+    right: 3.2rem;
+  }
   cursor: pointer;
 }
 </style>

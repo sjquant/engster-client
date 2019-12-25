@@ -12,7 +12,7 @@
   height: 100%;
   @include media(">=md") {
     display: block;
-    width: 20%;
+    flex: 1;
   }
 }
 </style>

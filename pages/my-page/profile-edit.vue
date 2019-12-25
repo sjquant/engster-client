@@ -27,7 +27,7 @@ export default {
 
 .profile-edit-container {
   max-width: 72rem;
-  margin: 4.8rem auto;
+  margin: 0 auto;
   padding: 0 1.6rem;
 
   @include media(">=lg") {
@@ -39,6 +39,7 @@ export default {
     span:nth-child(2) {
       color: $gray-darker;
     }
+    margin-top: 0;
     padding-bottom: 0.8rem;
   }
 }

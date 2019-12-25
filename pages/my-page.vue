@@ -28,9 +28,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.my-page-container {
-  margin-top: 4.8rem;
-}
-</style>

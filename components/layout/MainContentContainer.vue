@@ -12,6 +12,7 @@
   height: 100%;
   @include media(">=md") {
     width: 60%;
+    max-width: $x-large-w;
     margin-left: 0;
     margin-right: 0;
   }
