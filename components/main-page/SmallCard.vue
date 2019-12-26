@@ -40,6 +40,7 @@ export default {
   padding-bottom: 1.2rem;
   .card-link {
     display: flex;
+    justify-content: space-between;
   }
   .card-text {
     padding-right: 1.6rem;

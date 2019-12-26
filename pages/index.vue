@@ -1,13 +1,33 @@
 <template>
   <div class="main-page-container">
-    <large-card
-      :id="lgContent.id"
-      :title="lgContent.title"
-      :description="lgContent.description"
-      :photo="lgContent.photo"
-    ></large-card>
+    <div class="extreme-hero-container">
+      <large-card
+        :id="lgContent.id"
+        :title="lgContent.title"
+        :description="lgContent.description"
+        :photo="lgContent.photo"
+      ></large-card>
+      <div class="small-card-container">
+        <small-card
+          v-for="each in mainContents.slice(1,4)"
+          :key="each.id"
+          :id="each.id"
+          :title="each.title"
+          :description="each.description"
+          :photo="each.photo"
+        ></small-card>
+      </div>
+    </div>
     <small-card
-      v-for="each in mainContents.slice(1,mainContents.length)"
+      v-for="each in mainContents.slice(4,mainContents.length)"
+      :key="each.id"
+      :id="each.id"
+      :title="each.title"
+      :description="each.description"
+      :photo="each.photo"
+    ></small-card>
+    <small-card
+      v-for="each in mainContents"
       :key="each.id"
       :id="each.id"
       :title="each.title"
@@ -94,3 +114,49 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "~utils";
+
+@mixin small-card-in-horizontal-alignment() {
+  width: 50%;
+  article.main-small-card {
+    &:first-child {
+      margin-top: 0;
+    }
+    padding-left: 0;
+    a.card-link {
+      flex-direction: row-reverse;
+    }
+    section.card-text {
+      padding-left: 1.6rem;
+    }
+  }
+}
+
+div.extreme-hero-container {
+  @include media(">=640px", "<=md") {
+    display: flex;
+  }
+  @include media(">=xl") {
+    display: flex;
+  }
+
+  > .main-large-card {
+    @include media(">=640px", "<=md") {
+      width: 50%;
+    }
+    @include media(">=xl") {
+      width: 50%;
+    }
+  }
+  > div.small-card-container {
+    @include media(">=640px", "<=md") {
+      @include small-card-in-horizontal-alignment();
+    }
+    @include media(">=xl") {
+      @include small-card-in-horizontal-alignment();
+    }
+  }
+}
+</style>
