@@ -1,17 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '~/pages/index.vue'
-import SignUp from '~/pages/sign-up.vue'
-import SignIn from '~/pages/sign-in.vue'
-import ProfileEdit from '~/pages/my-page/profile-edit.vue'
-import SearchEnglish from '~/pages/search/english.vue'
-import SearchKorean from '~/pages/search/korean.vue'
-import MyPage from '~/pages/my-page.vue'
-import MyPageEnglishLikes from '~/pages/my-page/english-likes.vue'
-import MyPageKoreanLikes from '~/pages/my-page/korean-likes.vue'
-import MyPageTranslations from '~/pages/my-page/translations.vue'
-
 Vue.use(Router)
 
 export function createRouter() {
@@ -19,49 +8,54 @@ export function createRouter() {
         mode: 'history',
         routes: [
             {
-                path: '/',
-                component: Home
+                path: "/main-page",
+                component: () => import('~/pages/main-page.vue').then(m => m.default || m),
+                alias: "/"
+            },
+            {
+                path: '/main-page/:id',
+                component: () => import('~/pages/main-page/_id.vue').then(m => m.default || m)
             },
             {
                 path: "/sign-up",
-                component: SignUp
+                component: () => import('~/pages/sign-up.vue').then(m => m.default || m)
             },
             {
                 path: "/sign-in",
-                component: SignIn
+                component: () => import('~/pages/sign-in.vue').then(m => m.default || m)
             },
             {
                 path: "/search/english",
-                component: SearchEnglish,
+                component: () => import('~/pages/search/english.vue').then(m => m.default || m),
                 alias: "/search"
             },
             {
                 path: "/search/korean",
-                component: SearchKorean
+                component: () => import('~/pages/search/korean.vue').then(m => m.default || m)
             },
             {
                 path: "/my-page",
-                component: MyPage,
+                component: () => import('~/pages/my-page.vue').then(m => m.default || m),
                 children: [
                     {
                         path: "/my-page/english-likes",
-                        component: MyPageEnglishLikes,
+                        component: () => import('~/pages/my-page/english-likes.vue').then(m => m.default || m),
                         alias: "/my-page",
                     },
                     {
                         path: "/my-page/korean-likes",
-                        component: MyPageKoreanLikes,
+                        component: () => import('~/pages/my-page/korean-likes.vue').then(m => m.default || m),
                         alias: "/my-page",
                     },
                     {
                         path: "/my-page/translations",
-                        component: MyPageTranslations
+                        component: () => import('~/pages/my-page/translations.vue').then(m => m.default || m)
                     },
                 ]
             },
             {
                 path: "/my-page/edit",
-                component: ProfileEdit
+                component: () => import('~/pages/my-page/profile-edit.vue').then(m => m.default || m)
             },
         ]
     })

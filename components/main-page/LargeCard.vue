@@ -1,6 +1,6 @@
 <template>
   <article class="main-large-card">
-    <nuxt-link to="/my-page">
+    <nuxt-link to="/main-page/3">
       <img :src="photo" />
       <h1>{{title}}</h1>
       <p class="description">{{ description }}</p>

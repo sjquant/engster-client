@@ -1,6 +1,6 @@
 <template>
   <article class="main-small-card">
-    <nuxt-link to="/my-page" class="card-link">
+    <nuxt-link to="/main-page/3" class="card-link">
       <section class="card-text">
         <h1>{{title}}</h1>
         <p class="description">{{ description }}</p>
