@@ -28,3 +28,6 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+@import "./search/search.scss";
+</style>
