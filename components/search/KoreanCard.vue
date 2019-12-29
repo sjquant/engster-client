@@ -22,10 +22,6 @@
         <Pencil :class="{ active: isTranslationOn }" />
         <span>{{ line.translation_count }}</span>
       </div>
-      <!-- <div class="action-box">
-        <Share/>
-        <span>0</span>
-      </div>-->
     </div>
     <translation-container
       v-if="isTranslationOn"
@@ -97,15 +93,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="scss">
-@import "~utils";
-
-.translation-content {
-  .line {
-    color: $gray-darker;
-    padding-top: 0.4rem;
-  }
-}
-</style>
