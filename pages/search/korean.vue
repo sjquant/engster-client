@@ -26,8 +26,8 @@ export default {
     };
   },
   watchQuery: ["keyword"],
-  async fetch({ store, query }) {
-    await store.dispatch("search/FETCH_LINE_KOREAN", {
+  fetch({ store, query }) {
+    store.dispatch("search/FETCH_LINE_KOREAN", {
       searchWord: query.keyword,
       page: query.page || 1
     });
