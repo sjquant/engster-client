@@ -42,4 +42,9 @@ span.highlighted {
   border-radius: 4px;
 }
 
-  
+.translation-content {
+  .line {
+    color: $gray-darker;
+    padding-top: 0.4rem;
+  }
+}
