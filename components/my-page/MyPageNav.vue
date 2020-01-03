@@ -6,11 +6,7 @@
       :class="{active: isEnglishActive}"
     >좋아요(영어)</nuxt-link>
     <nuxt-link to="/my-page/korean-likes" class="nav-menu" :class="{active: isKoreanActive}">좋아요(번역)</nuxt-link>
-    <nuxt-link
-      to="/my-page/translations"
-      class="nav-menu"
-      :class="{active: $route.path === '/my-page/translations'}"
-    >번역</nuxt-link>
+    <nuxt-link to="/my-page/translations" class="nav-menu" :class="{active: isTranslationsctive}">번역</nuxt-link>
   </nav>
 </template>
 
@@ -23,6 +19,10 @@ export default {
     },
     isKoreanActive() {
       let re = /^\/my-page\/korean-likes\/?$/g;
+      return this.$route.path.match(re);
+    },
+    isTranslationsctive() {
+      let re = /^\/my-page\/translations\/?$/g;
       return this.$route.path.match(re);
     }
   }
