@@ -45,7 +45,6 @@ export function createRouter() {
                     {
                         path: "/my-page/korean-likes",
                         component: () => import('~/pages/my-page/korean-likes.vue').then(m => m.default || m),
-                        alias: "/my-page",
                     },
                     {
                         path: "/my-page/translations",
@@ -56,6 +55,25 @@ export function createRouter() {
             {
                 path: "/my-page/edit",
                 component: () => import('~/pages/my-page/profile-edit.vue').then(m => m.default || m)
+            },
+            {
+                path: "/admin",
+                component: () => import('~/pages/admin.vue').then(m => m.default || m),
+                children: [
+                    {
+                        path: "/admin/add-subtitle",
+                        component: () => import('~/pages/admin/add-subtitle.vue').then(m => m.default || m),
+                        alias: "/admin",
+                    },
+                    {
+                        path: "/admin/add-translations",
+                        component: () => import('~/pages/admin/add-translations.vue').then(m => m.default || m),
+                    },
+                    {
+                        path: "/admin/add-main-content",
+                        component: () => import('~/pages/admin/add-main-content.vue').then(m => m.default || m)
+                    },
+                ]
             },
         ]
     })
