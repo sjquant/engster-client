@@ -30,9 +30,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -41,9 +39,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -52,9 +48,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -63,9 +57,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -74,9 +66,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -85,9 +75,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -96,9 +84,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -107,9 +93,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         },
         {
           line_id: 15,
@@ -118,9 +102,7 @@ export default {
             "우리 언제 한번 모여서 점심도 먹고 못다한 이야기도 해야지.",
           content_id: 1,
           content: "Shameless US - 2 X 06",
-          category: "TV Series",
-          like_count: 0,
-          translation_count: 1
+          category: "TV Series"
         }
       ]
     };
@@ -142,10 +124,11 @@ div.main-content-container {
     }
     .description {
       white-space: pre-wrap;
+      margin-bottom: 1.6rem;
     }
 
     h3 {
-      margin-top: 1.6rem;
+      margin-top: 3.2rem;
       margin-bottom: 0;
     }
   }

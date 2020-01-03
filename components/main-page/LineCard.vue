@@ -16,11 +16,11 @@
     <div class="line-action-container">
       <div class="action-box">
         <Like :class="{ active: isLiked }" />
-        <span>{{ line.like_count }}</span>
+        <span>{{ line.like_count || 0 }}</span>
       </div>
       <div class="action-box">
         <Pencil :class="{ active: isTranslationOn }" />
-        <span>{{ line.translation_count }}</span>
+        <span>{{ line.translation_count || 0 }}</span>
       </div>
     </div>
     <translation-container
