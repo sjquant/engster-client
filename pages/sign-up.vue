@@ -94,7 +94,7 @@ export default {
     ...mapActions("auth", ["SIGNUP"]),
     async signup() {
       let validated = await this.$validator.validateAll();
-      if (validated && this.agreed) {
+      if (validated) {
         this.SIGNUP({
           email: this.email,
           nickname: this.nickname,
@@ -109,21 +109,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.check-agree {
-  display: flex;
-  align-items: center;
-  margin: 0.8rem 0;
-
-  span {
-    padding-left: 0.8rem;
-    line-height: 100%;
-    font-size: 1.4rem;
-
-    a {
-      display: inline;
-    }
-  }
-}
-</style>
