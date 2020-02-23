@@ -53,16 +53,6 @@
         class="error-message"
         v-show="errors.collect('비밀번호 확인').length > 0"
       >{{ errors.first('비밀번호 확인') }}</div>
-      <div class="check-agree">
-        <span @click="agreed=!agreed">
-          <checkbox :class="agreed ? 'checkbox--checked' : 'checkbox--unchecked'"></checkbox>
-        </span>
-        <span>
-          Engster의
-          <a href="#">이용약관</a>과
-          <a href="#">개인정보처리방침</a>에 동의합니다.
-        </span>
-      </div>
       <button class="login-btn" @click.prevent="signup">가입하기</button>
       <hr />
       <google-login></google-login>
@@ -83,7 +73,6 @@ export default {
   layout: "wrap-center",
   data() {
     return {
-      agreed: false,
       email: "",
       nickname: "",
       password1: "",
