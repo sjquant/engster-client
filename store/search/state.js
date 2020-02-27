@@ -1,7 +1,7 @@
 export default () => ({
   keyword: "",
   searchResult: {
-    lines: [],
+    data: [],
     max_page: null,
     page: null,
     user_liked: []

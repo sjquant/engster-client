@@ -1,36 +1,17 @@
 <template>
-  <div>
-    <div>
-      <div class="comment-box" v-if="comment.is_accepted">
-        <span class="user">{{comment.translator}}</span>
-        <div class="comment-content">
-          <span class="comment">{{comment.translation}}</span>
-          <span class="comment-like" v-show="comment.like_count > 0">
-            <like :class="{'active': isLiked}"></like>
-            {{ comment.like_count }}
-          </span>
-          <div class="action-box">
-            <span class="action" @click="updateLike(comment.id)">
-              <span v-if="!isLiked">좋아요</span>
-              <span v-else>좋아요취소</span>
-            </span>
-            <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
-          </div>
-        </div>
-      </div>
-      <div class="comment-box" v-else-if="!comment.is_accepted && userid === comment.translator_id">
-        <span class="user">{{comment.translator}}</span>
-        <div class="comment-content">
-          <span class="comment">{{comment.translation}}</span>
-          <div class="action-box">
-            <span>승인대기중</span>
-            <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
-          </div>
-        </div>
-      </div>
-      <div class="waiting-comment-box" v-else>
-        <span class="user">{{comment.translator}}</span>
-        <span>승인을 기다리고 있는 번역입니다.</span>
+  <div class="comment-box">
+    <span class="user">{{ comment.translator }}</span>
+    <div class="comment-content">
+      <span class="comment">{{ comment.translation }}</span>
+      <span class="comment-like" v-show="comment.like_count > 0">
+        <like :class="{ active: isLiked }"></like>
+        {{ comment.like_count }}
+      </span>
+      <div class="action-box">
+        <span class="action" @click="updateLike(comment.id)">
+          <span v-if="!isLiked">좋아요</span>
+          <span v-else>좋아요취소</span>
+        </span>
         <timeago class="updated-at" :datetime="comment.updated_at"></timeago>
       </div>
     </div>

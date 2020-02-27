@@ -3,7 +3,7 @@
     <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
     <search-result :keyword="keyword" :count="count"></search-result>
     <section v-infinite-scroll="fetchMoreLines">
-      <korean-card v-for="line in lines" :key="line.id" :line="line"></korean-card>
+      <korean-card v-for="each in data" :key="each.id" :line="each"></korean-card>
     </section>
   </div>
 </template>
@@ -31,11 +31,10 @@ export default {
       searchWord: query.keyword,
       page: query.page || 1
     });
-    store.commit("search/SET_KEYWORD", query.keyword);
   },
   computed: {
     ...mapState({
-      lines: state => state.search.searchResult.lines,
+      data: state => state.search.searchResult.data,
       page: state => state.search.searchResult.page,
       maxPage: state => state.search.searchResult.max_page,
       count: state => state.search.searchResult.count,
@@ -46,7 +45,7 @@ export default {
     ...mapActions("search", ["FETCH_LINE_KOREAN"]),
     fetchMoreLines() {
       // keyword, page, append
-      if (this.page < this.maxPage) {
+      if (this.page < this.maxPage && !this.loading) {
         this.loading = true;
         this.FETCH_LINE_KOREAN({
           searchWord: this.keyword,

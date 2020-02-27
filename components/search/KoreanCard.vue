@@ -2,15 +2,15 @@
   <line-card>
     <div class="translation-content">
       <div class="translation" v-html="processedLine"></div>
-      <div class="line">{{ line.line.line }}</div>
+      <div class="line">{{ line.line }}</div>
     </div>
     <div class="line-info">
       <div class="title-category">
-        <span>{{ `${line.content.title} (${line.content.year})`}}</span> |
-        <span>{{ line.category.category }}</span>
+        <span>{{ `${line.content_title} (${line.content_year})`}}</span> |
+        <span>{{ line.category_name }}</span>
       </div>
       <div>
-        <Tag v-for="each in line.genres" :key="each.id">#{{ each.genre }}</Tag>
+        <Tag v-for="each in line.genres" :key="each.id">#{{ each.name }}</Tag>
       </div>
     </div>
     <div class="line-action-container">
@@ -74,11 +74,7 @@ export default {
   computed: {
     ...mapState("search", ["keyword", "searchResult"]),
     isLiked() {
-      if (this.searchResult.user_liked.includes(this.line.id)) {
-        return true;
-      } else {
-        false;
-      }
+      return false;
     },
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");

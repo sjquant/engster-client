@@ -2,18 +2,20 @@ import { search } from "~/api";
 
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
+    commit("SET_KEYWORD", searchWord);
     return search.fetchEnglish(searchWord, page).then(data => {
       if (append) {
-        commit("APPEND_SEARCH_RESULT", data)
+        commit("APPEND_SEARCH_RESULT", data);
       } else {
         commit("SET_SEARCH_RESULT", data);
       }
     });
   },
   FETCH_LINE_KOREAN({ commit }, { searchWord, page = 1, append = false }) {
+    commit("SET_KEYWORD", searchWord);
     return search.fetchKorean(searchWord, page).then(data => {
       if (append) {
-        commit("APPEND_SEARCH_RESULT", data)
+        commit("APPEND_SEARCH_RESULT", data);
       } else {
         commit("SET_SEARCH_RESULT", data);
       }
