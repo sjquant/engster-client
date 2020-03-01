@@ -27,7 +27,7 @@ export default {
   },
   watchQuery: ["keyword"],
   fetch({ store, query }) {
-    store.dispatch("search/FETCH_LINE_KOREAN", {
+    store.dispatch("subtitle/FETCH_LINE_KOREAN", {
       searchWord: query.keyword,
       page: query.page || 1
     });
