@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState("auth", ["user"]),
-    ...mapState("search", ["translationsForLine"]),
+    ...mapState("subtitle", ["translationsForLine"]),
     translations() {
       return this.translationsForLine[this.lineid];
     },

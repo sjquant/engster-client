@@ -35,9 +35,9 @@
 <script>
 import LineCard from "../common/LineCard.vue";
 import Tag from "../common/Tag";
-import Pencil from "../search/Pencil.vue";
-import Like from "../search/Like.vue";
-import TranslationContainer from "../search/TranslationContainer";
+import Pencil from "../subtitle/Pencil.vue";
+import Like from "../subtitle/Like.vue";
+import TranslationContainer from "../subtitle/TranslationContainer";
 import { translationMixin } from "~/mixins";
 import { mapState, mapActions } from "vuex";
 

@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     onClickSearch() {
-      let keyword = this.$refs.inputSearch.value;
+      let keyword = this.$refs.inputsubtitlevalue;
       this.search(keyword);
     },
     onEnterSearch(e) {

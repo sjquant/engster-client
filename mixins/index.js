@@ -7,8 +7,8 @@ export const translationMixin = {
     };
   },
   methods: {
-    ...mapMutations("search", ["INCREASE_TRANSLATION_COUNT"]),
-    ...mapActions("search", [
+    ...mapMutations("subtitle", ["INCREASE_TRANSLATION_COUNT"]),
+    ...mapActions("subtitle", [
       "FETCH_TRANSLATIONS_FOR_LINE",
       "CREATE_TRANSLATION"
     ]),

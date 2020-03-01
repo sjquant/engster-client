@@ -10,8 +10,8 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import EnglishCard from "~/components/search/EnglishCard.vue";
-import SearchResult from "~/components/search/SearchResult.vue";
+import EnglishCard from "~/components/subtitle/EnglishCard.vue";
+import SearchResult from "~/components/subtitle/SearchResult.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
@@ -27,22 +27,22 @@ export default {
   },
   watchQuery: ["keyword"],
   fetch({ store, query }) {
-    return store.dispatch("search/FETCH_LINE_ENGLISH", {
+    return store.dispatch("subtitle/FETCH_LINE_ENGLISH", {
       searchWord: query.keyword,
       page: query.page || 1
     });
   },
   computed: {
     ...mapState({
-      data: state => state.search.searchResult.data,
-      page: state => state.search.searchResult.page,
-      maxPage: state => state.search.searchResult.max_page,
-      count: state => state.search.searchResult.count,
-      keyword: state => state.search.keyword
+      data: state => state.subtitle.searchResult.data,
+      page: state => state.subtitle.searchResult.page,
+      maxPage: state => state.subtitle.searchResult.max_page,
+      count: state => state.subtitle.searchResult.count,
+      keyword: state => state.subtitle.keyword
     })
   },
   methods: {
-    ...mapActions("search", ["FETCH_LINE_ENGLISH"]),
+    ...mapActions("subtitle", ["FETCH_LINE_ENGLISH"]),
     fetchMoreLines() {
       // keyword, page, append
       if (this.page < this.maxPage && !this.loading) {

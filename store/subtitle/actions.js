@@ -1,9 +1,9 @@
-import { search } from "../../api";
+import { subtitle } from "../../api";
 
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
     commit("SET_KEYWORD", searchWord);
-    return search.fetchEnglish(searchWord, page).then(data => {
+    return subtitle.fetchEnglish(searchWord, page).then(data => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data);
       } else {
@@ -13,7 +13,7 @@ export default {
   },
   FETCH_LINE_KOREAN({ commit }, { searchWord, page = 1, append = false }) {
     commit("SET_KEYWORD", searchWord);
-    return search.fetchKorean(searchWord, page).then(data => {
+    return subtitle.fetchKorean(searchWord, page).then(data => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data);
       } else {
@@ -22,22 +22,22 @@ export default {
     });
   },
   LIKE_LINE_ENGLISH({ commit }, lineid) {
-    return search.likeEnglish(lineid).then(() => {
+    return subtitle.likeEnglish(lineid).then(() => {
       commit("ADD_USER_LIKED", lineid);
     });
   },
   UNLIKE_LINE_ENGLISH({ commit }, lineid) {
-    return search.unlikeEnglish(lineid).then(() => {
+    return subtitle.unlikeEnglish(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
   },
   LIKE_LINE_KOREAN({ commit }, lineid) {
-    return search.likeKorean(lineid).then(() => {
+    return subtitle.likeKorean(lineid).then(() => {
       commit("ADD_USER_LIKED", lineid);
     });
   },
   UNLIKE_LINE_KOREAN({ commit }, lineid) {
-    return search.unlikeKorean(lineid).then(() => {
+    return subtitle.unlikeKorean(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
   },
@@ -45,7 +45,7 @@ export default {
     { commit },
     { lineid, page = 1, append = false }
   ) {
-    return search.fetchTranslations(lineid).then(data => {
+    return subtitle.fetchTranslations(lineid).then(data => {
       if (append) {
         commit("APPEND_TRANSLATIONS_FOR_LINE", { lineid, data });
       } else {
@@ -54,6 +54,6 @@ export default {
     });
   },
   CREATE_TRANSLATION({}, { lineid, translation }) {
-    return search.createTranslation(lineid, translation);
+    return subtitle.createTranslation(lineid, translation);
   }
 };

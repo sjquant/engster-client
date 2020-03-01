@@ -21,7 +21,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import Like from "./Like";
-import { search } from "~/api";
+import { subtitle } from "~/api";
 
 export default {
   components: {
@@ -39,18 +39,18 @@ export default {
     comment: Object
   },
   methods: {
-    ...mapActions("search", [
+    ...mapActions("subtitle", [
       "LIKE_COMMENT_TRANSLATION",
       "UNLIKE_COMMENT_TRANSLATION"
     ]),
     updateLike(lineid) {
       if (!this.isLiked) {
-        search.likeKorean(lineid).then(() => {
+        subtitle.likeKorean(lineid).then(() => {
           this.comment.user_liked = true;
           this.comment.like_count += 1;
         });
       } else {
-        search.unlikeKorean(lineid).then(() => {
+        subtitle.unlikeKorean(lineid).then(() => {
           this.comment.user_liked = false;
           this.comment.like_count -= 1;
         });

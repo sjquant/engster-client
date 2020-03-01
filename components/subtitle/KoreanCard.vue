@@ -1,11 +1,12 @@
 <template>
   <line-card>
-    <div class="line-content">
-      <div class="line" v-html="processedLine"></div>
+    <div class="translation-content">
+      <div class="translation" v-html="processedLine"></div>
+      <div class="line">{{ line.line }}</div>
     </div>
     <div class="line-info">
       <div class="title-category">
-        <span>{{ `${line.content_title} (${line.content_year})` }}</span> |
+        <span>{{ `${line.content_title} (${line.content_year})`}}</span> |
         <span>{{ line.category_name }}</span>
       </div>
       <div>
@@ -25,7 +26,7 @@
     <translation-container
       v-if="isTranslationOn"
       ref="transCard"
-      :lineid="line.id"
+      :lineid="line.line_id"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
     ></translation-container>
@@ -38,8 +39,8 @@ import Tag from "../common/Tag.vue";
 import Pencil from "./Pencil.vue";
 import Like from "./Like.vue";
 import Share from "./Share.vue";
+import TranslationCard from "./TranslationCard";
 import TranslationContainer from "./TranslationContainer";
-
 import { translationMixin } from "~/mixins";
 import { mapState, mapActions } from "vuex";
 
@@ -50,6 +51,7 @@ export default {
     Pencil,
     Like,
     Share,
+    TranslationCard,
     TranslationContainer
   },
   props: {
@@ -60,17 +62,17 @@ export default {
   },
   mixins: [translationMixin],
   methods: {
-    ...mapActions("search", ["LIKE_LINE_ENGLISH", "UNLIKE_LINE_ENGLISH"]),
+    ...mapActions("subtitle", ["LIKE_LINE_KOREAN", "UNLIKE_LINE_KOREAN"]),
     updateLike() {
       if (!this.isLiked) {
-        this.LIKE_LINE_ENGLISH(this.line.id);
+        this.LIKE_LINE_KOREAN(this.line.id);
       } else {
-        this.UNLIKE_LINE_ENGLISH(this.line.id);
+        this.UNLIKE_LINE_KOREAN(this.line.id);
       }
     }
   },
   computed: {
-    ...mapState("search", ["searchResult", "keyword"]),
+    ...mapState("subtitle", ["keyword", "searchResult"]),
     isLiked() {
       return false;
     },
@@ -78,7 +80,7 @@ export default {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
 
       try {
-        return this.line.line.replace(
+        return this.line.translation.replace(
           regexp,
           '<span class="highlighted">$1</span>'
         );
