@@ -1,4 +1,4 @@
-import { search } from "~/api";
+import { search } from "../../api";
 
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
@@ -40,5 +40,20 @@ export default {
     return search.unlikeKorean(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
+  },
+  FETCH_TRANSLATIONS_FOR_LINE(
+    { commit },
+    { lineid, page = 1, append = false }
+  ) {
+    return search.fetchTranslations(lineid).then(data => {
+      if (append) {
+        commit("APPEND_TRANSLATIONS_FOR_LINE", { lineid, data });
+      } else {
+        commit("SET_TRANSLATIONS_FOR_LINE", { lineid, data });
+      }
+    });
+  },
+  CREATE_TRANSLATION({}, { lineid, translation }) {
+    return search.createTranslation(lineid, translation);
   }
 };

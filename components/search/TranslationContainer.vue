@@ -6,8 +6,8 @@
       @comment-created="(value) => $emit('comment-created', value)"
       @focus="checkLogin"
     ></comment-input>
-    <comment-container>
-      <TranslationCard :comment="each" v-for="each in translations" :key="each.id"></TranslationCard>
+    <comment-container v-if="translations">
+      <TranslationCard :comment="each" v-for="each in translationsData" :key="each.id" />
     </comment-container>
   </div>
 </template>
@@ -27,18 +27,18 @@ export default {
     inputPlaceholder: {
       type: String
     },
-    transResult: {
-      type: Object
+    lineid: {
+      type: Number
     }
   },
   computed: {
     ...mapState("auth", ["user"]),
+    ...mapState("search", ["translationsForLine"]),
     translations() {
-      if (this.transResult) {
-        return this.transResult.translations;
-      } else {
-        return null;
-      }
+      return this.translationsForLine[this.lineid];
+    },
+    translationsData() {
+      return this.translations ? this.translations.data : [];
     }
   },
   methods: {

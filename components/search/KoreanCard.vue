@@ -26,7 +26,7 @@
     <translation-container
       v-if="isTranslationOn"
       ref="transCard"
-      :transResult="translationResult"
+      :lineid="line.line_id"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
     ></translation-container>

@@ -5,5 +5,6 @@ export default () => ({
     max_page: null,
     page: null,
     user_liked: []
-  }
+  },
+  translationsForLine: {}
 });
