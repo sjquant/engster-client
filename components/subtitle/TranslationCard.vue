@@ -1,6 +1,6 @@
 <template>
   <div class="comment-box">
-    <span class="user">{{ comment.translator }}</span>
+    <span class="user">{{ comment.user.nickname }}</span>
     <div class="comment-content">
       <span class="comment">{{ comment.translation }}</span>
       <span class="comment-like" v-show="comment.like_count > 0">
