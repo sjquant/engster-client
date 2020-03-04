@@ -6,5 +6,6 @@ export default () => ({
     page: null,
     user_liked: []
   },
+  randomSubtitles: [],
   translationsForLine: {}
 });

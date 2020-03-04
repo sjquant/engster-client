@@ -39,8 +39,8 @@ export const subtitle = {
     return request
       .get("/subtitle/search/english", {
         params: {
-          keyword: keyword,
-          page: page
+          keyword,
+          page
         }
       })
       .then(({ data }) => data);
@@ -49,18 +49,21 @@ export const subtitle = {
     return request
       .get("/subtitle/search/korean", {
         params: {
-          keyword: keyword,
-          page: page
+          keyword,
+          page
         }
       })
       .then(({ data }) => data);
+  },
+  fetchRandomSubtitles() {
+    return request.get("/subtitle/random/subtitles").then(({ data }) => data);
   },
   fetchTranslations(lineid, page = 1) {
     return request
       .get("/subtitle/translations", {
         params: {
           line_id: lineid,
-          page: page
+          page
         }
       })
       .then(({ data }) => data);
@@ -69,7 +72,7 @@ export const subtitle = {
     return request
       .post("/subtitle/translations", {
         line_id: lineid,
-        translation: translation
+        translation
       })
       .then(({ data }) => data);
   },
@@ -105,7 +108,7 @@ export const mypage = {
     return request
       .get(`/my-page/${userid}/line-likes/english`, {
         params: {
-          page: page
+          page
         }
       })
       .then(({ data }) => data);
@@ -114,7 +117,7 @@ export const mypage = {
     return request
       .get(`/my-page/${userid}/line-likes/korean`, {
         params: {
-          page: page
+          page
         }
       })
       .then(({ data }) => data);
@@ -123,7 +126,7 @@ export const mypage = {
     return request
       .get(`/my-page/${userid}/translations`, {
         params: {
-          page: page
+          page
         }
       })
       .then(({ data }) => data);

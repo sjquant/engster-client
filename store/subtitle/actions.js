@@ -21,6 +21,11 @@ export default {
       }
     });
   },
+  FETCH_RANDOM_SUBTITLES({ commit }) {
+    return subtitle.fetchRandomSubtitles().then(data => {
+      commit("SET_RANDOM_SUBTITLES", data);
+    });
+  },
   LIKE_LINE_ENGLISH({ commit }, lineid) {
     return subtitle.likeEnglish(lineid).then(() => {
       commit("ADD_USER_LIKED", lineid);

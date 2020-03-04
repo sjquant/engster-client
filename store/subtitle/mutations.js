@@ -11,6 +11,12 @@ const mutations = {
     Vue.set(state.searchResult, "page", data.page);
     state.searchResult.data.push(...data.data);
   },
+  SET_RANDOM_SUBTITLES(state, data) {
+    state.randomSubtitles = data;
+  },
+  CLEAR_RANDOM_SUBTITLES(state) {
+    state.randomSubtitles = [];
+  },
   SET_TRANSLATIONS_FOR_LINE(state, { lineid, data }) {
     Vue.set(state.translationsForLine, lineid, data);
   },
