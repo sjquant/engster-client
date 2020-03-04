@@ -72,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("subtitle", ["keyword", "searchResult"]),
+    ...mapState("subtitle", ["keyword"]),
     isLiked() {
       return false;
     },
@@ -84,7 +84,9 @@ export default {
           regexp,
           '<span class="highlighted">$1</span>'
         );
-      } catch (error) {}
+      } catch {
+        return this.line.translation;
+      }
     }
   }
 };
