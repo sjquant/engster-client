@@ -78,22 +78,22 @@ export const subtitle = {
   },
   likeEnglish(lineid) {
     return request
-      .post(`/subtitle/like/english/${lineid}`, {})
+      .post(`/subtitle/likes/english/${lineid}`, {})
       .then(({ data }) => data);
   },
   unlikeEnglish(lineid) {
     return request
-      .delete(`/subtitle/like/english/${lineid}`, {})
+      .delete(`/subtitle/likes/english/${lineid}`, {})
       .then(({ data }) => data);
   },
   likeKorean(lineid) {
     return request
-      .post(`/subtitle/like/korean/${lineid}`, {})
+      .post(`/subtitle/likes/korean/${lineid}`, {})
       .then(({ data }) => data);
   },
   unlikeKorean(lineid) {
     return request
-      .delete(`/subtitle/like/korean/${lineid}`, {})
+      .delete(`/subtitle/likes/korean/${lineid}`, {})
       .then(({ data }) => data);
   }
 };
