@@ -36,10 +36,8 @@ export default {
     ...mapState("subtitle", ["randomSubtitles"])
   },
   methods: {
-    ...mapActions("subtitle", [
-      "FETCH_RANDOM_SUBTITLES",
-      "CLEAR_RANDOM_SUBTITLES"
-    ])
+    ...mapActions("subtitle", ["FETCH_RANDOM_SUBTITLES"]),
+    ...mapMutations("subtitle", ["CLEAR_RANDOM_SUBTITLES"])
   }
 };
 </script>
