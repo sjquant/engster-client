@@ -23,7 +23,7 @@
         <span>{{ line.translation_count }}</span>
       </div>
     </div>
-    <TranslationContainer
+    <TranslationBox
       v-if="isTranslationOn"
       ref="transCard"
       :lineid="line.line_id"
@@ -38,8 +38,7 @@ import LineCard from "../common/LineCard.vue";
 import KeywordTag from "../common/KeywordTag.vue";
 import PencilIcon from "../icons/PencilIcon.vue";
 import LikeIcon from "../icons/LikeIcon.vue";
-import TranslationCard from "./TranslationCard";
-import TranslationContainer from "./TranslationContainer";
+import TranslationBox from "./TranslationBox";
 import { translationMixin } from "~/mixins";
 import { mapState, mapActions } from "vuex";
 
@@ -49,8 +48,7 @@ export default {
     KeywordTag,
     PencilIcon,
     LikeIcon,
-    TranslationCard,
-    TranslationContainer
+    TranslationBox
   },
   props: {
     line: {

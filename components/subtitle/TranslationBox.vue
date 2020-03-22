@@ -1,27 +1,25 @@
 <template>
   <div>
-    <CommentInput
-      ref="commentInput"
+    <TranslationBoxInput
+      ref="input"
       :placeholder="inputPlaceholder"
       @comment-created="(value) => $emit('comment-created', value)"
       @focus="checkLogin"
     />
-    <CommentContainer v-if="translations">
-      <TranslationCard :comment="each" v-for="each in translationsData" :key="each.id" />
-    </CommentContainer>
+    <div class="card-container" v-if="translations">
+      <TranslationBoxCard :translation="each" v-for="each in translationsData" :key="each.id" />
+    </div>
   </div>
 </template>
 <script>
-import CommentInput from "../common/CommentInput.vue";
-import TranslationCard from "./TranslationCard.vue";
-import CommentContainer from "../common/CommentContainer";
+import TranslationBoxInput from "./TranslationBoxInput.vue";
+import TranslationBoxCard from "./TranslationBoxCard.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    CommentInput,
-    TranslationCard,
-    CommentContainer
+    TranslationBoxInput,
+    TranslationBoxCard
   },
   props: {
     inputPlaceholder: {
@@ -50,3 +48,15 @@ export default {
   }
 };
 </script>
+<style scoped lang="scss">
+@import "~utils";
+.card-container {
+  width: 100%;
+  max-height: 24rem;
+  overflow: auto;
+  background-color: $gray-lighter;
+  margin-bottom: 1.6rem;
+  border-radius: 4px;
+  padding: 0.8rem 0;
+}
+</style>
