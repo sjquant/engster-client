@@ -2,20 +2,20 @@
   <div class="search-bar-container">
     <input type="text" placeholder="찾고싶은 표현을 입력하세요!" @keyup.enter="onEnterSearch" ref="inputSearch" />
     <div class="search-glass" @click="onClickSearch">
-      <SearchGlass />
+      <MagnifyingGlassIcon />
     </div>
   </div>
 </template>
 
 <script>
-import SearchGlass from "./SearchGlass.vue";
+import MagnifyingGlassIcon from "../icons/MagnifyingGlassIcon.vue";
 export default {
   components: {
-    SearchGlass
+    MagnifyingGlassIcon
   },
   methods: {
     onClickSearch() {
-      let keyword = this.$refs.inputsubtitlevalue;
+      let keyword = this.$refs.inputSearch.value;
       this.search(keyword);
     },
     onEnterSearch(e) {

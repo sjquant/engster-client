@@ -62,8 +62,7 @@
   </div>
 </template>
 <script>
-import Logo from "../components/icons/MainFullLogo";
-import Checkbox from "../components/icons/Checkbox";
+import Logo from "../components/icons/FullLogoIcon";
 import GoogleLogin from "../components/common/GoogleLogin";
 import FacebookLogin from "../components/common/FacebookLogin";
 import NaverLogin from "../components/common/NaverLogin";
@@ -81,7 +80,6 @@ export default {
   },
   components: {
     Logo,
-    Checkbox,
     GoogleLogin,
     FacebookLogin,
     NaverLogin

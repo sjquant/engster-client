@@ -9,16 +9,16 @@
       @focus="$emit('focus')"
     />
     <div class="plus-btn" @click="createComment">
-      <Plus />
+      <PlusIcon />
     </div>
   </div>
 </template>
 
 <script>
-import Plus from "./Plus.vue";
+import PlusIcon from "../icons/PlusIcon.vue";
 export default {
   components: {
-    Plus
+    PlusIcon
   },
   props: {
     placeholder: {

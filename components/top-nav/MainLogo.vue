@@ -1,18 +1,18 @@
 <template>
   <div class="main-logo-container" @click="toHome">
-    <MainMobileLogo />
-    <MainFullLogo />
+    <MobileLogoIcon />
+    <FullLogoIcon />
   </div>
 </template>
 
 <script>
-import MainMobileLogo from "../icons/MainMobileLogo.vue";
-import MainFullLogo from "../icons/MainFullLogo.vue";
+import MobileLogoIcon from "../icons/MobileLogoIcon.vue";
+import FullLogoIcon from "../icons/FullLogoIcon.vue";
 
 export default {
   components: {
-    MainMobileLogo,
-    MainFullLogo
+    MobileLogoIcon,
+    FullLogoIcon
   },
   methods: {
     toHome() {

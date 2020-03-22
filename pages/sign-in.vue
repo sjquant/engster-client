@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import Logo from "../components/icons/MainFullLogo";
+import Logo from "../components/icons/FullLogoIcon";
 import GoogleLogin from "../components/common/GoogleLogin";
 import FacebookLogin from "../components/common/FacebookLogin";
 import NaverLogin from "../components/common/NaverLogin";

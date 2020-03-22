@@ -4,7 +4,7 @@
     <div class="comment-content">
       <span class="comment">{{ comment.translation }}</span>
       <span class="comment-like" v-show="comment.like_count > 0">
-        <like :class="{ active: isLiked }"></like>
+        <LikeIcon :class="{ active: isLiked }" />
         {{ comment.like_count }}
       </span>
       <div class="action-box">
@@ -20,12 +20,12 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import Like from "./Like";
+import LikeIcon from "../icons/LikeIcon.vue";
 import { subtitle } from "~/api";
 
 export default {
   components: {
-    Like
+    LikeIcon
   },
   computed: {
     ...mapState({

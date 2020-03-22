@@ -9,16 +9,16 @@
         <span>{{ line.category_name }}</span>
       </div>
       <div>
-        <Tag v-for="each in line.genres" :key="each.id">#{{ each.name }}</Tag>
+        <KeywordTag v-for="each in line.genres" :key="each.id">#{{ each.name }}</KeywordTag>
       </div>
     </div>
     <div class="line-action-container">
       <div class="action-box" @click="updateLike">
-        <Like :class="{ active: isLiked }" />
+        <LikeIcon :class="{ active: isLiked }" />
         <span>{{ line.like_count }}</span>
       </div>
       <div class="action-box" @click="updateTranslationOn">
-        <Pencil :class="{ active: isTranslationOn }" />
+        <PencilIcon :class="{ active: isTranslationOn }" />
         <span>{{ line.translation_count }}</span>
       </div>
     </div>
@@ -34,10 +34,9 @@
 
 <script>
 import LineCard from "../common/LineCard.vue";
-import Tag from "../common/Tag.vue";
-import Pencil from "./Pencil.vue";
-import Like from "./Like.vue";
-import Share from "./Share.vue";
+import KeywordTag from "../common/KeywordTag.vue";
+import PencilIcon from "../icons/PencilIcon.vue";
+import LikeIcon from "../icons/LikeIcon.vue";
 import TranslationContainer from "./TranslationContainer";
 
 import { translationMixin } from "~/mixins";
@@ -46,10 +45,9 @@ import { mapState, mapActions } from "vuex";
 export default {
   components: {
     LineCard,
-    Tag,
-    Pencil,
-    Like,
-    Share,
+    KeywordTag,
+    PencilIcon,
+    LikeIcon,
     TranslationContainer
   },
   props: {
