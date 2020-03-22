@@ -1,12 +1,12 @@
 <template>
   <line-card>
     <div class="translation-content">
-      <div class="translation" v-html="processedLine"></div>
+      <div class="translation">{{ line.translation }}</div>
       <div class="line">{{ line.line }}</div>
     </div>
     <div class="line-info">
       <div class="title-category">
-        <span>{{ `${line.content.title} (${line.content.year})` }}</span>
+        <span>{{ `${line.content_title} (${line.content_year})` }}</span>
       </div>
     </div>
   </line-card>
@@ -23,18 +23,6 @@ export default {
     line: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    processedLine() {
-      let regexp = new RegExp("(" + this.keyword + ")", "i");
-
-      try {
-        return this.line.translation.replace(
-          regexp,
-          '<span class="highlighted">$1</span>'
-        );
-      } catch (error) {}
     }
   }
 };

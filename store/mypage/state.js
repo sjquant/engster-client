@@ -1,8 +1,12 @@
 export default () => ({
-  activitySummary: null,
+  activitySummary: {
+    user_id: null,
+    translation_count: 0
+  },
   lineResult: {
-    lines: [],
-    max_page: null,
-    page: null
+    data: [],
+    count: 0,
+    max_page: 0,
+    page: 0
   }
 });

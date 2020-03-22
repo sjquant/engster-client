@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     ...mapState({
-      lines: state => state.mypage.lineResult.lines,
+      lines: state => state.mypage.lineResult.data,
       page: state => state.mypage.lineResult.page,
       maxPage: state => state.mypage.lineResult.max_page,
       count: state => state.mypage.lineResult.count,

@@ -3,8 +3,7 @@ export default () => ({
   searchResult: {
     data: [],
     max_page: null,
-    page: null,
-    user_liked: []
+    page: null
   },
   randomSubtitles: [],
   translationsForLine: {}

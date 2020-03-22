@@ -106,7 +106,7 @@ export const mypage = {
   },
   fetchEnglishLikes(userid, page = 1) {
     return request
-      .get(`/my-page/${userid}/line-likes/english`, {
+      .get(`/my-page/${userid}/liked-english-lines`, {
         params: {
           page
         }
@@ -115,7 +115,7 @@ export const mypage = {
   },
   fetchKoreanLikes(userid, page = 1) {
     return request
-      .get(`/my-page/${userid}/line-likes/korean`, {
+      .get(`/my-page/${userid}/liked-korean-lines`, {
         params: {
           page
         }
