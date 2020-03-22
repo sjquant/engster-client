@@ -23,6 +23,7 @@ export default {
     border-radius: 100%;
     object-fit: cover;
     width: 128px;
+    background-color: $gray;
   }
 }
 </style>
