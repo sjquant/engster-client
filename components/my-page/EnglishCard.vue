@@ -1,5 +1,5 @@
 <template>
-  <line-card>
+  <LineCard>
     <div class="line-content">
       <div class="line" v-text="line.line"></div>
     </div>
@@ -8,7 +8,7 @@
         <span>{{ `${line.content_title} (${line.content_year})` }}</span>
       </div>
     </div>
-  </line-card>
+  </LineCard>
 </template>
 
 <script>

@@ -1,14 +1,14 @@
 <template>
   <div>
-    <comment-input
+    <CommentInput
       ref="commentInput"
       :placeholder="inputPlaceholder"
       @comment-created="(value) => $emit('comment-created', value)"
       @focus="checkLogin"
-    ></comment-input>
-    <comment-container v-if="translations">
+    />
+    <CommentContainer v-if="translations">
       <TranslationCard :comment="each" v-for="each in translationsData" :key="each.id" />
-    </comment-container>
+    </CommentContainer>
   </div>
 </template>
 <script>

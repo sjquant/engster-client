@@ -1,5 +1,5 @@
 <template>
-  <line-card>
+  <LineCard>
     <div class="translation-content">
       <div class="line" v-text="line.line"></div>
       <div class="translation" v-text="line.translation"></div>
@@ -23,14 +23,14 @@
         <span>{{ line.translation_count }}</span>
       </div>
     </div>
-    <translation-container
+    <TranslationContainer
       v-if="isTranslationOn"
       ref="transCard"
       :lineid="line.id"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
-    ></translation-container>
-  </line-card>
+    />
+  </LineCard>
 </template>
 
 <script>
@@ -39,7 +39,6 @@ import Tag from "../common/Tag.vue";
 import Pencil from "./Pencil.vue";
 import Like from "./Like.vue";
 import Share from "./Share.vue";
-import TranslationCard from "./TranslationCard";
 import TranslationContainer from "./TranslationContainer";
 import { translationMixin } from "~/mixins";
 import { mapState, mapActions } from "vuex";
@@ -51,7 +50,6 @@ export default {
     Pencil,
     Like,
     Share,
-    TranslationCard,
     TranslationContainer
   },
   props: {

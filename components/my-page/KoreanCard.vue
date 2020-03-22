@@ -1,5 +1,5 @@
 <template>
-  <line-card>
+  <LineCard>
     <div class="translation-content">
       <div class="translation">{{ line.translation }}</div>
       <div class="line">{{ line.line }}</div>
@@ -9,7 +9,7 @@
         <span>{{ `${line.content_title} (${line.content_year})` }}</span>
       </div>
     </div>
-  </line-card>
+  </LineCard>
 </template>
 
 <script>

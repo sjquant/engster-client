@@ -1,8 +1,10 @@
 <template>
-  <div class="profile-icon-container">
-    <img :src="profilePath" class="profile-icon" v-if="profilePath !== ''" />
-    <img src="../../assets/images/null-avatar.png" class="profile-icon" v-else />
-  </div>
+  <client-only>
+    <div class="profile-icon-container">
+      <img :src="profilePath" class="profile-icon" v-if="profilePath !== ''" key="avatar" />
+      <img src="../../assets/images/null-avatar.png" class="profile-icon" v-else key="null-avatar" />
+    </div>
+  </client-only>
 </template>
 
 <script>

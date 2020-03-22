@@ -5,7 +5,7 @@
       <span>></span>
       <span>프로필편집</span>
     </h3>
-    <profile-edit-form></profile-edit-form>
+    <ProfileEditForm />
   </div>
 </template>
 <script>

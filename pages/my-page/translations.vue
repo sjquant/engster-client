@@ -1,8 +1,8 @@
 <template>
   <div>
-    <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
+    <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
     <div v-infinite-scroll="fetchMoreLines">
-      <korean-card v-for="line in lines" :key="line.id" :line="line"></korean-card>
+      <KoreanCard v-for="line in lines" :key="line.id" :line="line" />
     </div>
   </div>
 </template>

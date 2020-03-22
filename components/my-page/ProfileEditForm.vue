@@ -24,7 +24,7 @@
         <password-edit-item @update="updatePassword"></password-edit-item>
       </div>
     </form>
-    <avatar-edit-modal></avatar-edit-modal>
+    <AvatarEditModal />
   </div>
 </template>
 

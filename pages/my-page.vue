@@ -1,7 +1,7 @@
 <template>
   <div class="my-page-container">
-    <my-page-header></my-page-header>
-    <my-page-nav></my-page-nav>
+    <MyPageHeader />
+    <MyPageNav />
     <nuxt-child></nuxt-child>
   </div>
 </template>

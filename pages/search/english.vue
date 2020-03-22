@@ -1,9 +1,9 @@
 <template>
   <div class="search-result-container">
-    <pulse-loader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px"></pulse-loader>
-    <search-result :keyword="keyword" :count="count"></search-result>
+    <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
+    <SearchResult :keyword="keyword" :count="count" />
     <section v-infinite-scroll="fetchMoreLines">
-      <english-card v-for="each in data" :key="each.id" :line="each"></english-card>
+      <EnglishCard v-for="each in data" :key="each.id" :line="each" />
     </section>
   </div>
 </template>

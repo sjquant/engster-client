@@ -2,7 +2,7 @@
   <div class="login-container">
     <nuxt-link to="/">
       <div class="login-logo">
-        <logo></logo>
+        <Logo />
       </div>
     </nuxt-link>
     <form class="login-form">
@@ -55,9 +55,9 @@
       >{{ errors.first('비밀번호 확인') }}</div>
       <button class="login-btn" @click.prevent="signup">가입하기</button>
       <hr />
-      <google-login></google-login>
-      <facebook-login></facebook-login>
-      <naver-login></naver-login>
+      <GoogleLogin />
+      <FacebookLogin />
+      <NaverLogin />
     </form>
   </div>
 </template>

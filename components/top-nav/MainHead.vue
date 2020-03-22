@@ -1,16 +1,16 @@
 <template>
   <header class="main-head-container">
     <div class="main-head-content-container">
-      <main-logo />
-      <main-search-bar />
+      <MainLogo />
+      <MainSearchBar />
       <div class="side-head-container">
         <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
-          <profile-icon :profilePath="user ? user.photo : ''"></profile-icon>
+          <ProfileIcon :profilePath="user ? user.photo : ''" />
         </div>
       </div>
       <client-only>
-        <nav-menu v-if="menuOn" @closeMenu="menuOn=false" />
+        <NavMenu v-if="menuOn" @closeMenu="menuOn=false" />
       </client-only>
     </div>
   </header>

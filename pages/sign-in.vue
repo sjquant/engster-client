@@ -2,7 +2,7 @@
   <div class="login-container">
     <nuxt-link to="/">
       <div class="login-logo">
-        <logo></logo>
+        <Logo />
       </div>
     </nuxt-link>
     <form class="login-form">
@@ -34,9 +34,9 @@
       </div>
       <button class="login-btn" @click.prevent="signin">로그인</button>
       <hr />
-      <google-login></google-login>
-      <facebook-login></facebook-login>
-      <naver-login></naver-login>
+      <GoogleLogin />
+      <FacebookLogin />
+      <NaverLogin />
     </form>
   </div>
 </template>

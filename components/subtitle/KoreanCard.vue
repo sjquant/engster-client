@@ -1,5 +1,5 @@
 <template>
-  <line-card>
+  <LineCard>
     <div class="translation-content">
       <div class="translation" v-html="processedLine"></div>
       <div class="line">{{ line.line }}</div>
@@ -30,7 +30,7 @@
       inputPlaceholder="자신만의 번역을 추가해보세요!"
       @comment-created="createTranslation"
     ></translation-container>
-  </line-card>
+  </LineCard>
 </template>
 
 <script>
