@@ -1,13 +1,13 @@
 <template>
-  <section class="side-content-container">
+  <section class="container">
     <slot></slot>
   </section>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "~utils";
 
-.side-content-container {
+.container {
   display: none;
   height: 100%;
   @include media(">=md") {

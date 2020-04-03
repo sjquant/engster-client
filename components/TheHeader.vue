@@ -1,9 +1,9 @@
 <template>
-  <header class="main-head-container">
-    <div class="main-head-content-container">
+  <header class="header">
+    <div class="content">
       <TheLogo />
       <TheSearchBar />
-      <div class="side-head-container">
+      <div class="header-side">
         <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
           <ProfileIcon :profilePath="user ? user.photo : ''" />
@@ -39,10 +39,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "~utils";
 
-.main-head-container {
+.header {
   border-bottom: 1px solid $gray-lighter;
   height: 6.4rem;
   display: flex;
@@ -51,7 +51,7 @@ export default {
   top: 0;
   align-items: center;
 
-  .main-head-content-container {
+  .content {
     display: flex;
     width: 100%;
 
@@ -61,7 +61,7 @@ export default {
   }
 }
 
-.side-head-container {
+.header-side {
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   display: flex;
@@ -74,7 +74,7 @@ export default {
   a {
     white-space: nowrap;
   }
-  .profile-icon-container {
+  /deep/ .profile-icon-container {
     cursor: pointer;
     > .profile-icon {
       width: 3.2rem;

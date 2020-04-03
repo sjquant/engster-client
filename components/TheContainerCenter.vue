@@ -1,13 +1,13 @@
 <template>
-  <section class="main-content-container">
+  <section class="container">
     <slot></slot>
   </section>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "~utils";
 
-.main-content-container {
+.container {
   width: 100%;
   height: 100%;
   @include media(">=md") {

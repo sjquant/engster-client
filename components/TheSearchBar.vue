@@ -1,5 +1,5 @@
 <template>
-  <div class="search-bar-container">
+  <div class="container">
     <input type="text" placeholder="찾고싶은 표현을 입력하세요!" @keyup.enter="onEnterSearch" ref="inputSearch" />
     <div class="search-glass" @click="onClickSearch">
       <MagnifyingGlassIcon />
@@ -49,10 +49,10 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style scoped lang='scss'>
 @import "~utils";
 
-.search-bar-container {
+.container {
   width: 100%;
   position: relative;
   display: flex;
@@ -88,14 +88,14 @@ export default {
       font-size: 14px;
     }
   }
-}
 
-.search-glass {
-  position: absolute;
-  right: 1.2rem;
-  @include media(">=md") {
-    right: 3.2rem;
+  .search-glass {
+    position: absolute;
+    right: 1.2rem;
+    @include media(">=md") {
+      right: 3.2rem;
+    }
+    cursor: pointer;
   }
-  cursor: pointer;
 }
 </style>

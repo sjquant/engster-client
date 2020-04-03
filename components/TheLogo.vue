@@ -1,5 +1,5 @@
 <template>
-  <div class="main-logo-container" @click="toHome">
+  <div class="container" @click="toHome">
     <MobileLogoIcon />
     <FullLogoIcon />
   </div>
@@ -24,9 +24,9 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style scoped lang='scss'>
 @import "~utils";
-.main-logo-container {
+.container {
   min-width: 5.6rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
@@ -37,7 +37,7 @@ export default {
     width: 16rem;
   }
 
-  .main-mobile-logo {
+  /deep/ .mobile-logo {
     width: 2.4rem;
     cursor: pointer;
     @include media(">=lg") {
@@ -46,7 +46,7 @@ export default {
     }
   }
 
-  .main-full-logo {
+  /deep/ .full-logo {
     display: none;
     cursor: pointer;
     @include media(">=lg") {

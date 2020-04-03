@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "~utils";
 
 .mobile-menu {
@@ -85,7 +85,7 @@ export default {
       font-size: 1.4rem;
     }
   }
-  .profile-icon-container > .profile-icon {
+  /deep/ .profile-icon-container > .profile-icon {
     width: 4rem;
   }
 }
