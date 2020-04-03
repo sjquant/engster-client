@@ -1,8 +1,8 @@
 <template>
   <header class="main-head-container">
     <div class="main-head-content-container">
-      <MainLogo />
-      <MainSearchBar />
+      <TheLogo />
+      <TheSearchBar />
       <div class="side-head-container">
         <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
@@ -10,22 +10,22 @@
         </div>
       </div>
       <client-only>
-        <NavMenu v-if="menuOn" @closeMenu="menuOn=false" />
+        <TheNavMenu v-if="menuOn" @closeMenu="menuOn=false" />
       </client-only>
     </div>
   </header>
 </template>
 <script>
-import MainLogo from "./MainLogo.vue";
-import MainSearchBar from "./MainSearchBar.vue";
-import NavMenu from "./NavMenu.vue";
-import ProfileIcon from "../common/ProfileIcon";
+import TheLogo from "./TheLogo.vue";
+import TheSearchBar from "./TheSearchBar.vue";
+import TheNavMenu from "./TheNavMenu.vue";
+import ProfileIcon from "./common/ProfileIcon";
 import { mapState } from "vuex";
 export default {
   components: {
-    MainLogo,
-    MainSearchBar,
-    NavMenu,
+    TheLogo,
+    TheSearchBar,
+    TheNavMenu,
     ProfileIcon
   },
   data() {

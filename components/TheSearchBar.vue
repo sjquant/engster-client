@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import MagnifyingGlassIcon from "../icons/MagnifyingGlassIcon.vue";
+import MagnifyingGlassIcon from "./icons/MagnifyingGlassIcon.vue";
 export default {
   components: {
     MagnifyingGlassIcon

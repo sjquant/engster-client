@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import MobileLogoIcon from "../icons/MobileLogoIcon.vue";
-import FullLogoIcon from "../icons/FullLogoIcon.vue";
+import MobileLogoIcon from "./icons/MobileLogoIcon.vue";
+import FullLogoIcon from "./icons/FullLogoIcon.vue";
 
 export default {
   components: {
