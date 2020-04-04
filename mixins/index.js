@@ -1,41 +1,11 @@
-import { mapState, mapMutations, mapActions } from "vuex";
-
-export const translationMixin = {
-  data() {
-    return {
-      isTranslationOn: false
-    };
-  },
-  methods: {
-    ...mapMutations("subtitle", ["INCREASE_TRANSLATION_COUNT"]),
-    ...mapActions("subtitle", [
-      "FETCH_TRANSLATIONS_FOR_LINE",
-      "CREATE_TRANSLATION"
-    ]),
-    async updateTranslationOn() {
-      this.isTranslationOn = !this.isTranslationOn;
-      if (this.isTranslationOn) {
-        await this.FETCH_TRANSLATIONS_FOR_LINE({
-          lineid: this.line.id
-        });
-      }
-    },
-    async createTranslation(translation) {
-      if (translation !== "") {
-        await this.CREATE_TRANSLATION({ lineid: this.line.id, translation });
-        // remove translation
-        this.$refs.transCard.$refs.commentInput.$refs.input.value = "";
-      }
-    }
-  }
-};
+import { mapMutations } from "vuex";
 
 export const socialAuthMixin = {
   methods: {
     ...mapMutations("auth", [
       "SET_ACCESS_TOKEN",
       "SET_REFRESH_TOKEN",
-      "SET_USER"
+      "SET_USER",
     ]),
     socialSignin(provider) {
       this.$auth.authenticate(provider).then(({ data }) => {
@@ -44,6 +14,15 @@ export const socialAuthMixin = {
         this.SET_USER(data.user);
         this.$router.push("/");
       });
-    }
-  }
+    },
+  },
+};
+
+export const subtitleCardMixin = {
+  data() {
+    return {
+      liked: false,
+      translationOn: false,
+    };
+  },
 };

@@ -24,7 +24,7 @@ const mutations = {
     // 모든 localStorage 데이터 제거
     localStorage.clear();
     setAuthInHeader(null);
-  }
+  },
 };
 
 export default mutations;

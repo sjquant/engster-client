@@ -5,10 +5,10 @@
       ref="input"
       type="text"
       :placeholder="placeholder"
-      @keyup.enter="createComment"
-      @focus="$emit('focus')"
+      @keyup.enter="createTranslation"
+      @focus="checkLogin"
     />
-    <div class="plus-btn" @click="createComment">
+    <div class="plus-btn" @click="createTranslation">
       <PlusIcon />
     </div>
   </div>
@@ -16,6 +16,7 @@
 
 <script>
 import PlusIcon from "../icons/PlusIcon.vue";
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     PlusIcon
@@ -25,16 +26,26 @@ export default {
       type: String
     }
   },
+  computed: {
+    ...mapState("auth", ["user"])
+  },
   methods: {
-    createComment() {
-      let comment = this.$refs.input.value;
-      this.$emit("comment-created", comment);
+    checkLogin() {
+      if (!this.user) {
+        this.$router.push({ path: "/sign-in" });
+      }
+    },
+    createTranslation() {
+      let translation = this.$refs.input.value;
+      if (translation !== "") {
+        this.CREATE_TRANSLATION({ lineid: this.line.id, translation });
+      }
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import "~utils";
 
 .container {

@@ -1,21 +1,19 @@
 <template>
   <div class="search-result-container">
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
-    <section>
-      <SubtitleCard v-for="each in randomSubtitles" :key="each.id" :line="each" />
-    </section>
+    <RandomCard v-for="each in randomSubtitles" :key="each.id" :line="each" />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import SubtitleCard from "~/components/subtitle/SubtitleCard.vue";
+import RandomCard from "~/components/subtitle/RandomCard.vue";
 import SearchResult from "~/components/subtitle/SearchResult.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   components: {
-    SubtitleCard,
+    RandomCard,
     SearchResult,
     PulseLoader
   },
@@ -41,7 +39,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import "./search/search.scss";
-</style>

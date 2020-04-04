@@ -1,25 +1,20 @@
 <template>
   <div>
-    <TranslationBoxInput
-      ref="input"
-      :placeholder="inputPlaceholder"
-      @comment-created="(value) => $emit('comment-created', value)"
-      @focus="checkLogin"
-    />
+    <TranslationSectionInput ref="input" :placeholder="inputPlaceholder" />
     <div class="card-container" v-if="translations">
-      <TranslationBoxCard :translation="each" v-for="each in translationsData" :key="each.id" />
+      <TranslationSectionCard :translation="each" v-for="each in translationsData" :key="each.id" />
     </div>
   </div>
 </template>
 <script>
-import TranslationBoxInput from "./TranslationBoxInput.vue";
-import TranslationBoxCard from "./TranslationBoxCard.vue";
+import TranslationSectionInput from "./TranslationSectionInput.vue";
+import TranslationSectionCard from "./TranslationSectionCard.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    TranslationBoxInput,
-    TranslationBoxCard
+    TranslationSectionInput,
+    TranslationSectionCard
   },
   props: {
     inputPlaceholder: {
@@ -30,7 +25,6 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth", ["user"]),
     ...mapState("subtitle", ["translationsForLine"]),
     translations() {
       return this.translationsForLine[this.lineid];
@@ -38,17 +32,10 @@ export default {
     translationsData() {
       return this.translations ? this.translations.data : [];
     }
-  },
-  methods: {
-    checkLogin() {
-      if (!this.user) {
-        this.$router.push({ path: "/sign-in" });
-      }
-    }
   }
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import "~utils";
 .card-container {
   width: 100%;

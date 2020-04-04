@@ -1,12 +1,19 @@
 .wrap-center {
-    width: 100%;
-    display: flex;
-    justify-content: center
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
+
 .loading-bar {
-    position:fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%);
-    transform: translateX(-50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  transform: translateX(-50%);
+}
+
+.line-highlighted {
+  background-color: $gray-lighter;
+  padding: 0.4rem 0;
+  border-radius: 4px;
 }
