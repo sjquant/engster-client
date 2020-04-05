@@ -8,13 +8,13 @@
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 import RandomCard from "~/components/subtitle/RandomCard.vue";
-import SearchResult from "~/components/subtitle/SearchResult.vue";
+import SearchSummary from "~/components/subtitle/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   components: {
     RandomCard,
-    SearchResult,
+    SearchSummary,
     PulseLoader
   },
   beforeDestroy() {

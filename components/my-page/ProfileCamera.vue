@@ -1,12 +1,12 @@
 <template>
-  <div class="profile-camera-container">
+  <div class="camera-container">
     <img src="../../assets/images/photo-camera.svg" />
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~utils";
-.profile-camera-container {
+div.camera-container {
   border-radius: 100%;
   width: 12.8rem;
   height: 12.8rem;

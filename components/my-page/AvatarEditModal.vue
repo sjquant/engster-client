@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~utils";
 .avatar-edit-modal {
   margin: 1.6rem;

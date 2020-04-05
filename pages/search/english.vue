@@ -1,7 +1,7 @@
 <template>
   <div class="search-result-container">
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
-    <SearchResult :keyword="keyword" :count="count" />
+    <SearchSummary :keyword="keyword" :count="count" />
     <section v-infinite-scroll="fetchMoreLines">
       <EnglishCard v-for="each in data" :key="each.id" :line="each" />
     </section>
@@ -11,13 +11,13 @@
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 import EnglishCard from "~/components/subtitle/EnglishCard.vue";
-import SearchResult from "~/components/subtitle/SearchResult.vue";
+import SearchSummary from "~/components/subtitle/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   components: {
     EnglishCard,
-    SearchResult,
+    SearchSummary,
     PulseLoader
   },
   data() {

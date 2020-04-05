@@ -2,13 +2,13 @@
   <div>
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
     <div v-infinite-scroll="fetchMoreLines">
-      <KoreanCard v-for="line in lines" :key="line.id" :line="line" />
+      <KoreanCard v-for="line in lines" :key="line.id" :line="line" :isEnglish="false" />
     </div>
   </div>
 </template>
 
 <script>
-import KoreanCard from "~/components/my-page/KoreanCard.vue";
+import KoreanCard from "~/components/subtitle/KoreanCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapActions } from "vuex";
 export default {

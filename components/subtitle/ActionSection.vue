@@ -53,9 +53,8 @@ export default {
       let translationOn = !this.translationOn;
       this.$emit("update:translation-on", translationOn);
       if (translationOn) {
-        this.FETCH_TRANSLATIONS_FOR_LINE({
-          lineid: this.line.id
-        });
+        let lineid = this.isEnglish ? this.line.id : this.line.line_id;
+        this.FETCH_TRANSLATIONS_FOR_LINE({ lineid });
       }
     },
     updateLike() {

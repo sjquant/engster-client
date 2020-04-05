@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import EnglishCard from "~/components/my-page/EnglishCard";
+import EnglishCard from "~/components/subtitle/EnglishCard";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapActions } from "vuex";
 export default {

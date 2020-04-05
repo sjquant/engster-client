@@ -5,14 +5,14 @@
       <span>></span>
       <span>프로필편집</span>
     </h3>
-    <ProfileEditForm />
+    <ProfileForm />
   </div>
 </template>
 <script>
-import ProfileEditForm from "../../components/my-page/ProfileEditForm.vue";
+import ProfileForm from "../../components/my-page/ProfileForm.vue";
 export default {
   components: {
-    ProfileEditForm
+    ProfileForm
   },
   data() {
     return {
@@ -22,7 +22,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~utils";
 
 .profile-edit-container {
