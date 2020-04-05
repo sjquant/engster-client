@@ -2,7 +2,7 @@
   <div>
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
     <div v-infinite-scroll="fetchMoreLines">
-      <KoreanCard v-for="line in lines" :key="line.id" :line="line" :isEnglish="false" />
+      <KoreanCard v-for="line in lines" :key="line.id" :line="line" @like="updateLike" />
     </div>
   </div>
 </template>
@@ -36,7 +36,11 @@ export default {
     })
   },
   methods: {
-    ...mapActions("mypage", ["FETCH_TRANSLATIONS"]),
+    ...mapActions("mypage", [
+      "FETCH_TRANSLATIONS",
+      "LIKE_LINE_KOREAN",
+      "UNLIKE_LINE_KOREAN"
+    ]),
     fetchMoreLines() {
       if (this.page < this.maxPage) {
         this.loading = true;
@@ -47,6 +51,13 @@ export default {
         }).finally(() => {
           this.loading = false;
         });
+      }
+    },
+    updateLike(line) {
+      if (!line.user_liked) {
+        this.LIKE_LINE_KOREAN(line.id);
+      } else {
+        this.UNLIKE_LINE_KOREAN(line.id);
       }
     }
   }

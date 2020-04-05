@@ -1,7 +1,7 @@
 <template>
   <div class="action-container">
-    <div class="action-box" @click="updateLike">
-      <LikeIcon :class="{ active: liked }" />
+    <div class="action-box" @click="$emit('like')">
+      <LikeIcon :class="{ active: line.user_liked }" />
       <span>{{ line.like_count }}</span>
     </div>
     <div class="action-box" @click="updateTranslationOn">
@@ -25,14 +25,9 @@ export default {
       type: Object,
       required: true
     },
-    // Check whether line is english for updating like
     isEnglish: {
       type: Boolean,
       required: true
-    },
-    liked: {
-      type: Boolean,
-      default: false
     },
     translationOn: {
       type: Boolean,
@@ -42,10 +37,6 @@ export default {
   methods: {
     ...mapMutations("subtitle", ["INCREASE_TRANSLATION_COUNT"]),
     ...mapActions("subtitle", [
-      "LIKE_LINE_ENGLISH",
-      "UNLIKE_LINE_ENGLISH",
-      "LIKE_LINE_KOREAN",
-      "UNLIKE_LINE_KOREAN",
       "FETCH_TRANSLATIONS_FOR_LINE",
       "CREATE_TRANSLATION"
     ]),
@@ -55,17 +46,6 @@ export default {
       if (translationOn) {
         let lineid = this.isEnglish ? this.line.id : this.line.line_id;
         this.FETCH_TRANSLATIONS_FOR_LINE({ lineid });
-      }
-    },
-    updateLike() {
-      if (!this.isLiked) {
-        this.isEnglish
-          ? this.LIKE_LINE_ENGLISH(this.line.id)
-          : this.LIKE_LINE_KOREAN(this.line.id);
-      } else {
-        this.isEnglish
-          ? this.UNLIKE_LINE_ENGLISH(this.line.id)
-          : this.UNLIKE_LINE_KOREAN(this.line.id);
       }
     }
   }

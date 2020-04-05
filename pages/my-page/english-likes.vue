@@ -2,7 +2,7 @@
   <div>
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
     <div v-infinite-scroll="fetchMoreLines">
-      <EnglishCard v-for="line in lines" :key="line.id" :line="line"></EnglishCard>
+      <EnglishCard v-for="line in lines" :key="line.id" :line="line" @like="updateLike" />
     </div>
   </div>
 </template>
@@ -36,7 +36,11 @@ export default {
     })
   },
   methods: {
-    ...mapActions("mypage", ["FETCH_ENGLISH_LIKES"]),
+    ...mapActions("mypage", [
+      "FETCH_ENGLISH_LIKES",
+      "LIKE_LINE_ENGLISH",
+      "UNLIKE_LINE_ENGLISH"
+    ]),
     fetchMoreLines() {
       if (this.page < this.maxPage) {
         this.loading = true;
@@ -47,6 +51,13 @@ export default {
         }).finally(() => {
           this.loading = false;
         });
+      }
+    },
+    updateLike(line) {
+      if (!line.user_liked) {
+        this.LIKE_LINE_ENGLISH(line.id);
+      } else {
+        this.UNLIKE_LINE_ENGLISH(line.id);
       }
     }
   }

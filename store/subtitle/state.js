@@ -4,8 +4,6 @@ export default () => ({
     data: [],
     max_page: null,
     page: null,
-    user_liked: [],
   },
-  randomSubtitles: [],
   translationsForLine: {},
 });

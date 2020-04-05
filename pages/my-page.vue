@@ -21,10 +21,10 @@ export default {
     MyPageNav
   },
   beforeDestroy() {
-    this.CLEAR_STATE();
+    this.CLEAR_LINE_RESULT();
   },
   methods: {
-    ...mapMutations("mypage", ["CLEAR_STATE"])
+    ...mapMutations("mypage", ["APPEND_LINE_RESULT", "CLEAR_LINE_RESULT"])
   }
 };
 </script>

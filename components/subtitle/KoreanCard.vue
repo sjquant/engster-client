@@ -10,6 +10,7 @@
       :liked="liked"
       :translation-on.sync="translationOn"
       :is-english="false"
+      @like="$emit('like', line)"
     />
     <TranslationSection
       v-if="translationOn"
@@ -46,7 +47,6 @@ export default {
     ...mapState("subtitle", ["keyword"]),
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
-
       try {
         return this.line.translation.replace(
           regexp,

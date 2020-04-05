@@ -3,7 +3,7 @@ import { subtitle } from "../../api";
 export default {
   FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
     commit("SET_KEYWORD", searchWord);
-    return subtitle.fetchEnglish(searchWord, page).then(data => {
+    return subtitle.fetchEnglish(searchWord, page).then((data) => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data);
       } else {
@@ -13,7 +13,7 @@ export default {
   },
   FETCH_LINE_KOREAN({ commit }, { searchWord, page = 1, append = false }) {
     commit("SET_KEYWORD", searchWord);
-    return subtitle.fetchKorean(searchWord, page).then(data => {
+    return subtitle.fetchKorean(searchWord, page).then((data) => {
       if (append) {
         commit("APPEND_SEARCH_RESULT", data);
       } else {
@@ -22,8 +22,8 @@ export default {
     });
   },
   FETCH_RANDOM_SUBTITLES({ commit }) {
-    return subtitle.fetchRandomSubtitles().then(data => {
-      commit("SET_RANDOM_SUBTITLES", data);
+    return subtitle.fetchRandomSubtitles().then((data) => {
+      commit("SET_SEARCH_RESULT", data);
     });
   },
   LIKE_LINE_ENGLISH({ commit }, lineid) {
@@ -50,7 +50,7 @@ export default {
     { commit },
     { lineid, page = 1, append = false }
   ) {
-    return subtitle.fetchTranslations(lineid).then(data => {
+    return subtitle.fetchTranslations(lineid).then((data) => {
       if (append) {
         commit("APPEND_TRANSLATIONS_FOR_LINE", { lineid, data });
       } else {
@@ -60,5 +60,5 @@ export default {
   },
   CREATE_TRANSLATION({}, { lineid, translation }) {
     return subtitle.createTranslation(lineid, translation);
-  }
+  },
 };

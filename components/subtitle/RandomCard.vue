@@ -5,7 +5,13 @@
       <div class="korean-line" v-text="line.translation"></div>
     </div>
     <ContentSection :line="line" />
-    <ActionSection :line="line" :liked="liked" :translation-on.sync="translationOn" is-english />
+    <ActionSection
+      :line="line"
+      :liked="liked"
+      :translation-on.sync="translationOn"
+      is-english
+      @like="$emit('like', line)"
+    />
     <TranslationSection
       v-if="translationOn"
       ref="transCard"

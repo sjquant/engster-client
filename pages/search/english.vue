@@ -3,7 +3,7 @@
     <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
     <SearchSummary :keyword="keyword" :count="count" />
     <section v-infinite-scroll="fetchMoreLines">
-      <EnglishCard v-for="each in data" :key="each.id" :line="each" />
+      <EnglishCard v-for="each in data" :key="each.id" :line="each" @like="updateLike" />
     </section>
   </div>
 </template>
@@ -42,7 +42,11 @@ export default {
     })
   },
   methods: {
-    ...mapActions("subtitle", ["FETCH_LINE_ENGLISH"]),
+    ...mapActions("subtitle", [
+      "FETCH_LINE_ENGLISH",
+      "LIKE_LINE_ENGLISH",
+      "UNLIKE_LINE_ENGLISH"
+    ]),
     fetchMoreLines() {
       // keyword, page, append
       if (this.page < this.maxPage && !this.loading) {
@@ -54,6 +58,13 @@ export default {
         }).finally(() => {
           this.loading = false;
         });
+      }
+    },
+    updateLike(line) {
+      if (!line.user_liked) {
+        this.LIKE_LINE_ENGLISH(line.id);
+      } else {
+        this.UNLIKE_LINE_ENGLISH(line.id);
       }
     }
   }
