@@ -1,0 +1,61 @@
+<template>
+  <div>
+    <label>{{ label }}</label>
+    <input
+      class="base-input"
+      v-validate="validate"
+      :type="type"
+      :name="label"
+      :placeholder="placeholder"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+      ref="input"
+    />
+    <div class="error-message" v-show="errors.collect(label).length > 0">{{ errors.first(label) }}</div>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    label: {
+      type: String,
+      default: ""
+    },
+    value: {
+      type: String,
+      default: ""
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    type: {
+      type: String,
+      default: "text"
+    },
+    validate: {
+      type: String,
+      default: ""
+    },
+    autocomplete: {
+      type: String,
+      default: "on"
+    }
+  }
+};
+</script>
+<style lang="scss" scoped>
+@import "~utils";
+input.base-input {
+  margin-top: 0.8rem;
+  margin-bottom: 1.6rem;
+  padding: 0 0.8rem;
+  font-size: 1.6rem;
+  line-height: 2.5;
+  border: 1px solid $gray;
+
+  &:focus {
+    border-color: $gray-darkest;
+  }
+}
+</style>

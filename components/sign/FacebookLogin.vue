@@ -1,5 +1,5 @@
 <template>
-  <button class="fb-login-btn" @click.prevent="socialSignin('facebook')">
+  <button class="fb-sign-in-btn sign-in-btn" @click.prevent="socialSignin('facebook')">
     <div>
       <img src="../../assets/images/facebook.svg" />
       <span>페이스북으로 로그인</span>
@@ -15,7 +15,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~utils";
-.fb-login-btn {
+.fb-sign-in-btn {
   display: flex;
   justify-content: center;
   background-color: #3b5998;

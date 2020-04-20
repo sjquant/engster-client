@@ -1,71 +1,47 @@
 <template>
-  <div class="login-container">
-    <nuxt-link to="/">
-      <div class="login-logo">
-        <Logo />
-      </div>
-    </nuxt-link>
-    <form class="login-form">
-      <label>이메일</label>
-      <input
-        id="email-fieled"
-        v-validate="'required|email'"
-        type="email"
-        name="이메일"
-        placeholder="example@naver.com"
-        v-model="email"
-        autocomplete="new-password"
-      />
-      <div class="error-message" v-show="errors.collect('이메일').length > 0">{{ errors.first('이메일') }}</div>
-      <label>닉네임</label>
-      <input
-        v-validate="'required'"
-        type="nickname"
-        name="닉네임"
-        placeholder="잉스터"
-        v-model="nickname"
-        autocomplete="new-password"
-      />
-      <div class="error-message" v-show="errors.collect('닉네임').length > 0">{{ errors.first('닉네임') }}</div>
-      <label>비밀번호 (8자 이상)</label>
-      <input
-        v-validate="'required|min:8'"
-        name="비밀번호"
-        type="password"
-        placeholder="********"
-        v-model="password1"
-        autocomplete="new-password"
-      />
-      <div
-        class="error-message"
-        v-show="errors.collect('비밀번호').length > 0"
-      >{{ errors.first('비밀번호') }}</div>
-      <label>비밀번호 확인</label>
-      <input
-        v-validate="'required'"
-        name="비밀번호 확인"
-        type="password"
-        placeholder="********"
-        v-model="password2"
-        autocomplete="new-password"
-      />
-      <div
-        class="error-message"
-        v-show="errors.collect('비밀번호 확인').length > 0"
-      >{{ errors.first('비밀번호 확인') }}</div>
-      <button class="login-btn" @click.prevent="signup">가입하기</button>
-      <hr />
-      <GoogleLogin />
-      <FacebookLogin />
-      <NaverLogin />
-    </form>
-  </div>
+  <SignForm>
+    <BaseInput
+      id="email-fieled"
+      validate="required|email"
+      type="email"
+      label="이메일"
+      placeholder="example@naver.com"
+      autocomplete="new-password"
+      v-model="email"
+    />
+    <BaseInput
+      validate="required"
+      type="nickname"
+      label="닉네임"
+      placeholder="잉스터"
+      autocomplete="new-password"
+      v-model="nickname"
+    />
+    <BaseInput
+      validate="required|min:8"
+      label="비밀번호"
+      type="password"
+      placeholder="********"
+      autocomplete="new-password"
+      v-model="password1"
+    />
+    <BaseInput
+      validate="required"
+      label="비밀번호 확인"
+      type="password"
+      placeholder="********"
+      autocomplete="new-password"
+      v-model="password2"
+    />
+    <button class="sign-in-btn sign-up-btn" @click.prevent="signup">가입하기</button>
+    <hr class="separating-line" />
+    <SocialLoginGroup />
+  </SignForm>
 </template>
 <script>
-import Logo from "../components/icons/FullLogoIcon";
-import GoogleLogin from "../components/common/GoogleLogin";
-import FacebookLogin from "../components/common/FacebookLogin";
-import NaverLogin from "../components/common/NaverLogin";
+import SignForm from "../components/sign/SignForm.vue";
+import BaseInput from "../components/common/BaseInput.vue";
+import SocialLoginGroup from "../components/sign/SocialLoginGroup.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -79,10 +55,9 @@ export default {
     };
   },
   components: {
-    Logo,
-    GoogleLogin,
-    FacebookLogin,
-    NaverLogin
+    SignForm,
+    BaseInput,
+    SocialLoginGroup
   },
   mounted() {
     let emailField = document.querySelector("#email-fieled");
@@ -107,3 +82,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~utils";
+.sign-up-btn {
+  margin-top: 1.6rem;
+  @include colored-button($black);
+}
+</style>

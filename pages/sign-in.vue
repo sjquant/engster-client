@@ -1,62 +1,44 @@
 <template>
-  <div class="login-container">
-    <nuxt-link to="/">
-      <div class="login-logo">
-        <Logo />
-      </div>
-    </nuxt-link>
-    <form class="login-form">
-      <label>이메일</label>
-      <input
-        id="email-fieled"
-        v-validate="'required'"
-        type="email"
-        name="이메일"
-        placeholder="example@naver.com"
-        v-model="email"
-      />
-      <div class="error-message" v-show="errors.collect('이메일').length > 0">{{ errors.first('이메일') }}</div>
-      <label>비밀번호</label>
-      <input
-        v-validate="'required'"
-        name="비밀번호"
-        type="password"
-        placeholder="********"
-        v-model="password"
-      />
-      <div
-        class="error-message"
-        v-show="errors.collect('비밀번호').length > 0"
-      >{{ errors.first('비밀번호') }}</div>
-      <div class="block-link">
-        <a href="#" class="lost-password-btn">비밀번호를 잊으셨나요?</a>
-        <nuxt-link to="/sign-up" class="sign-up-btn">회원 가입하기</nuxt-link>
-      </div>
-      <button class="login-btn" @click.prevent="signin">로그인</button>
-      <hr />
-      <GoogleLogin />
-      <FacebookLogin />
-      <NaverLogin />
-    </form>
-  </div>
+  <SignForm>
+    <BaseInput
+      ref="emailInput"
+      label="이메일"
+      validate="required"
+      type="email"
+      placeholder="example@naver.com"
+      v-model="email"
+    />
+    <BaseInput
+      label="비밀번호"
+      validate="required"
+      type="password"
+      placeholder="********"
+      v-model="password"
+    />
+    <div class="block-link">
+      <a href="#" class="lost-password-btn">비밀번호를 잊으셨나요?</a>
+      <nuxt-link to="/sign-up" class="sign-up-btn">회원 가입하기</nuxt-link>
+    </div>
+    <button class="sign-in-btn" @click.prevent="signin">로그인</button>
+    <hr class="separating-line" />
+    <SocialLoginGroup />
+  </SignForm>
 </template>
 <script>
-import Logo from "../components/icons/FullLogoIcon";
-import GoogleLogin from "../components/common/GoogleLogin";
-import FacebookLogin from "../components/common/FacebookLogin";
-import NaverLogin from "../components/common/NaverLogin";
+import SignForm from "../components/sign/SignForm.vue";
+import BaseInput from "../components/common/BaseInput.vue";
+import SocialLoginGroup from "../components/sign/SocialLoginGroup.vue";
 import { mapActions } from "vuex";
 export default {
   layout: "wrap-center",
   components: {
-    Logo,
-    GoogleLogin,
-    FacebookLogin,
-    NaverLogin
+    SignForm,
+    BaseInput,
+    SocialLoginGroup
   },
   mounted() {
-    let emailField = document.querySelector("#email-fieled");
-    emailField.focus();
+    let emailInput = this.$refs.emailInput.$refs.input;
+    emailInput.focus();
   },
   data() {
     return {
@@ -82,3 +64,27 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+@import "~utils";
+
+.block-link {
+  a {
+    display: block;
+    font-size: 1.4rem;
+    color: $gray-darker;
+    text-decoration: underline;
+  }
+
+  a.lost-password-btn {
+    float: left;
+  }
+  a.sign-up-btn {
+    text-align: right;
+  }
+}
+
+.sign-in-btn {
+  margin-top: 1.6rem;
+  @include colored-button($black);
+}
+</style>

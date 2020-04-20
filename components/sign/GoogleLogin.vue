@@ -1,8 +1,8 @@
 <template>
-  <button class="naver-login-btn" @click.prevent="socialSignin('naver')">
+  <button class="google-sign-in-btn sign-in-btn" @click.prevent="socialSignin('google')">
     <div>
-      <img src="../../assets/images/naver.svg" />
-      <span>네이버로 로그인</span>
+      <img src="../../assets/images/google.svg" />
+      <span>구글로 로그인</span>
     </div>
   </button>
 </template>
@@ -15,9 +15,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~utils";
-.naver-login-btn {
-  background-color: #00c73c;
-  color: #fff;
+
+.google-sign-in-btn {
+  background-color: #fff;
+  color: $black;
+  border: 1px solid $gray;
   display: flex;
   justify-content: center;
 
