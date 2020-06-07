@@ -15,8 +15,7 @@ export const auth = {
       .post("/auth/obtain-token", {
         email,
         password
-      })
-      .then(({ data }) => data);
+      }).then(({ data }) => data);
   },
   refreshToken() {
     return request.post("/auth/refresh-token").then(({ data }) => data);

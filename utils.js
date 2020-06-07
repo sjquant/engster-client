@@ -7,11 +7,6 @@ const requireLogin = () => {
     router.push(`/sign-in?returnPath=${encodeURIComponent(location.pathname)}`);
 };
 
-export const setAuthInHeader = token => {
-    axios.defaults.headers.common["Authorization"] = token
-        ? `Bearer ${token}`
-        : null;
-};
 
 export const request = {
     get(path, options = {}) {
