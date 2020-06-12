@@ -33,13 +33,20 @@ module.exports = {
       "@nuxtjs/dotenv",
       {
         filename:
-          process.env.NODE_ENV !== "production" ? ".env.development" : ".env.production"
+          process.env.NODE_ENV !== "production"
+            ? ".env.development"
+            : ".env.production"
       }
     ]
   ],
   buildModules: [
     // With options
-    ['@nuxtjs/router', { /* module options */ }]
+    [
+      "@nuxtjs/router",
+      {
+        /* module options */
+      }
+    ]
   ],
   css: ["@/assets/scss/main.scss"],
   loading: {
@@ -61,16 +68,20 @@ module.exports = {
           exclude: /(node_modules)/
         });
       }
-      config.resolve.alias["~utils"] = path.join(__dirname, "assets/scss/utils.scss");
+      config.resolve.alias["~utils"] = path.join(
+        __dirname,
+        "assets/scss/utils.scss"
+      );
     }
   },
   plugins: [
     { src: "~plugins/time-ago" },
-    { src: "~plugins/infinite-scroll", mode: 'client' },
     { src: "~plugins/vee-validate" },
     { src: "~plugins/v-click-outside" },
-    { src: '~plugins/nuxt-client-init', ssr: false },
-    { src: '~plugins/vue-js-modal', ssr: false },
-    { src: '~plugins/vue-authenticate', ssr: false }
+    { src: "~plugins/infinite-scroll", mode: "client" },
+    { src: "~plugins/nuxt-client-init", mode: "client" },
+    { src: "~plugins/vue-js-modal", mode: "client" },
+    { src: "~plugins/vue-axios", mode: "client" },
+    { src: "~plugins/vue-authenticate", mode: "client" }
   ]
 };
