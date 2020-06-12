@@ -37,8 +37,10 @@ export default {
 /deep/ .sign-in-btn {
   width: 100%;
   height: 4.8rem;
-  text-align: center;
   margin: 1.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     opacity: 0.95;
