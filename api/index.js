@@ -1,4 +1,40 @@
-import { request } from "../utils";
+import axios from "axios";
+
+const Unauthorized = 401;
+
+const requireLogin = () => {
+  router.push(`/sign-in?returnPath=${encodeURIComponent(location.pathname)}`);
+};
+
+const axiosObj = axios.create({
+  baseURL: process.env.BASE_URL,
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  },
+  withCredentials: true
+});
+
+const request = {
+  get(path, options = {}) {
+    return axiosObj.get(`${path}`, options).catch(({ response }) => {
+      if (response) {
+        const { status } = response;
+        if (status === Unauthorized) return requireLogin();
+        throw Error(response);
+      }
+    });
+  },
+  post(path, data, options = {}) {
+    return axiosObj.post(`${path}`, data, options);
+  },
+  delete(path, data = {}, options = {}) {
+    return axiosObj.delete(`${path}`, { data: data, ...options });
+  },
+  put(path, data, options = {}) {
+    return axiosObj.put(`${path}`, data, options);
+  }
+};
 
 export const auth = {
   register(email, password, nickname) {
@@ -15,7 +51,8 @@ export const auth = {
       .post("/auth/obtain-token", {
         email,
         password
-      }).then(({ data }) => data);
+      })
+      .then(({ data }) => data);
   },
   refreshToken() {
     return request.post("/auth/refresh-token").then(({ data }) => data);
