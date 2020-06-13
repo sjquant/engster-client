@@ -5,8 +5,10 @@
       ref="input"
       type="text"
       :placeholder="placeholder"
+      :value="translation"
       @keyup.enter="createTranslation"
       @focus="checkLogin"
+      @input="inputTranslation"
     />
     <div class="plus-btn" @click="createTranslation">
       <PlusIcon />
@@ -21,25 +23,40 @@ export default {
   components: {
     PlusIcon
   },
+  data() {
+    return {
+      translation: ""
+    };
+  },
   props: {
     placeholder: {
       type: String
+    },
+    lineid: {
+      type: Number
     }
   },
   computed: {
     ...mapState("auth", ["user"])
   },
   methods: {
+    ...mapActions("subtitle", ["CREATE_TRANSLATION"]),
     checkLogin() {
       if (!this.user) {
         this.$router.push({ path: "/sign-in" });
       }
     },
-    createTranslation() {
-      let translation = this.$refs.input.value;
-      if (translation !== "") {
-        this.CREATE_TRANSLATION({ lineid: this.line.id, translation });
+    async createTranslation() {
+      if (this.translation) {
+        await this.CREATE_TRANSLATION({
+          lineid: this.lineid,
+          translation: this.translation
+        });
       }
+      this.translation = "";
+    },
+    inputTranslation(e) {
+      this.translation = e.target.value;
     }
   }
 };

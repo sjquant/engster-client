@@ -64,7 +64,7 @@ export default {
 @import "~utils";
 
 .container {
-  padding: 0.4rem 1.6rem;
+  margin: 0.4rem 1.6rem;
   display: flex;
   span.user {
     width: 10rem;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TranslationSectionInput ref="input" :placeholder="inputPlaceholder" />
+    <TranslationSectionInput ref="input" :placeholder="inputPlaceholder" :lineid="lineid" />
     <div class="card-container" v-if="translations">
       <TranslationSectionCard :translation="each" v-for="each in translationsData" :key="each.id" />
     </div>
