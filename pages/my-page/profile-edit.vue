@@ -1,9 +1,9 @@
 <template>
   <div class="profile-edit-container">
     <h3 class="title">
-      <nuxt-link to="/my-page">마이페이지</nuxt-link>
-      <span>></span>
-      <span>프로필편집</span>
+      <a class="prev-nav link" @click="routeMyPage">마이페이지</a>
+      <span class="prev-nav">></span>
+      <span class="nav">프로필편집</span>
     </h3>
     <ProfileForm />
   </div>
@@ -19,6 +19,12 @@ export default {
       email: "",
       nickname: ""
     };
+  },
+  methods: {
+    routeMyPage() {
+      const userid = this.$route.params.userid;
+      this.$router.push(`/my-page/${userid}`);
+    }
   }
 };
 </script>
@@ -35,12 +41,16 @@ export default {
   }
 
   h3.title {
-    a,
-    span:nth-child(2) {
+    .prev-nav {
       color: $gray-darker;
     }
     margin-top: 0;
     padding-bottom: 0.8rem;
+    cursor: default;
+  }
+
+  .link {
+    cursor: pointer;
   }
 }
 </style>

@@ -1,29 +1,29 @@
 <template>
   <nav class="my-page-nav">
-    <nuxt-link
-      to="/my-page/english-likes"
+    <a
       class="nav-menu"
-      :class="{active: isEnglishActive}"
-    >좋아요(영어)</nuxt-link>
-    <nuxt-link to="/my-page/korean-likes" class="nav-menu" :class="{active: isKoreanActive}">좋아요(번역)</nuxt-link>
-    <nuxt-link to="/my-page/translations" class="nav-menu" :class="{active: isTranslationsctive}">번역</nuxt-link>
+      :class="{active: $route.name == 'mypage-englishLikes'}"
+      @click="route('mypage-englishLikes')"
+    >좋아요(영어)</a>
+    <a
+      class="nav-menu"
+      :class="{active: $route.name == 'mypage-koreanLikes'}"
+      @click="route('mypage-koreanLikes')"
+    >좋아요(번역)</a>
+    <a
+      class="nav-menu"
+      :class="{active: $route.name == 'mypage-translations'}"
+      @click="route('mypage-translations')"
+    >번역</a>
   </nav>
 </template>
 
 <script>
 export default {
-  computed: {
-    isEnglishActive() {
-      let re = /(^\/my-page\/?$)|(^\/my-page\/english-likes\/?$)/g;
-      return this.$route.path.match(re);
-    },
-    isKoreanActive() {
-      let re = /^\/my-page\/korean-likes\/?$/g;
-      return this.$route.path.match(re);
-    },
-    isTranslationsctive() {
-      let re = /^\/my-page\/translations\/?$/g;
-      return this.$route.path.match(re);
+  methods: {
+    route(name) {
+      const userid = this.$route.params.userid;
+      this.$router.push({ name: name, params: { userid } });
     }
   }
 };

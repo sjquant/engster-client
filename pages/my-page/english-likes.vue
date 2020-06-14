@@ -16,9 +16,10 @@ export default {
     EnglishCard,
     PulseLoader
   },
-  async fetch({ store }) {
+  async fetch({ store, route }) {
+    const userid = route.params.userid;
     await store.dispatch("mypage/FETCH_ENGLISH_LIKES", {
-      userid: store.state.auth.user.id
+      userid
     });
   },
   data() {

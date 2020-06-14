@@ -3,7 +3,7 @@
     <ProfileIcon :profilePath="user ? user.photo : ''" />
     <div class="user-info">
       <h1 class="user-nickname">{{ user ? user.nickname : "" }}님</h1>
-      <button class="edit-profile-btn" @click="$router.push('/my-page/edit')">프로필 편집</button>
+      <button class="edit-profile-btn" @click="routeProfileEdit">프로필 편집</button>
       <div class="activity-info">
         <span class="title">번역</span>
         <span class="value">{{ activitySummary.translation_count }}</span>
@@ -25,6 +25,12 @@ export default {
       user: state => state.auth.user,
       activitySummary: state => state.mypage.activitySummary
     })
+  },
+  methods: {
+    routeProfileEdit() {
+      const userid = this.$route.params.userid;
+      this.$router.push(`/my-page/${userid}/edit`);
+    }
   }
 };
 </script>

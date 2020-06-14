@@ -8,9 +8,7 @@
       </div>
     </div>
     <ul @click="closeMenu">
-      <nuxt-link to="/my-page">
-        <li>마이페이지</li>
-      </nuxt-link>
+      <li @click="routeMyPage">마이페이지</li>
       <li @click="logout">로그아웃</li>
     </ul>
   </div>
@@ -35,6 +33,10 @@ export default {
     },
     closeMenu() {
       this.$emit("closeMenu");
+    },
+    routeMyPage() {
+      const userid = this.user.id;
+      this.$router.push(`/my-page/${userid}`);
     }
   }
 };
