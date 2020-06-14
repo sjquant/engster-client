@@ -8,7 +8,10 @@ export const auth = {
         password,
         nickname
       })
-      .then(({ data }) => data);
+      .then(({ data }) => {
+        request.setCSRFHeader();
+        return data;
+      });
   },
   obtainToken(email, password) {
     return request
