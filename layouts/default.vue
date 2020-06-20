@@ -1,36 +1,40 @@
 <template>
   <div>
-    <MainHead/>
-    <div class="container">
-      <SideContentContainer>
+    <TheHeader />
+    <div class="body-container" id="body-container">
+      <TheContainerSide>
         <div></div>
-      </SideContentContainer>
-      <MainContentContainer>
-        <nuxt/>
-      </MainContentContainer>
-      <SideContentContainer>
+      </TheContainerSide>
+      <TheContainerCenter>
+        <nuxt />
+      </TheContainerCenter>
+      <TheContainerSide>
         <div></div>
-      </SideContentContainer>
+      </TheContainerSide>
     </div>
   </div>
 </template>
 
 <script>
-import MainHead from "~/components/top-nav/MainHead.vue";
-import MainContentContainer from "~/components/layout/MainContentContainer.vue";
-import SideContentContainer from "~/components/layout/SideContentContainer.vue";
+import TheHeader from "~/components/TheHeader.vue";
+import TheContainerCenter from "~/components/TheContainerCenter.vue";
+import TheContainerSide from "~/components/TheContainerSide.vue";
 export default {
   components: {
-    MainHead,
-    MainContentContainer,
-    SideContentContainer
+    TheHeader,
+    TheContainerCenter,
+    TheContainerSide
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
+.body-container {
   display: flex;
+  justify-content: center;
+  height: calc(100vh - 6.4rem);
+  overflow: auto;
+  padding-top: 2.4rem;
 }
 </style>
 

@@ -14,6 +14,10 @@ body {
   box-sizing: inherit;
 }
 
+* {
+  outline: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -26,6 +30,7 @@ html {
 body {
   font-size: 1.6rem;
   color: $black;
+  background-color: #fff;
 }
 
 html,
@@ -35,8 +40,26 @@ body {
 
 button {
   @include unstyle-button();
+  cursor: pointer;
+}
+
+img {
+  vertical-align: middle;
 }
 
 input {
   font-family: inherit;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  border: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: $gray;
 }
