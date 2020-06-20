@@ -27,6 +27,14 @@ import { upload } from "~/api";
 export default {
   components: { VueCropper },
   created() {
+    const routeUserid = this.$route.params.userid;
+    if (routeUserid != this.user.id) {
+      this.$router.push({
+        params: {
+          userid: this.user.id
+        }
+      });
+    }
     this.initPhoto();
   },
   data() {
@@ -60,7 +68,7 @@ export default {
       }
     },
     initPhoto() {
-      if (this.user.photo && this.user.photo !== "") {
+      if (this.user && this.user.photo && this.user.photo !== "") {
         this.imgSrc = this.user.photo;
       } else {
         this.imgSrc = require("~/assets/images/null-avatar.png");
@@ -68,7 +76,6 @@ export default {
     },
     closeModal() {
       this.cropping = false;
-      this.initPhoto();
       this.$modal.hide("avatar-edit-modal");
     },
     savePhoto() {
