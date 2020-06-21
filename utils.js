@@ -10,7 +10,7 @@ const axiosObj = axios.create({
   withCredentials: true
 });
 
-export default {
+export const request = {
   get(path, options = {}) {
     return axiosObj.get(`${path}`, options);
   },
