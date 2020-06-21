@@ -1,4 +1,4 @@
-import request from "../libs/request";
+import { request } from "../utils";
 
 export const auth = {
   register(email, password, nickname) {
