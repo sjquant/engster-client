@@ -1,6 +1,7 @@
 export default () => ({
   activitySummary: {
-    user_id: null,
+    user_id: "",
+    nickname: "",
     translation_count: 0
   },
   lineResult: {

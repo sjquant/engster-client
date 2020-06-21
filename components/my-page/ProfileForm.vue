@@ -18,7 +18,9 @@
       />
       <ProfileFormPasswordInput @save="updatePassword" />
     </form>
-    <AvatarEditModal />
+    <client-only>
+      <AvatarEditModal />
+    </client-only>
   </div>
 </template>
 
@@ -39,6 +41,11 @@ export default {
     ProfileFormPasswordInput,
     AvatarEditModal
   },
+  created() {
+    if (!this.user) {
+      this.$router.push("/");
+    }
+  },
   data() {
     return {
       tNickname: null,
@@ -55,7 +62,7 @@ export default {
         if (typeof this.tNickname === "string") {
           return this.tNickname;
         } else {
-          return this.user.nickname;
+          return this.user ? this.user.nickname : "";
         }
       }
     }
