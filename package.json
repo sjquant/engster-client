@@ -18,7 +18,7 @@
     "axios": "^0.18.1",
     "include-media": "^1.4.9",
     "jwt-decode": "^2.2.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "sass-loader": "^7.1.0",
     "v-click-outside": "^2.1.3",
