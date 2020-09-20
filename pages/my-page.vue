@@ -14,17 +14,17 @@ import { mapMutations } from "vuex";
 export default {
   async fetch({ store, route }) {
     const userid = route.params.userid;
-    store.dispatch("mypage/FETCH_ACTIVITY_SUMMARY", userid);
+    store.dispatch("mypage/GET_ACTIVITY_SUMMARY", userid);
   },
   components: {
     MyPageHeader,
-    MyPageNav
+    MyPageNav,
   },
   beforeDestroy() {
     this.CLEAR_LINE_RESULT();
   },
   methods: {
-    ...mapMutations("mypage", ["APPEND_LINE_RESULT", "CLEAR_LINE_RESULT"])
-  }
+    ...mapMutations("mypage", ["APPEND_LINE_RESULT", "CLEAR_LINE_RESULT"]),
+  },
 };
 </script>

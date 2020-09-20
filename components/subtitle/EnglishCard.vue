@@ -31,17 +31,17 @@ export default {
     LineCard,
     ContentSection,
     ActionSection,
-    TranslationSection
+    TranslationSection,
   },
   mixins: [subtitleCardMixin],
   props: {
     line: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    ...mapState("subtitle", ["searchResult", "keyword"]),
+    ...mapState("subtitle", ["keyword"]),
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
       try {
@@ -50,7 +50,7 @@ export default {
           '<span class="line-highlighted">$1</span>'
         );
       } catch (error) {}
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,56 +1,54 @@
 import { mypage, subtitle } from "~/api";
 
 export default {
-  FETCH_ACTIVITY_SUMMARY({ commit }, userid) {
-    return mypage.fetchActivitySummary(userid).then((data) => {
-      commit("SET_ACTIVITIY_SUMMARY", data);
+  GET_ACTIVITY_SUMMARY({ commit }, userid) {
+    return mypage.fetchActivitySummary(userid).then(res => {
+      commit("SET_ACTIVITIY_SUMMARY", res);
     });
   },
-  FETCH_ENGLISH_LIKES({ commit }, { userid, page = 1, append = false }) {
-    return mypage.fetchEnglishLikes(userid, page).then((data) => {
-      if (append) {
-        commit("APPEND_LINE_RESULT", data);
+  FETCH_ENGLISH_LIKES({ commit }, { userid, cursor = null, limit = 20 }) {
+    return mypage.fetchEnglishLikes(userid, { cursor, limit }).then(res => {
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
+        return;
+      }
+
+      if (cursor) {
+        commit("APPEND_LINE_RESULT", res);
       } else {
-        commit("SET_LINE_RESULT", data);
+        commit("SET_LINES", res);
+        commit("SET_FETCH_MORE", true);
       }
     });
   },
-  FETCH_KOREAN_LIKES({ commit }, { userid, page = 1, append = false }) {
-    return mypage.fetchKoreanLikes(userid, page).then((data) => {
-      if (append) {
-        commit("APPEND_LINE_RESULT", data);
+  FETCH_KOREAN_LIKES({ commit }, { userid, cursor = null, limit = 20 }) {
+    return mypage.fetchKoreanLikes(userid, { cursor, limit }).then(res => {
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
+        return;
+      }
+
+      if (cursor) {
+        commit("APPEND_LINE_RESULT", res);
       } else {
-        commit("SET_LINE_RESULT", data);
+        commit("SET_LINES", res);
+        commit("SET_FETCH_MORE", true);
       }
     });
   },
-  FETCH_TRANSLATIONS({ commit }, { userid, page = 1, append = false }) {
-    return mypage.fetchTranslations(userid, page).then((data) => {
-      if (append) {
-        commit("APPEND_LINE_RESULT", data);
+  FETCH_TRANSLATIONS({ commit }, { userid, cursor = null, limit = 20 }) {
+    return mypage.fetchTranslations(userid, { cursor, limit }).then(res => {
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
+        return;
+      }
+
+      if (cursor) {
+        commit("APPEND_LINE_RESULT", res);
       } else {
-        commit("SET_LINE_RESULT", data);
+        commit("SET_LINES", res);
+        commit("SET_FETCH_MORE", true);
       }
     });
-  },
-  LIKE_LINE_ENGLISH({ commit }, lineid) {
-    return subtitle.likeEnglish(lineid).then(() => {
-      commit("ADD_USER_LIKED", lineid);
-    });
-  },
-  UNLIKE_LINE_ENGLISH({ commit }, lineid) {
-    return subtitle.unlikeEnglish(lineid).then(() => {
-      commit("REMOVE_USER_LIKED", lineid);
-    });
-  },
-  LIKE_LINE_KOREAN({ commit }, lineid) {
-    return subtitle.likeKorean(lineid).then(() => {
-      commit("ADD_USER_LIKED", lineid);
-    });
-  },
-  UNLIKE_LINE_KOREAN({ commit }, lineid) {
-    return subtitle.unlikeKorean(lineid).then(() => {
-      commit("REMOVE_USER_LIKED", lineid);
-    });
-  },
+  }
 };

@@ -44,22 +44,24 @@ export const auth = {
 };
 
 export const subtitle = {
-  fetchEnglish(keyword, page = 1) {
+  searchEnglish({ keyword, cursor = null, limit = 20 }) {
     return request
       .get("/subtitle/search/english", {
         params: {
           keyword,
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);
   },
-  fetchKorean(keyword, page = 1) {
+  searchKorean({ keyword, cursor = null, limit = 20 }) {
     return request
       .get("/subtitle/search/korean", {
         params: {
           keyword,
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);
@@ -67,12 +69,13 @@ export const subtitle = {
   fetchRandomSubtitles() {
     return request.get("/subtitle/random/subtitles").then(({ data }) => data);
   },
-  fetchTranslations(lineid, page = 1) {
+  fetchTranslations(lineid, { cursor = null, limit = 20 }) {
     return request
       .get("/subtitle/translations", {
         params: {
           line_id: lineid,
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);
@@ -113,29 +116,32 @@ export const mypage = {
       .get(`/my-page/${userid}/activity-summary`)
       .then(({ data }) => data);
   },
-  fetchEnglishLikes(userid, page = 1) {
+  fetchEnglishLikes(userid, { cursor = null, limit = 20 }) {
     return request
       .get(`/my-page/${userid}/liked-english-lines`, {
         params: {
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);
   },
-  fetchKoreanLikes(userid, page = 1) {
+  fetchKoreanLikes(userid, { cursor = null, limit = 20 }) {
     return request
       .get(`/my-page/${userid}/liked-korean-lines`, {
         params: {
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);
   },
-  fetchTranslations(userid, page = 1) {
+  fetchTranslations(userid, { cursor = null, limit = 20 }) {
     return request
       .get(`/my-page/${userid}/translations`, {
         params: {
-          page
+          cursor,
+          limit
         }
       })
       .then(({ data }) => data);

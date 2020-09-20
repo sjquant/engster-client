@@ -1,29 +1,41 @@
 import { subtitle } from "../../api";
 
 export default {
-  FETCH_LINE_ENGLISH({ commit }, { searchWord, page = 1, append = false }) {
-    commit("SET_KEYWORD", searchWord);
-    return subtitle.fetchEnglish(searchWord, page).then(data => {
-      if (append) {
-        commit("APPEND_SEARCH_RESULT", data);
+  SEARCH_LINE_ENGLISH({ commit }, { keyword, cursor = null, limit = 20 }) {
+    commit("SET_KEYWORD", keyword);
+    return subtitle.searchEnglish({ keyword, cursor, limit }).then(res => {
+      if (res.data.length === 0) {
+        commit("SET_SEARCH_MORE", false);
+        return;
+      }
+
+      if (cursor) {
+        commit("APPEND_SEARCH_LINES", res);
       } else {
-        commit("SET_SEARCH_RESULT", data);
+        commit("SET_SEARCH_LINES", res);
+        commit("SET_SEARCH_MORE", true);
       }
     });
   },
-  FETCH_LINE_KOREAN({ commit }, { searchWord, page = 1, append = false }) {
-    commit("SET_KEYWORD", searchWord);
-    return subtitle.fetchKorean(searchWord, page).then(data => {
-      if (append) {
-        commit("APPEND_SEARCH_RESULT", data);
+  SEARCH_LINE_KOREAN({ commit }, { keyword, cursor = null, limit = 20 }) {
+    commit("SET_KEYWORD", keyword);
+    return subtitle.searchKorean({ keyword, cursor, limit }).then(res => {
+      if (res.data.length === 0) {
+        commit("SET_SEARCH_MORE", false);
+        return;
+      }
+      if (cursor) {
+        commit("APPEND_SEARCH_LINES", res);
       } else {
-        commit("SET_SEARCH_RESULT", data);
+        commit("SET_SEARCH_LINES", res);
+        commit("SET_SEARCH_MORE", true);
       }
     });
   },
   FETCH_RANDOM_SUBTITLES({ commit }) {
-    return subtitle.fetchRandomSubtitles().then(data => {
-      commit("SET_SEARCH_RESULT", data);
+    return subtitle.fetchRandomSubtitles().then(res => {
+      commit("SET_SEARCH_LINES", res);
+      commit("SET_SEARCH_MORE", true);
     });
   },
   LIKE_LINE_ENGLISH({ commit }, lineid) {
@@ -48,13 +60,13 @@ export default {
   },
   FETCH_TRANSLATIONS_FOR_LINE(
     { commit },
-    { lineid, page = 1, append = false }
+    { lineid, cursor = null, limit = 20 }
   ) {
-    return subtitle.fetchTranslations(lineid).then(data => {
-      if (append) {
-        commit("APPEND_TRANSLATIONS_FOR_LINE", { lineid, data });
+    return subtitle.fetchTranslations(lineid, { cursor, limit }).then(res => {
+      if (cursor) {
+        commit("APPEND_TRANSLATIONS", { lineid, data: res.data });
       } else {
-        commit("SET_TRANSLATIONS_FOR_LINE", { lineid, data });
+        commit("SET_TRNASLATIONS", { lineid, data: res.data });
       }
     });
   },

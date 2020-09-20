@@ -4,7 +4,7 @@
       <TheLogo />
       <TheSearchBar />
       <div class="header-side">
-        <nuxt-link to="/sign-in" v-show="!user">로그인</nuxt-link>
+        <nuxt-link to="/sign-in" v-show="!user && isClient">로그인</nuxt-link>
         <div v-show="user" @click="menuOn = !menuOn">
           <ProfileIcon :profilePath="user ? user.photo : ''" />
         </div>
@@ -26,16 +26,19 @@ export default {
     TheLogo,
     TheSearchBar,
     TheNavMenu,
-    ProfileIcon
+    ProfileIcon,
   },
   data() {
     return {
-      menuOn: false
+      menuOn: false,
     };
   },
   computed: {
-    ...mapState("auth", ["user"])
-  }
+    ...mapState("auth", ["user"]),
+    isClient() {
+      return process.client;
+    },
+  },
 };
 </script>
 
