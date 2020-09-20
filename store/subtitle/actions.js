@@ -71,8 +71,8 @@ export default {
     });
   },
   CREATE_TRANSLATION({ dispatch }, { lineid, translation }) {
-    return subtitle
-      .createTranslation(lineid, translation)
-      .then(dispatch("FETCH_TRANSLATIONS_FOR_LINE", { lineid }));
+    return subtitle.createTranslation(lineid, translation).then(() => {
+      dispatch("FETCH_TRANSLATIONS_FOR_LINE", { lineid });
+    });
   }
 };
