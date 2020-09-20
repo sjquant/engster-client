@@ -19,44 +19,36 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import LikeIcon from "../icons/LikeIcon.vue";
-import { subtitle } from "~/api";
 
 export default {
   components: {
-    LikeIcon
+    LikeIcon,
   },
   computed: {
-    ...mapState({
-      userid: state => (state.auth.user ? state.auth.user.id : null)
-    }),
+    ...mapGetters("auth", ["userid"]),
     isLiked() {
       return this.translation.user_liked;
-    }
+    },
   },
   props: {
-    translation: Object
+    translation: Object,
   },
   methods: {
-    ...mapActions("subtitle", [
-      "LIKE_translation_TRANSLATION",
-      "UNLIKE_translation_TRANSLATION"
-    ]),
+    ...mapActions("subtitle", ["LIKE_LINE_KOREAN", "UNLIKE_LINE_KOREAN"]),
     updateLike(lineid) {
       if (!this.isLiked) {
-        subtitle.likeKorean(lineid).then(() => {
-          this.translation.user_liked = true;
-          this.translation.like_count += 1;
+        this.LIKE_LINE_KOREAN(this.translation.id).then(() => {
+          this.$emit("translation-liked", this.translation.id);
         });
       } else {
-        subtitle.unlikeKorean(lineid).then(() => {
-          this.translation.user_liked = false;
-          this.translation.like_count -= 1;
+        this.UNLIKE_LINE_KOREAN(this.translation.id).then(() => {
+          this.$emit("translation-unliked", this.translation.id);
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

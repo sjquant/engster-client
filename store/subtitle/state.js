@@ -1,9 +1,7 @@
 export default () => ({
   keyword: "",
-  searchResult: {
-    data: [],
-    max_page: null,
-    page: null,
-  },
-  translationsForLine: {},
+  searchLines: [],
+  searchCount: 0,
+  lineid2translations: {},
+  searchMore: false
 });
