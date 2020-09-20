@@ -53,7 +53,7 @@ module.exports = {
     color: "#3B8070"
   },
   router: {
-    middleware: ["scroll"]
+    middleware: ["auth", "scroll"]
   },
   /*
    ** Build configuration

@@ -23,14 +23,30 @@ export const request = {
   put(path, data, options = {}) {
     return axiosObj.put(`${path}`, data, options);
   },
-  setCSRFHeader() {
-    const accessCSRF = cookies.read("X-CSRF-Token");
-    const refeshCSRF = cookies.read("X-RCSRF-Token");
+  setCookieHeader(cookie) {
+    axiosObj.defaults.headers.common["Cookie"] = cookie;
+  },
+  setCSRFHeader({ accessCSRF, refreshCSRF }) {
+    accessCSRF = accessCSRF || cookies.read("X-CSRF-Token");
+    refreshCSRF = refreshCSRF || cookies.read("X-RCSRF-Token");
     axiosObj.defaults.headers.common["X-CSRF-Token"] = accessCSRF
       ? accessCSRF
       : null;
-    axiosObj.defaults.headers.common["X-RCSRF-Token"] = refeshCSRF
-      ? refeshCSRF
+    axiosObj.defaults.headers.common["X-RCSRF-Token"] = refreshCSRF
+      ? refreshCSRF
       : null;
+  }
+};
+
+export const cookie = {
+  set(key, value, durationDay) {
+    let date = new Date();
+    date.setTime(date.getTime() + durationDay * 60 * 60 * 24 * 1000);
+    document.cookie = `${key}=${value}; expires=${date.toUTCString()}"; path=/`;
+  },
+  parse(key, cookie = null) {
+    cookie = cookie ? cookie : document.cookie;
+    const value = cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
+    return value ? value[2] : null;
   }
 };
