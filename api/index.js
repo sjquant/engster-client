@@ -9,7 +9,7 @@ export const auth = {
         nickname
       })
       .then(({ data }) => {
-        request.setCSRFHeader();
+        request.setCSRFHeader({});
         return data;
       });
   },
@@ -20,7 +20,7 @@ export const auth = {
         password
       })
       .then(({ data }) => {
-        request.setCSRFHeader();
+        request.setCSRFHeader({});
         return data;
       });
   },
