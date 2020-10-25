@@ -72,7 +72,12 @@ module.exports = {
         __dirname,
         "assets/scss/utils.scss"
       );
-    }
+    },
+    babel: {
+        plugins: [
+          '@babel/plugin-proposal-optional-chaining'
+        ]
+      }
   },
   plugins: [
     { src: "~plugins/time-ago" },

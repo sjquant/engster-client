@@ -14,6 +14,7 @@
   padding: 0 0.4rem;
   font-size: 1.4rem;
   margin-right: 0.8rem;
+  text-transform: capitalize;
   cursor: default;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="title-container">
-    <span>{{ subtitleTitle }}</span> |
-    <span>{{ category }}</span>
+    <span>{{ subtitleTitle }}</span>
   </div>
 </template>
 
@@ -13,10 +12,6 @@ export default {
       required: true
     },
     year: {
-      type: String,
-      default: ""
-    },
-    category: {
       type: String,
       default: ""
     }

@@ -7,6 +7,12 @@ export default function(context) {
   const cookie = context.req.headers.cookie;
   const accessCSRF = cookieUtils.parse("X-CSRF-Token", cookie);
   const refreshCSRF = cookieUtils.parse("X-RCSRF-Token", cookie);
-  request.setCookieHeader(cookie);
-  request.setCSRFHeader({ accessCSRF, refreshCSRF });
+
+  if (cookie) {
+    request.setCookieHeader(cookie);
+  }
+
+  if (accessCSRF && refreshCSRF) {
+    request.setCSRFHeader({ accessCSRF, refreshCSRF });
+  }
 }

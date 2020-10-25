@@ -45,7 +45,14 @@ export const cookie = {
     document.cookie = `${key}=${value}; expires=${date.toUTCString()}"; path=/`;
   },
   parse(key, cookie = null) {
-    cookie = cookie ? cookie : document.cookie;
+    if (!cookie && !process.server) {
+      cookie = document.cookie
+    }
+
+    if (!cookie) {
+      return null
+    }
+    
     const value = cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
     return value ? value[2] : null;
   }

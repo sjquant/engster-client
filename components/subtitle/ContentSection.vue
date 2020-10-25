@@ -3,9 +3,10 @@
     <ContentSectionTitle
       :title="line.content_title"
       :year="line.content_year"
-      :category="line.category_name"
     />
-    <KeywordTag v-for="each in line.genres" :key="each.id">#{{ each.name }}</KeywordTag>
+    <KeywordTag v-for="each in line.genres" :key="each.id"
+      >#{{ each.name }}</KeywordTag
+    >
   </div>
 </template>
 <script>
