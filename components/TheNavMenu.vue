@@ -23,10 +23,10 @@ export default {
     ProfileIcon
   },
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState("user", ["user"])
   },
   methods: {
-    ...mapActions("auth", ["SIGNOUT"]),
+    ...mapActions("user", ["SIGNOUT"]),
     logout() {
       this.SIGNOUT();
       this.$router.push("/");

@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <input type="text" placeholder="찾고싶은 표현을 입력하세요!" @keyup.enter="onEnterSearch" ref="inputSearch" />
+    <input
+      type="text"
+      placeholder="찾고싶은 표현을 입력하세요!"
+      @keyup.enter="onEnterSearch"
+      ref="inputSearch"
+    />
     <div class="search-glass" @click="onClickSearch">
       <MagnifyingGlassIcon />
     </div>
@@ -31,14 +36,14 @@ export default {
       let krCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
       if (krCheck.test(keyword)) {
         this.$router.push({
-          path: `/search/korean`,
+          path: `/search/translation`,
           query: {
             keyword: keyword
           }
         });
       } else {
         this.$router.push({
-          path: `/search/english`,
+          path: `/search/subtitle`,
           query: {
             keyword: keyword
           }
@@ -49,7 +54,7 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 @import "~utils";
 
 .container {

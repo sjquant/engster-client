@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState("user", ["user"])
   },
   methods: {
     ...mapActions("subtitle", ["CREATE_TRANSLATION"]),

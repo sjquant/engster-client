@@ -1,34 +1,44 @@
 <template>
   <div class="search-result-container">
-    <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
+    <PulseLoader
+      class="loading-bar"
+      :loading="loading"
+      color="#1c3d5a"
+      size="12px"
+    />
     <SearchSummary :keyword="keyword" :count="searchCount" />
     <section v-infinite-scroll="fetchMoreLines" infinite-scroll-distance="100">
-      <KoreanCard v-for="each in searchLines" :key="each.id" :line="each" @like="updateLike" />
+      <TranslationCard
+        v-for="each in searchLines"
+        :key="each.id"
+        :line="each"
+        @like="updateLike"
+      />
     </section>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-import KoreanCard from "~/components/subtitle/KoreanCard.vue";
+import TranslationCard from "~/components/subtitle/TranslationCard.vue";
 import SearchSummary from "~/components/subtitle/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   components: {
-    KoreanCard,
+    TranslationCard,
     SearchSummary,
-    PulseLoader,
+    PulseLoader
   },
   data() {
     return {
-      loading: false,
+      loading: false
     };
   },
   watchQuery: ["keyword"],
   fetch({ store, query }) {
-    return store.dispatch("subtitle/SEARCH_LINE_KOREAN", {
-      keyword: query.keyword,
+    return store.dispatch("subtitle/SEARCH_TRANSLATIONS", {
+      keyword: query.keyword
     });
   },
   computed: {
@@ -36,23 +46,23 @@ export default {
       "searchMore",
       "searchCount",
       "searchLines",
-      "keyword",
+      "keyword"
     ]),
-    ...mapGetters("subtitle", ["searchLineCursor"]),
+    ...mapGetters("subtitle", ["searchLineCursor"])
   },
   methods: {
     ...mapActions("subtitle", [
-      "SEARCH_LINE_KOREAN",
-      "LIKE_LINE_KOREAN",
-      "UNLIKE_LINE_KOREAN",
+      "SEARCH_TRANSLATIONS",
+      "LIKE_TRANSLATION",
+      "UNLIKE_TRANSLATION"
     ]),
     fetchMoreLines() {
       // keyword, page, append
       if (this.searchMore && !this.loading) {
         this.loading = true;
-        this.SEARCH_LINE_KOREAN({
+        this.SEARCH_TRANSLATIONS({
           keyword: this.keyword,
-          cursor: this.searchLineCursor,
+          cursor: this.searchLineCursor
         }).finally(() => {
           this.loading = false;
         });
@@ -60,11 +70,11 @@ export default {
     },
     updateLike(line) {
       if (!line.user_liked) {
-        this.LIKE_LINE_KOREAN(line.id);
+        this.LIKE_TRANSLATION(line.id);
       } else {
-        this.UNLIKE_LINE_KOREAN(line.id);
+        this.UNLIKE_TRANSLATION(line.id);
       }
-    },
-  },
+    }
+  }
 };
 </script>

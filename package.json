@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "Learn Real English with Engster!",
+  "description": "Learn Real Subtitle with Engster!",
   "author": "sjquant <seonujang92@gmail.com>",
   "private": true,
   "scripts": {

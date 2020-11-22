@@ -1,21 +1,18 @@
 <template>
   <LineCard>
-    <div class="translation-content">
-      <div class="korean-line" v-html="processedLine"></div>
-      <div class="english-line">{{ line.line }}</div>
-    </div>
+    <div class="subtitle-line" v-html="processedLine"></div>
     <ContentSection :line="line" />
     <ActionSection
       :line="line"
       :liked="liked"
       :translation-on.sync="translationOn"
-      :is-english="false"
+      is-subtitle
       @like="$emit('like', line)"
     />
     <TranslationSection
       v-if="translationOn"
       ref="transCard"
-      :lineid="line.line_id"
+      :lineid="line.id"
       inputPlaceholder="자신만의 번역을 추가해보세요!"
     />
   </LineCard>
@@ -48,21 +45,12 @@ export default {
     processedLine() {
       let regexp = new RegExp("(" + this.keyword + ")", "i");
       try {
-        return this.line.translation.replace(
+        return this.line.line.replace(
           regexp,
           '<span class="line-highlighted">$1</span>'
         );
-      } catch {
-        return this.line.translation;
-      }
+      } catch (error) {}
     }
   }
 };
 </script>
-<style lang="scss" scoped>
-@import "~utils";
-.english-line {
-  padding-top: 0.4rem;
-  color: $gray-darker;
-}
-</style>

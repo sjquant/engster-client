@@ -33,7 +33,9 @@
       autocomplete="new-password"
       v-model="password2"
     />
-    <button class="sign-in-btn sign-up-btn" @click.prevent="signup">가입하기</button>
+    <button class="sign-in-btn sign-up-btn" @click.prevent="signup">
+      가입하기
+    </button>
     <hr class="separating-line" />
     <SocialLoginGroup />
   </SignForm>
@@ -64,7 +66,7 @@ export default {
     emailField.focus();
   },
   methods: {
-    ...mapActions("auth", ["SIGNUP"]),
+    ...mapActions("user", ["SIGNUP"]),
     async signup() {
       let validated = await this.$validator.validateAll();
       if (validated) {

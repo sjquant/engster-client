@@ -27,17 +27,17 @@ export function createRouter() {
         name: "signIn"
       },
       {
-        path: "/search/english",
+        path: "/search/subtitle",
         component: () =>
-          import("~/pages/search/english.vue").then(m => m.default || m),
-        name: "search-english",
+          import("~/pages/search/subtitle.vue").then(m => m.default || m),
+        name: "search-subtitle",
         alias: "/search"
       },
       {
-        path: "/search/korean",
+        path: "/search/translation",
         component: () =>
-          import("~/pages/search/korean.vue").then(m => m.default || m),
-        name: "serachKorean"
+          import("~/pages/search/translation.vue").then(m => m.default || m),
+        name: "serachTranslation"
       },
       {
         path: "/my-page/:userid",
@@ -45,26 +45,26 @@ export function createRouter() {
           import("~/pages/my-page.vue").then(m => m.default || m),
         children: [
           {
-            path: "/my-page/:userid/english-likes",
+            path: "/my-page/:userid/subtitles/liked",
             component: () =>
-              import("~/pages/my-page/english-likes.vue").then(
+              import("~/pages/my-page/liked-subtitles.vue").then(
                 m => m.default || m
               ),
-            name: "mypage-englishLikes",
+            name: "mypage-subtitleLikes",
             alias: "/my-page/:userid"
           },
           {
-            path: "/my-page/:userid/korean-likes",
+            path: "/my-page/:userid/translations/liked",
             component: () =>
-              import("~/pages/my-page/korean-likes.vue").then(
+              import("~/pages/my-page/liked-translations.vue").then(
                 m => m.default || m
               ),
-            name: "mypage-koreanLikes"
+            name: "mypage-translationLikes"
           },
           {
-            path: "/my-page/:userid/translations",
+            path: "/my-page/:userid/translations/written",
             component: () =>
-              import("~/pages/my-page/translations.vue").then(
+              import("~/pages/my-page/written-translations.vue").then(
                 m => m.default || m
               ),
             name: "mypage-translations"

@@ -12,7 +12,10 @@
           <span v-if="!isLiked">좋아요</span>
           <span v-else>좋아요취소</span>
         </span>
-        <timeago class="updated-at" :datetime="translation.updated_at"></timeago>
+        <timeago
+          class="updated-at"
+          :datetime="translation.updated_at"
+        ></timeago>
       </div>
     </div>
   </section>
@@ -24,31 +27,31 @@ import LikeIcon from "../icons/LikeIcon.vue";
 
 export default {
   components: {
-    LikeIcon,
+    LikeIcon
   },
   computed: {
-    ...mapGetters("auth", ["userid"]),
+    ...mapGetters("user", ["userid"]),
     isLiked() {
       return this.translation.user_liked;
-    },
+    }
   },
   props: {
-    translation: Object,
+    translation: Object
   },
   methods: {
-    ...mapActions("subtitle", ["LIKE_LINE_KOREAN", "UNLIKE_LINE_KOREAN"]),
+    ...mapActions("subtitle", ["LIKE_TRANSLATION", "UNLIKE_TRANSLATION"]),
     updateLike(lineid) {
       if (!this.isLiked) {
-        this.LIKE_LINE_KOREAN(this.translation.id).then(() => {
+        this.LIKE_TRANSLATION(this.translation.id).then(() => {
           this.$emit("translation-liked", this.translation.id);
         });
       } else {
-        this.UNLIKE_LINE_KOREAN(this.translation.id).then(() => {
+        this.UNLIKE_TRANSLATION(this.translation.id).then(() => {
           this.$emit("translation-unliked", this.translation.id);
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

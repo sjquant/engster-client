@@ -10,7 +10,7 @@
         </div>
       </div>
       <client-only>
-        <TheNavMenu v-if="menuOn" @closeMenu="menuOn=false" />
+        <TheNavMenu v-if="menuOn" @closeMenu="menuOn = false" />
       </client-only>
     </div>
   </header>
@@ -26,19 +26,19 @@ export default {
     TheLogo,
     TheSearchBar,
     TheNavMenu,
-    ProfileIcon,
+    ProfileIcon
   },
   data() {
     return {
-      menuOn: false,
+      menuOn: false
     };
   },
   computed: {
-    ...mapState("auth", ["user"]),
+    ...mapState("user", ["user"]),
     isClient() {
       return process.client;
-    },
-  },
+    }
+  }
 };
 </script>
 

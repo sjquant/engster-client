@@ -1,6 +1,6 @@
 # Engster Frontend
 
-**Engster** is my personal project to help korean people to learn real English from film, youtube, etc.
+**Engster** is my personal project to help translation people to learn real Subtitle from film, youtube, etc.
 
 This is client side repository
 

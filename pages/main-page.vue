@@ -1,7 +1,17 @@
 <template>
   <div class="search-result-container">
-    <PulseLoader class="loading-bar" :loading="loading" color="#1c3d5a" size="12px" />
-    <RandomCard v-for="each in searchLines" :key="each.id" :line="each" @like="updateLike" />
+    <PulseLoader
+      class="loading-bar"
+      :loading="loading"
+      color="#1c3d5a"
+      size="12px"
+    />
+    <RandomCard
+      v-for="each in searchLines"
+      :key="each.id"
+      :line="each"
+      @like="updateLike"
+    />
   </div>
 </template>
 
@@ -15,32 +25,32 @@ export default {
   components: {
     RandomCard,
     SearchSummary,
-    PulseLoader,
+    PulseLoader
   },
   data() {
     return {
-      loading: false,
+      loading: false
     };
   },
   fetch({ store, query }) {
     return store.dispatch("subtitle/FETCH_RANDOM_SUBTITLES");
   },
   computed: {
-    ...mapState("subtitle", ["searchLines", "keyword"]),
+    ...mapState("subtitle", ["searchLines", "keyword"])
   },
   methods: {
     ...mapActions("subtitle", [
       "FETCH_RANDOM_SUBTITLES",
-      "LIKE_LINE_ENGLISH",
-      "UNLIKE_LINE_ENGLISH",
+      "LIKE_SUBTITLE",
+      "UNLIKE_SUBTITLE"
     ]),
     updateLike(line) {
       if (!line.user_liked) {
-        this.LIKE_LINE_ENGLISH(line.id);
+        this.LIKE_SUBTITLE(line.id);
       } else {
-        this.UNLIKE_LINE_ENGLISH(line.id);
+        this.UNLIKE_SUBTITLE(line.id);
       }
-    },
-  },
+    }
+  }
 };
 </script>

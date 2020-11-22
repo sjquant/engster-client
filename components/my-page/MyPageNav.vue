@@ -2,19 +2,22 @@
   <nav class="my-page-nav">
     <a
       class="nav-menu"
-      :class="{active: $route.name == 'mypage-englishLikes'}"
-      @click="route('mypage-englishLikes')"
-    >좋아요(영어)</a>
+      :class="{ active: $route.name == 'mypage-subtitleLikes' }"
+      @click="route('mypage-subtitleLikes')"
+      >좋아요(영어)</a
+    >
     <a
       class="nav-menu"
-      :class="{active: $route.name == 'mypage-koreanLikes'}"
-      @click="route('mypage-koreanLikes')"
-    >좋아요(번역)</a>
+      :class="{ active: $route.name == 'mypage-translationLikes' }"
+      @click="route('mypage-translationLikes')"
+      >좋아요(번역)</a
+    >
     <a
       class="nav-menu"
-      :class="{active: $route.name == 'mypage-translations'}"
+      :class="{ active: $route.name == 'mypage-translations' }"
       @click="route('mypage-translations')"
-    >번역</a>
+      >번역</a
+    >
   </nav>
 </template>
 

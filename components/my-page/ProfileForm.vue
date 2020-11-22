@@ -3,12 +3,15 @@
     <form class="profile-edit-form">
       <div
         class="avatar-container"
-        @mouseover="profileIconHovered=true"
-        @mouseleave="profileIconHovered=false"
+        @mouseover="profileIconHovered = true"
+        @mouseleave="profileIconHovered = false"
         @click="openAvatarEditModal"
       >
         <ProfileCamera v-show="profileIconHovered" />
-        <ProfileIcon :profilePath="user ? user.photo : ''" v-show="!profileIconHovered" />
+        <ProfileIcon
+          :profilePath="user ? user.photo : ''"
+          v-show="!profileIconHovered"
+        />
       </div>
       <EditInput
         :label="'닉네임'"
@@ -53,7 +56,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("auth", ["user"]),
+    ...mapState("user", ["user"]),
     nickname: {
       set(value) {
         this.tNickname = value;
@@ -68,7 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("auth", ["UPDATE_PROFILE"]),
+    ...mapActions("user", ["UPDATE_PROFILE"]),
     openAvatarEditModal() {
       this.$modal.show("avatar-edit-modal");
     },

@@ -1,9 +1,10 @@
-import { subtitle } from "../../api";
+import { subtitle, translation } from "../../api";
 
 export default {
-  SEARCH_LINE_ENGLISH({ commit }, { keyword, cursor = null, limit = 20 }) {
+  SEARCH_SUBTITLES({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
-    return subtitle.searchEnglish({ keyword, cursor, limit }).then(res => {
+    return subtitle.search({ keyword, cursor, limit }).then(res => {
+      commit("SET_SEARCH_LINES", res);
       if (res.data.length === 0) {
         commit("SET_SEARCH_MORE", false);
         return;
@@ -12,14 +13,14 @@ export default {
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
-        commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
       }
     });
   },
-  SEARCH_LINE_KOREAN({ commit }, { keyword, cursor = null, limit = 20 }) {
+  SEARCH_TRANSLATIONS({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
-    return subtitle.searchKorean({ keyword, cursor, limit }).then(res => {
+    return translation.search({ keyword, cursor, limit }).then(res => {
+      commit("SET_SEARCH_LINES", res);
       if (res.data.length === 0) {
         commit("SET_SEARCH_MORE", false);
         return;
@@ -27,34 +28,33 @@ export default {
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
-        commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
       }
     });
   },
   FETCH_RANDOM_SUBTITLES({ commit }) {
-    return subtitle.fetchRandomSubtitles().then(res => {
+    return subtitle.fetchRandom().then(res => {
       commit("SET_SEARCH_LINES", res);
       commit("SET_SEARCH_MORE", true);
     });
   },
-  LIKE_LINE_ENGLISH({ commit }, lineid) {
-    return subtitle.likeEnglish(lineid).then(() => {
+  LIKE_SUBTITLE({ commit }, lineid) {
+    return subtitle.like(lineid).then(() => {
       commit("ADD_USER_LIKED", lineid);
     });
   },
-  UNLIKE_LINE_ENGLISH({ commit }, lineid) {
-    return subtitle.unlikeEnglish(lineid).then(() => {
+  UNLIKE_SUBTITLE({ commit }, lineid) {
+    return subtitle.unlike(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
   },
-  LIKE_LINE_KOREAN({ commit }, lineid) {
-    return subtitle.likeKorean(lineid).then(() => {
+  LIKE_TRANSLATION({ commit }, lineid) {
+    return translation.like(lineid).then(() => {
       commit("ADD_USER_LIKED", lineid);
     });
   },
-  UNLIKE_LINE_KOREAN({ commit }, lineid) {
-    return subtitle.unlikeKorean(lineid).then(() => {
+  UNLIKE_TRANSLATION({ commit }, lineid) {
+    return translation.unlike(lineid).then(() => {
       commit("REMOVE_USER_LIKED", lineid);
     });
   },

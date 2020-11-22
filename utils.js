@@ -20,6 +20,9 @@ export const request = {
   delete(path, data = {}, options = {}) {
     return axiosObj.delete(`${path}`, { data: data, ...options });
   },
+  patch(path, data, options = {}) {
+    return axiosObj.patch(`${path}`, data, options);
+  },
   put(path, data, options = {}) {
     return axiosObj.put(`${path}`, data, options);
   },
@@ -46,13 +49,13 @@ export const cookie = {
   },
   parse(key, cookie = null) {
     if (!cookie && !process.server) {
-      cookie = document.cookie
+      cookie = document.cookie;
     }
 
     if (!cookie) {
-      return null
+      return null;
     }
-    
+
     const value = cookie.match(`(^|;) ?${key}=([^;]*)(;|$)`);
     return value ? value[2] : null;
   }

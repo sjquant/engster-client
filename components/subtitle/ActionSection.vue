@@ -25,7 +25,7 @@ export default {
       type: Object,
       required: true
     },
-    isEnglish: {
+    isSubtitle: {
       type: Boolean,
       required: true
     },
@@ -44,7 +44,7 @@ export default {
       let translationOn = !this.translationOn;
       this.$emit("update:translation-on", translationOn);
       if (translationOn) {
-        let lineid = this.isEnglish ? this.line.id : this.line.line_id;
+        let lineid = this.isSubtitle ? this.line.id : this.line.line_id;
         this.FETCH_TRANSLATIONS_FOR_LINE({ lineid });
       }
     }

@@ -4,7 +4,12 @@
       <h2>프로필 이미지 변경</h2>
       <section class="cropper-area">
         <img :src="imgSrc" v-show="!cropping" />
-        <vue-cropper ref="cropper" :src="imgSrc" v-show="cropping" :aspect-ratio="16 / 16" />
+        <vue-cropper
+          ref="cropper"
+          :src="imgSrc"
+          v-show="cropping"
+          :aspect-ratio="16 / 16"
+        />
       </section>
       <button class="photo-upload-btn">
         <span>사진업로드</span>
@@ -22,7 +27,7 @@
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import { mapState, mapActions } from "vuex";
-import { upload } from "~/api";
+import { image } from "../../api";
 
 export default {
   components: { VueCropper },
@@ -44,10 +49,10 @@ export default {
     };
   },
   computed: {
-    ...mapState("auth", ["user"])
+    ...mapState("user", ["user"])
   },
   methods: {
-    ...mapActions("auth", ["UPDATE_PROFILE"]),
+    ...mapActions("user", ["UPDATE_PROFILE"]),
     setImage(e) {
       const file = e.target.files[0];
       if (file.type.indexOf("image/") === -1) {
@@ -90,7 +95,7 @@ export default {
             blob => {
               const formData = new FormData();
               formData.append("photo", blob);
-              data = upload.uploadPhoto(formData).then(data => {
+              data = image.uploadPhoto(formData).then(data => {
                 this.UPDATE_PROFILE({ photo: data.path }).then(() => {
                   this.closeModal();
                 });

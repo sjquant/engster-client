@@ -47,7 +47,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("auth", ["SIGNIN"]),
+    ...mapActions("user", ["SIGNIN"]),
     async signin() {
       let validated = await this.$validator.validateAll();
       if (validated) {

@@ -3,7 +3,9 @@
     <ProfileIcon :profilePath="activitySummary.user_photo" />
     <div class="user-info">
       <h1 class="user-nickname">{{ activitySummary.user_nickname }}님</h1>
-      <button class="edit-profile-btn" @click="routeProfileEdit" v-show="isMe">프로필 편집</button>
+      <button class="edit-profile-btn" @click="routeProfileEdit" v-show="isMe">
+        프로필 편집
+      </button>
       <div class="activity-info">
         <span class="title">번역</span>
         <span class="value">{{ activitySummary.translation_count }}</span>
@@ -21,10 +23,8 @@ export default {
     ProfileIcon
   },
   computed: {
-    ...mapState({
-      user: state => state.auth.user,
-      activitySummary: state => state.mypage.activitySummary
-    }),
+    ...mapState("user", ["user"]),
+    ...mapState("mypage", ["activitySummary"]),
     isMe() {
       const userid = this.$route.params.userid;
       return this.user ? this.user.id === userid : false;

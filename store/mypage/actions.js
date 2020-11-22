@@ -1,13 +1,27 @@
-import { mypage, subtitle } from "~/api";
+import { subtitle, translation, user } from "../../api";
 
 export default {
   GET_ACTIVITY_SUMMARY({ commit }, userid) {
-    return mypage.fetchActivitySummary(userid).then(res => {
+    return user.fetchActivitySummary(userid).then(res => {
       commit("SET_ACTIVITIY_SUMMARY", res);
     });
   },
-  FETCH_ENGLISH_LIKES({ commit }, { userid, cursor = null, limit = 20 }) {
-    return mypage.fetchEnglishLikes(userid, { cursor, limit }).then(res => {
+  FETCH_LIKED_SUBTITLES({ commit }, { userid, cursor = null, limit = 20 }) {
+    return subtitle.fetchUserLiked({ userid, cursor, limit }).then(res => {
+      commit("SET_LINES", res);
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
+        return;
+      }
+      if (cursor) {
+        commit("APPEND_LINE_RESULT", res);
+      } else {
+        commit("SET_FETCH_MORE", true);
+      }
+    });
+  },
+  FETCH_LIKED_TRANSLATIONS({ commit }, { userid, cursor = null, limit = 20 }) {
+    return translation.fetchUserLiked({ userid, cursor, limit }).then(res => {
       if (res.data.length === 0) {
         commit("SET_FETCH_MORE", false);
         return;
@@ -21,8 +35,13 @@ export default {
       }
     });
   },
-  FETCH_KOREAN_LIKES({ commit }, { userid, cursor = null, limit = 20 }) {
-    return mypage.fetchKoreanLikes(userid, { cursor, limit }).then(res => {
+  FETCH_WRITTEN_TRANSLATIONS(
+    { commit },
+    { userid, cursor = null, limit = 20 }
+  ) {
+    return translation.fetchUserWritten({ userid, cursor, limit }).then(res => {
+      commit("SET_LINES", res);
+
       if (res.data.length === 0) {
         commit("SET_FETCH_MORE", false);
         return;
@@ -31,22 +50,6 @@ export default {
       if (cursor) {
         commit("APPEND_LINE_RESULT", res);
       } else {
-        commit("SET_LINES", res);
-        commit("SET_FETCH_MORE", true);
-      }
-    });
-  },
-  FETCH_TRANSLATIONS({ commit }, { userid, cursor = null, limit = 20 }) {
-    return mypage.fetchTranslations(userid, { cursor, limit }).then(res => {
-      if (res.data.length === 0) {
-        commit("SET_FETCH_MORE", false);
-        return;
-      }
-
-      if (cursor) {
-        commit("APPEND_LINE_RESULT", res);
-      } else {
-        commit("SET_LINES", res);
         commit("SET_FETCH_MORE", true);
       }
     });

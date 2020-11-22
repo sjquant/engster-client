@@ -17,7 +17,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "Learn Real English with Engster!"
+        content: "Learn Real Subtitle with Engster!"
       }
     ],
     link: [
@@ -74,10 +74,8 @@ module.exports = {
       );
     },
     babel: {
-        plugins: [
-          '@babel/plugin-proposal-optional-chaining'
-        ]
-      }
+      plugins: ["@babel/plugin-proposal-optional-chaining"]
+    }
   },
   plugins: [
     { src: "~plugins/time-ago" },

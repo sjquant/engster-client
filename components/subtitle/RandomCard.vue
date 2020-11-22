@@ -1,15 +1,15 @@
 <template>
   <LineCard>
     <div>
-      <div class="english-line" v-text="line.line"></div>
-      <div class="korean-line" v-text="line.translation"></div>
+      <div class="subtitle-line" v-text="line.line"></div>
+      <div class="translation-line" v-text="line.translation"></div>
     </div>
     <ContentSection :line="line" />
     <ActionSection
       :line="line"
       :liked="liked"
       :translation-on.sync="translationOn"
-      is-english
+      is-subtitle
       @like="$emit('like', line)"
     />
     <TranslationSection
@@ -50,12 +50,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~utils";
-.english-line {
+.subtitle-line {
   padding-top: 0;
   padding-bottom: 0.8rem;
 }
 
-.korean-line {
+.translation-line {
   color: $gray-darker;
 }
 </style>
