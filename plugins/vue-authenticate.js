@@ -8,19 +8,19 @@ Vue.use(VueAuthenticate, {
   providers: {
     facebook: {
       clientId: process.env.FB_CLIENT_ID,
-      redirectUri: `${process.env.CLIENT_URL}/`,
+      redirectUri: `${location.hostname}/`,
       url: "/auth/obtain-token/facebook"
     },
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
-      redirectUri: process.env.CLIENT_URL,
+      redirectUri: location.hostname,
       url: "/auth/obtain-token/google"
     },
     naver: {
       name: "naver",
       url: "/auth/obtain-token/naver",
       authorizationEndpoint: "https://nid.naver.com/oauth2.0/authorize",
-      redirectUri: process.env.CLIENT_URL,
+      redirectUri: location.hostname,
       requiredUrlParams: ["state"],
       optionalUrlParams: [],
       state: "STATE",
