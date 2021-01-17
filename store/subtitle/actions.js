@@ -4,7 +4,6 @@ export default {
   SEARCH_SUBTITLES({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
     return subtitle.search({ keyword, cursor, limit }).then(res => {
-      commit("SET_SEARCH_LINES", res);
       if (res.data.length === 0) {
         commit("SET_SEARCH_MORE", false);
         return;
@@ -13,6 +12,7 @@ export default {
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
+        commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
       }
     });
@@ -20,7 +20,6 @@ export default {
   SEARCH_TRANSLATIONS({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
     return translation.search({ keyword, cursor, limit }).then(res => {
-      commit("SET_SEARCH_LINES", res);
       if (res.data.length === 0) {
         commit("SET_SEARCH_MORE", false);
         return;
@@ -28,6 +27,7 @@ export default {
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
+        commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
       }
     });
