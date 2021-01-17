@@ -4,16 +4,15 @@ export default {
   SEARCH_SUBTITLES({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
     return subtitle.search({ keyword, cursor, limit }).then(res => {
-      if (res.data.length === 0) {
-        commit("SET_SEARCH_MORE", false);
-        return;
-      }
-
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
         commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
+      }
+
+      if (res.data.length === 0) {
+        commit("SET_SEARCH_MORE", false);
       }
     });
   },
@@ -22,13 +21,16 @@ export default {
     return translation.search({ keyword, cursor, limit }).then(res => {
       if (res.data.length === 0) {
         commit("SET_SEARCH_MORE", false);
-        return;
       }
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {
         commit("SET_SEARCH_LINES", res);
         commit("SET_SEARCH_MORE", true);
+      }
+
+      if (res.data.length === 0) {
+        commit("SET_SEARCH_MORE", false);
       }
     });
   },
