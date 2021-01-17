@@ -10,11 +10,4 @@ npm-debug.log
 # Nuxt generate
 dist
 
-# vscode setting
-.vscode
-
-# env file
-.env
-.env.*
-.*.env
-.*.env.*
+.serverless

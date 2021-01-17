@@ -17,7 +17,7 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "Learn Real Subtitle with Engster!"
+        content: "Learn Real English with Engster!"
       }
     ],
     link: [
