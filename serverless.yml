@@ -1,0 +1,33 @@
+service: engster-nuxt
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: prod
+  region: ap-northeast-2
+
+package:
+  individually: true
+  excludeDevDependencies: true
+
+functions:
+  nuxt:
+    handler: index.nuxt
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+plugins:
+  - serverless-apigw-binary
+  - serverless-domain-manager
+  - serverless-offline
+
+custom:
+  apigwBinary:
+    types:
+      - "*/*"
+  customDomain:
+    domainName: engster.co.kr
+    basePath: ""
+    stage: prod
+    createRoute53Record: true
