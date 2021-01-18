@@ -4,7 +4,6 @@
     <ContentSection :line="line" />
     <ActionSection
       :line="line"
-      :liked="liked"
       :translation-on.sync="translationOn"
       is-subtitle
       @like="$emit('like', line)"

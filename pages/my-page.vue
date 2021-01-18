@@ -1,8 +1,8 @@
 <template>
-  <div class="my-page-container">
+  <div class="my-page__container">
     <MyPageHeader />
     <MyPageNav />
-    <nuxt-child></nuxt-child>
+    <nuxt-child class="content__container"></nuxt-child>
   </div>
 </template>
 
@@ -18,13 +18,20 @@ export default {
   },
   components: {
     MyPageHeader,
-    MyPageNav,
+    MyPageNav
   },
   beforeDestroy() {
     this.CLEAR_LINE_RESULT();
   },
   methods: {
-    ...mapMutations("mypage", ["APPEND_LINE_RESULT", "CLEAR_LINE_RESULT"]),
-  },
+    ...mapMutations("mypage", ["APPEND_LINE_RESULT", "CLEAR_LINE_RESULT"])
+  }
 };
 </script>
+<style lang="scss">
+@import "~utils";
+
+.content__container {
+  min-height: 20rem;
+}
+</style>

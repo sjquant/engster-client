@@ -7,7 +7,11 @@
       size="12px"
     />
     <SearchSummary :keyword="keyword" :count="searchCount" />
-    <section v-infinite-scroll="fetchMoreLines" infinite-scroll-distance="100">
+    <section
+      v-infinite-scroll="fetchMoreLines"
+      infinite-scroll-distance="100"
+      infinite-scroll-throttle-delay="500"
+    >
       <TranslationCard
         v-for="each in searchLines"
         :key="each.id"

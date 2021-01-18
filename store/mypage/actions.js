@@ -8,30 +8,29 @@ export default {
   },
   FETCH_LIKED_SUBTITLES({ commit }, { userid, cursor = null, limit = 20 }) {
     return subtitle.fetchUserLiked({ userid, cursor, limit }).then(res => {
-      commit("SET_LINES", res);
-      if (res.data.length === 0) {
-        commit("SET_FETCH_MORE", false);
-        return;
-      }
-      if (cursor) {
-        commit("APPEND_LINE_RESULT", res);
-      } else {
-        commit("SET_FETCH_MORE", true);
-      }
-    });
-  },
-  FETCH_LIKED_TRANSLATIONS({ commit }, { userid, cursor = null, limit = 20 }) {
-    return translation.fetchUserLiked({ userid, cursor, limit }).then(res => {
-      if (res.data.length === 0) {
-        commit("SET_FETCH_MORE", false);
-        return;
-      }
-
       if (cursor) {
         commit("APPEND_LINE_RESULT", res);
       } else {
         commit("SET_LINES", res);
         commit("SET_FETCH_MORE", true);
+      }
+
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
+      }
+    });
+  },
+  FETCH_LIKED_TRANSLATIONS({ commit }, { userid, cursor = null, limit = 20 }) {
+    return translation.fetchUserLiked({ userid, cursor, limit }).then(res => {
+      if (cursor) {
+        commit("APPEND_LINE_RESULT", res);
+      } else {
+        commit("SET_LINES", res);
+        commit("SET_FETCH_MORE", true);
+      }
+
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
       }
     });
   },
@@ -40,17 +39,15 @@ export default {
     { userid, cursor = null, limit = 20 }
   ) {
     return translation.fetchUserWritten({ userid, cursor, limit }).then(res => {
-      commit("SET_LINES", res);
-
-      if (res.data.length === 0) {
-        commit("SET_FETCH_MORE", false);
-        return;
-      }
-
       if (cursor) {
         commit("APPEND_LINE_RESULT", res);
       } else {
+        commit("SET_LINES", res);
         commit("SET_FETCH_MORE", true);
+      }
+
+      if (res.data.length === 0) {
+        commit("SET_FETCH_MORE", false);
       }
     });
   }

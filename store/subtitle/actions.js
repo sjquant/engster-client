@@ -19,9 +19,6 @@ export default {
   SEARCH_TRANSLATIONS({ commit }, { keyword, cursor = null, limit = 20 }) {
     commit("SET_KEYWORD", keyword);
     return translation.search({ keyword, cursor, limit }).then(res => {
-      if (res.data.length === 0) {
-        commit("SET_SEARCH_MORE", false);
-      }
       if (cursor) {
         commit("APPEND_SEARCH_LINES", res);
       } else {

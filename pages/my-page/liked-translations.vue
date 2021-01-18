@@ -6,7 +6,11 @@
       color="#1c3d5a"
       size="12px"
     />
-    <div v-infinite-scroll="fetchMoreLines">
+    <div
+      v-infinite-scroll="fetchMoreLines"
+      infinite-scroll-distance="100"
+      infinite-scroll-throttle-delay="500"
+    >
       <TranslationCard
         v-for="line in lines"
         :key="line.id"
@@ -43,11 +47,8 @@ export default {
     ...mapGetters("user", ["userid"])
   },
   methods: {
-    ...mapActions("mypage", [
-      "FETCH_LIKED_TRANSLATIONS",
-      "LIKE_TRANSLATION",
-      "UNLIKE_TRANSLATION"
-    ]),
+    ...mapActions("mypage", ["FETCH_LIKED_TRANSLATIONS"]),
+    ...mapActions("subtitle", ["LIKE_TRANSLATION", "UNLIKE_TRANSLATION"]),
     fetchMoreLines() {
       if (this.fetchMore && !this.loading) {
         this.loading = true;

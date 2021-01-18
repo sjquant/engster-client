@@ -6,7 +6,11 @@
       color="#1c3d5a"
       size="12px"
     />
-    <div v-infinite-scroll="fetchMoreLines">
+    <div
+      v-infinite-scroll="fetchMoreLines"
+      infinite-scroll-distance="100"
+      infinite-scroll-throttle-delay="500"
+    >
       <SubtitleCard
         v-for="line in lines"
         :key="line.id"
@@ -39,15 +43,12 @@ export default {
   },
   computed: {
     ...mapState("mypage", ["lines", "fetchMore"]),
-    ...mapGetters("user", ["userid"]),
-    ...mapGetters("mypage", ["likeLineCursor"])
+    ...mapGetters("mypage", ["likeLineCursor"]),
+    ...mapGetters("user", ["userid"])
   },
   methods: {
-    ...mapActions("mypage", [
-      "FETCH_LIKED_SUBTITLES",
-      "LIKE_SUBTITLE",
-      "UNLIKE_SUBTITLE"
-    ]),
+    ...mapActions("mypage", ["FETCH_LIKED_SUBTITLES"]),
+    ...mapActions("subtitle", ["LIKE_SUBTITLE", "UNLIKE_SUBTITLE"]),
     fetchMoreLines() {
       if (this.fetchMore && !this.loading) {
         this.loading = true;
