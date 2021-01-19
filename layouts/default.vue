@@ -32,10 +32,7 @@ export default {
 .body-container {
   display: flex;
   justify-content: center;
-  height: calc(100vh - 6.4rem);
   overflow: auto;
   padding-top: 2.4rem;
 }
 </style>
-
-

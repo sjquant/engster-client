@@ -50,16 +50,3 @@ img {
 input {
   font-family: inherit;
 }
-
-*::-webkit-scrollbar {
-  width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  border: none;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: $gray;
-}
