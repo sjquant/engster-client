@@ -1,5 +1,8 @@
 <template>
-  <button class="fb-sign-in-btn sign-in-btn" @click.prevent="socialSignin('facebook')">
+  <button
+    class="fb-sign-in-btn sign-in-btn"
+    @click.prevent="socialSignin('facebook')"
+  >
     <div>
       <img src="../../assets/images/facebook.svg" />
       <span>페이스북으로 로그인</span>
@@ -7,10 +10,18 @@
   </button>
 </template>
 <script>
-import { socialAuthMixin } from "../../mixins";
+import { mapMutations } from "vuex";
 
 export default {
-  mixins: [socialAuthMixin]
+  methods: {
+    ...mapMutations("user", ["SET_USER"]),
+    socialSignin(provider) {
+      return this.$auth.authenticate(provider).then(({ data }) => {
+        commit("SET_USER", data.user);
+        this.$router.push("/");
+      });
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
