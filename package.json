@@ -15,7 +15,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "include-media": "^1.4.9",
     "jwt-decode": "^2.2.0",
     "nuxt": "^2.0.0",
