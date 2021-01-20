@@ -10,7 +10,10 @@
     <SubtitleCard
       v-for="each in searchLines"
       :key="each.id"
-      :line="each"
+      :main-line="each.line"
+      :subtitle-id="each.id"
+      :detail="each"
+      :highlight="keyword"
       @like="updateLike"
     />
   </div>
@@ -18,8 +21,8 @@
 
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-import SubtitleCard from "~/components/subtitle/SubtitleCard.vue";
-import SearchSummary from "~/components/subtitle/SearchSummary.vue";
+import SubtitleCard from "../../components/common/SubtitleCard";
+import SearchSummary from "../../components/search/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import scrollMixin from "../../mixins/scroll.js";
 

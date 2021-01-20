@@ -11,12 +11,3 @@ export const socialAuthMixin = {
     }
   }
 };
-
-export const subtitleCardMixin = {
-  data() {
-    return {
-      liked: false,
-      translationOn: false
-    };
-  }
-};

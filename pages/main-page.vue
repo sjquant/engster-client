@@ -6,10 +6,13 @@
       color="#1c3d5a"
       size="12px"
     />
-    <RandomCard
+    <SubtitleCard
       v-for="each in searchLines"
       :key="each.id"
-      :line="each"
+      :main-line="each.line"
+      :sub-line="each.translation"
+      :subtitle-id="each.id"
+      :detail="each"
       @like="updateLike"
     />
   </div>
@@ -17,14 +20,12 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import RandomCard from "~/components/subtitle/RandomCard.vue";
-import SearchSummary from "~/components/subtitle/SearchSummary.vue";
+import SubtitleCard from "../components/common/SubtitleCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   components: {
-    RandomCard,
-    SearchSummary,
+    SubtitleCard,
     PulseLoader
   },
   data() {

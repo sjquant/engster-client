@@ -4,7 +4,7 @@
       class="input"
       ref="input"
       type="text"
-      :placeholder="placeholder"
+      placeholder="자신만의 번역을 추가해보세요!"
       :value="translation"
       @keyup.enter="createTranslation"
       @focus="checkLogin"
@@ -29,12 +29,7 @@ export default {
     };
   },
   props: {
-    placeholder: {
-      type: String
-    },
-    lineid: {
-      type: Number
-    }
+    lineid: Number
   },
   computed: {
     ...mapState("user", ["user"])

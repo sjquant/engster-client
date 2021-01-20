@@ -11,23 +11,25 @@
       infinite-scroll-distance="100"
       infinite-scroll-throttle-delay="500"
     >
-      <TranslationCard
+      <SubtitleCard
         v-for="line in lines"
         :key="line.id"
-        :line="line"
-        @like="updateLike"
+        :main-line="line.translation"
+        :sub-line="line.line"
+        :subtitle-id="line.lineid"
+        :detail="line"
       />
     </div>
   </div>
 </template>
 
 <script>
-import TranslationCard from "~/components/subtitle/TranslationCard.vue";
+import SubtitleCard from "../../components/common/SubtitleCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   components: {
-    TranslationCard,
+    SubtitleCard,
     PulseLoader
   },
   async fetch({ store, route }) {

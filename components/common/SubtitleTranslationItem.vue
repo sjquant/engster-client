@@ -43,11 +43,11 @@ export default {
     updateLike(lineid) {
       if (!this.isLiked) {
         this.LIKE_TRANSLATION(this.translation.id).then(() => {
-          this.$emit("translation-liked", this.translation.id);
+          this.$emit("like-translation", this.translation.id, true);
         });
       } else {
         this.UNLIKE_TRANSLATION(this.translation.id).then(() => {
-          this.$emit("translation-unliked", this.translation.id);
+          this.$emit("like-translation", this.translation.id, false);
         });
       }
     }
