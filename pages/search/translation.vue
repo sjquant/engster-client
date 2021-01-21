@@ -15,6 +15,7 @@
       :subtitle-id="each.lineid"
       :detail="each"
       :highlight="keyword"
+      :is-subtitle="false"
       @like="updateLike"
     />
   </div>

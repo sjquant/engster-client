@@ -21,10 +21,22 @@ export default {
     LikeIcon
   },
   props: {
-    liked: Boolean,
-    likeCount: Number,
-    translated: Boolean,
-    translationCount: Number
+    liked: {
+      type: Boolean,
+      default: false
+    },
+    likeCount: {
+      type: Number,
+      default: 0
+    },
+    translated: {
+      type: Boolean,
+      default: false
+    },
+    translationCount: {
+      type: Number,
+      default: 0
+    }
   }
 };
 </script>

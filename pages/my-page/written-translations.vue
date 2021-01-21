@@ -18,6 +18,7 @@
         :sub-line="line.line"
         :subtitle-id="line.lineid"
         :detail="line"
+        :is-subtitle="false"
       />
     </div>
   </div>
