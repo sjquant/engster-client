@@ -12,7 +12,6 @@
       :key="each.id"
       :main-line="each.translation"
       :sub-line="each.line"
-      :subtitle-id="each.lineid"
       :detail="each"
       :highlight="keyword"
       :is-subtitle="false"

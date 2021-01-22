@@ -78,7 +78,6 @@ module.exports = {
     }
   },
   plugins: [
-    { src: "~plugins/time-ago" },
     { src: "~plugins/vee-validate" },
     { src: "~plugins/v-click-outside" },
     { src: "~plugins/infinite-scroll", mode: "client" },

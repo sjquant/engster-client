@@ -11,7 +11,6 @@
       :key="each.id"
       :main-line="each.line"
       :sub-line="each.translation"
-      :subtitle-id="each.id"
       :detail="each"
       @like="updateLike"
     />

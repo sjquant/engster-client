@@ -6,11 +6,11 @@
       type="text"
       placeholder="자신만의 번역을 추가해보세요!"
       :value="translation"
-      @keyup.enter="createTranslation"
+      @keyup.enter="$emit('create-translation', translation)"
       @focus="checkLogin"
-      @input="inputTranslation"
+      @input="e => $emit('input', e.target.value)"
     />
-    <div class="plus-btn" @click="createTranslation">
+    <div class="plus-btn" @click="$emit('create-translation', translation)">
       <PlusIcon />
     </div>
   </div>
@@ -18,40 +18,24 @@
 
 <script>
 import PlusIcon from "../icons/PlusIcon.vue";
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
+
 export default {
   components: {
     PlusIcon
   },
-  data() {
-    return {
-      translation: ""
-    };
-  },
   props: {
-    lineid: Number
+    subtitleId: Number,
+    translation: String
   },
   computed: {
     ...mapState("user", ["user"])
   },
   methods: {
-    ...mapActions("subtitle", ["CREATE_TRANSLATION"]),
     checkLogin() {
       if (!this.user) {
         this.$router.push({ path: "/sign-in" });
       }
-    },
-    async createTranslation() {
-      if (this.translation) {
-        await this.CREATE_TRANSLATION({
-          lineid: this.lineid,
-          translation: this.translation
-        });
-      }
-      this.translation = "";
-    },
-    inputTranslation(e) {
-      this.translation = e.target.value;
     }
   }
 };

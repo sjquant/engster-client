@@ -1,12 +1,16 @@
 <template>
   <div>
-    <SubtitleTranslationInput ref="input" :lineid="lineid" />
+    <SubtitleTranslationInput
+      :subtitle-id="subtitleId"
+      :translation="translationValue"
+      v-model="translationValue"
+      @create-translation="createTranslation"
+    />
     <div class="card-container" v-if="translations">
       <SubtitleTranslationItem
-        :translation="each"
         v-for="each in translations"
         :key="each.id"
-        @like-translation="likeTranslation"
+        :translation="each"
       />
     </div>
   </div>
@@ -14,23 +18,46 @@
 <script>
 import SubtitleTranslationInput from "./SubtitleTranslationInput.vue";
 import SubtitleTranslationItem from "./SubtitleTranslationItem.vue";
-import { mapState, mapMutations } from "vuex";
+import { subtitle as subtitleAPI } from "../../api";
 
 export default {
   components: {
     SubtitleTranslationInput,
     SubtitleTranslationItem
   },
-  props: {
-    lineid: Number,
-    translations: Array
+  created() {
+    this.fetchTranslations();
   },
-  computed: {
-    ...mapState("subtitle", ["lineid2translations"])
+  props: {
+    subtitleId: Number
+  },
+  data() {
+    return {
+      translationValue: "",
+      translations: []
+    };
   },
   methods: {
-    likeTranslation(translationId, liked) {
-      this.$emit("like-translation", translationId, liked);
+    async fetchTranslations() {
+      const cursor = this.translations.slice(-1)[0] || null;
+      const { data } = await subtitleAPI.fetchTranslations(this.subtitleId, {
+        cursor
+      });
+      this.translations.push(...data);
+    },
+    async createTranslation(translation) {
+      if (translation) {
+        try {
+          const data = await subtitleAPI.createTranslation(
+            this.subtitleId,
+            this.translationValue
+          );
+          this.translations.unshift(data);
+          this.translationValue = "";
+        } catch (e) {
+          console.error(e);
+        }
+      }
     }
   }
 };
