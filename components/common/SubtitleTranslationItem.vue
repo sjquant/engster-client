@@ -3,13 +3,13 @@
     <span class="user">{{ translation.user.nickname }}</span>
     <div class="content">
       <span>{{ translation.translation }}</span>
-      <span class="like" v-show="translation.like_count > 0">
-        <LikeIcon :class="{ active: isLiked }" />
-        {{ translation.like_count }}
+      <span class="like" v-show="likeCount > 0">
+        <LikeIcon :class="{ active: liked }" />
+        {{ likeCount }}
       </span>
       <div class="action-box">
-        <span class="action" @click="updateLike(translation.id)">
-          <span v-if="!isLiked">좋아요</span>
+        <span class="action" @click="likeTrnaslation">
+          <span v-if="!liked">좋아요</span>
           <span v-else>좋아요취소</span>
         </span>
         <timeago
@@ -22,12 +22,26 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import LikeIcon from "../icons/LikeIcon.vue";
+import { translation as translationAPI } from "../../api";
 
 export default {
   components: {
     LikeIcon
+  },
+  created() {
+    this.likeCount = this.translation.like_count;
+    this.liked = this.translation.user_liked;
+  },
+  props: {
+    translation: Object
+  },
+  data() {
+    return {
+      liked: null,
+      likeCount: 0
+    };
   },
   computed: {
     ...mapGetters("user", ["userid"]),
@@ -35,20 +49,23 @@ export default {
       return this.translation.user_liked;
     }
   },
-  props: {
-    translation: Object
-  },
   methods: {
-    ...mapActions("subtitle", ["LIKE_TRANSLATION", "UNLIKE_TRANSLATION"]),
-    updateLike(lineid) {
-      if (!this.isLiked) {
-        this.LIKE_TRANSLATION(this.translation.id).then(() => {
-          this.$emit("like-translation", this.translation.id, true);
-        });
+    async _like(id) {
+      await translationAPI.like(id);
+      this.liked = true;
+      this.likeCount += 1;
+    },
+    async _unlike(id) {
+      await translationAPI.unlike(id);
+      this.liked = false;
+      this.likeCount -= 1;
+    },
+    async likeTrnaslation() {
+      const id = this.translation.id;
+      if (this.liked) {
+        await this._unlike(id);
       } else {
-        this.UNLIKE_TRANSLATION(this.translation.id).then(() => {
-          this.$emit("like-translation", this.translation.id, false);
-        });
+        await this._like(id);
       }
     }
   }

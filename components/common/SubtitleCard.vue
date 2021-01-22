@@ -6,6 +6,7 @@
     <CardActions
       :liked="liked"
       :likeCount="likeCount"
+      :translationCount="transCount"
       @like="likeLine"
       @open-translations="openTranslations"
     />
@@ -13,8 +14,6 @@
       v-if="translationsOpened"
       ref="transCard"
       :subtitle-id="subtitleId"
-      :translations="translations"
-      @like-translation="translationLiked"
     />
   </div>
 </template>
@@ -23,7 +22,6 @@
 import CardContentDetail from "./CardContentDetail.vue";
 import CardActions from "./CardActions.vue";
 import SubtitleTranslations from "./SubtitleTranslations.vue";
-import { mapState } from "vuex";
 import {
   subtitle as subtitleAPI,
   translation as translationAPI
@@ -38,9 +36,9 @@ export default {
   created() {
     this.likeCount = this.detail.like_count;
     this.liked = this.detail.user_liked;
+    this.transCount = this.detail.translation_count;
   },
   props: {
-    subtitleId: Number,
     mainLine: String,
     subLine: String,
     detail: Object,
@@ -61,11 +59,19 @@ export default {
   data() {
     return {
       liked: null,
-      likeCount: null,
+      likeCount: 0,
+      transCount: 0,
       translationsOpened: false
     };
   },
   computed: {
+    subtitleId() {
+      if (this.isSubtitle) {
+        return this.detail.id;
+      } else {
+        return this.detail.line_id;
+      }
+    },
     processedLine() {
       if (!this.highlight) return this.mainLine;
 
@@ -80,23 +86,30 @@ export default {
   },
   methods: {
     async _likeLine(id) {
-      if (this.isSubtitle) {
-        await subtitleAPI.like(id);
-      } else {
-        console.log("HI");
-        await translationAPI.like(id);
+      try {
+        if (this.isSubtitle) {
+          await subtitleAPI.like(id);
+        } else {
+          await translationAPI.like(id);
+        }
+        this.liked = true;
+        this.likeCount += 1;
+      } catch (e) {
+        console.error(e);
       }
-      this.liked = true;
-      this.likeCount += 1;
     },
     async _unlikeLine(id) {
-      if (this.isSubtitle) {
-        await subtitleAPI.unlike(id);
-      } else {
-        await translationAPI.unlike(id);
+      try {
+        if (this.isSubtitle) {
+          await subtitleAPI.unlike(id);
+        } else {
+          await translationAPI.unlike(id);
+        }
+        this.liked = false;
+        this.likeCount -= 1;
+      } catch (e) {
+        console.error(e);
       }
-      this.liked = false;
-      this.likeCount -= 1;
     },
     async likeLine() {
       const id = this.detail.id;

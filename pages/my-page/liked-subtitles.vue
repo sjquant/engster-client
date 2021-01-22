@@ -15,7 +15,6 @@
         v-for="line in lines"
         :key="line.id"
         :main-line="line.line"
-        :subtitle-id="line.id"
         :detail="line"
       />
     </div>

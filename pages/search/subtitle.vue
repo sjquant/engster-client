@@ -11,7 +11,6 @@
       v-for="each in searchLines"
       :key="each.id"
       :main-line="each.line"
-      :subtitle-id="each.id"
       :detail="each"
       :highlight="keyword"
       @like="updateLike"
