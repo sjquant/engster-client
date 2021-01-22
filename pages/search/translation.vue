@@ -7,10 +7,14 @@
       size="12px"
     />
     <SearchSummary :keyword="keyword" :count="searchCount" />
-    <TranslationCard
+    <SubtitleCard
       v-for="each in searchLines"
       :key="each.id"
-      :line="each"
+      :main-line="each.translation"
+      :sub-line="each.line"
+      :detail="each"
+      :highlight="keyword"
+      :is-subtitle="false"
       @like="updateLike"
     />
   </div>
@@ -18,14 +22,14 @@
 
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-import TranslationCard from "~/components/subtitle/TranslationCard.vue";
-import SearchSummary from "~/components/subtitle/SearchSummary.vue";
+import SubtitleCard from "../../components/common/SubtitleCard.vue";
+import SearchSummary from "../../components/search/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import scrollMixin from "../../mixins/scroll.js";
 
 export default {
   components: {
-    TranslationCard,
+    SubtitleCard,
     SearchSummary,
     PulseLoader
   },

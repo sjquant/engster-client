@@ -14,15 +14,15 @@
       <SubtitleCard
         v-for="line in lines"
         :key="line.id"
-        :line="line"
-        @like="updateLike"
+        :main-line="line.line"
+        :detail="line"
       />
     </div>
   </div>
 </template>
 
 <script>
-import SubtitleCard from "~/components/subtitle/SubtitleCard";
+import SubtitleCard from "../../components/common/SubtitleCard";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
