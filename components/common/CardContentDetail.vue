@@ -18,7 +18,6 @@ export default {
     KeywordTag
   },
   props: {
-    title: String,
     detail: Object,
     year: {
       type: String,
@@ -27,8 +26,10 @@ export default {
   },
   computed: {
     contentTitle() {
-      const title = this.year ? `${this.title} (${this.year})` : this.title;
-      return title;
+      const { content_title, content_year } = this.detail;
+      return content_year
+        ? `${content_title} (${content_year})`
+        : content_title;
     }
   }
 };
