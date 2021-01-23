@@ -6,6 +6,5 @@ const nuxt = new Nuxt({ ...config, dev: false });
 
 module.exports = (req, res) =>
   nuxt.ready().then(() => {
-    console.log("Hi");
     return nuxt.server.app(req, res);
   });
