@@ -10,16 +10,10 @@ package:
   individually: true
   excludeDevDependencies: true
 
-functions:
-  nuxt:
-    handler: index.nuxt
-    events:
-      - http: ANY /
-      - http: ANY /{proxy+}
-
 plugins:
   - serverless-apigw-binary
   - serverless-domain-manager
+  - serverless-plugin-warmup
 
 custom:
   apigwBinary:
@@ -30,3 +24,17 @@ custom:
     basePath: ""
     stage: prod
     createRoute53Record: true
+  warmup:
+    default:
+      enabled: true
+      events:
+        - schedule: "cron(0/5 7-23 ? * MON-SUN *)"
+        - schedule: "cron(0/5 0-2 ? * MON-SUN *)"
+      concurrency: 1
+
+functions:
+  nuxt:
+    handler: index.nuxt
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}

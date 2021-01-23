@@ -10285,6 +10285,11 @@ serverless-http@^2.6.1:
   optionalDependencies:
     "@types/aws-lambda" "^8.10.56"
 
+serverless-plugin-warmup@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/serverless-plugin-warmup/-/serverless-plugin-warmup-5.0.0.tgz#6b09f85de41830fd3fcfc483b1d22c15e9f30949"
+  integrity sha512-sjhmBKct+IENhyBDCWGuGUHVyvuS7FzU9EmDQPoGMIobLhc/uD7+xTWCdu6plGS0ENoBnJelgwxsaEmro6hHiw==
+
 serverless@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/serverless/-/serverless-2.19.0.tgz#c464f0abac97f1a2da9d009cac17541e8b78050d"
