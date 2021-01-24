@@ -76,6 +76,18 @@ export function createRouter() {
         component: () =>
           import("~/pages/my-page/profile-edit.vue").then(m => m.default || m),
         name: "mypage-profileEdit"
+      },
+      {
+        path: "/privacy/",
+        component: () =>
+          import("~/pages/privacy.vue").then(m => m.default || m),
+        name: "privacy"
+      },
+      {
+        path: "/service-terms/",
+        component: () =>
+          import("~/pages/service-terms.vue").then(m => m.default || m),
+        name: "service-terms"
       }
     ]
   });

@@ -75,7 +75,7 @@ export default {
           nickname: this.nickname,
           password: this.password1
         }).then(() => {
-          this.$router.push("/");
+          this.$router.replace("/");
         });
       } else {
         console.log("Validation Failed");

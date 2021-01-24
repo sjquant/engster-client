@@ -55,7 +55,7 @@ export default {
           email: this.email,
           password: this.password
         }).then(() => {
-          this.$router.push("/");
+          this.$router.replace("/");
         });
       } else {
         console.log("Validation Failed");
