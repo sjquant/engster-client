@@ -53,6 +53,7 @@ export default {
   background: #fff;
   top: 0;
   align-items: center;
+  z-index: 100;
 
   .content {
     display: flex;
