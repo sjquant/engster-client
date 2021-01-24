@@ -29,7 +29,7 @@ export default {
     ...mapActions("user", ["SIGNOUT"]),
     logout() {
       this.SIGNOUT();
-      this.$router.push("/");
+      this.$router.push("/").catch(e => {});
     },
     closeMenu() {
       this.$emit("closeMenu");
