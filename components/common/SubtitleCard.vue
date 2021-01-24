@@ -120,6 +120,7 @@ export default {
       }
     },
     openTranslations() {
+      if (this.transCount === 0) return;
       this.translationsOpened = !this.translationsOpened;
     }
   }
