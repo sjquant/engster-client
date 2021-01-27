@@ -1,4 +1,5 @@
 import { mapMutations } from "vuex";
+import { request } from "../utils.js";
 
 export const socialAuthMixin = {
   methods: {
@@ -6,6 +7,7 @@ export const socialAuthMixin = {
     socialSignin(provider) {
       this.$auth.authenticate(provider).then(({ data }) => {
         this.SET_USER(data.user);
+        request.setCSRFHeader({});
         this.$router.push("/");
       });
     }

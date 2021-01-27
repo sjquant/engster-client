@@ -26,7 +26,7 @@ export default {
   },
   refreshToken() {
     return request.post("/auth/refresh-token").then(({ data }) => {
-      request.setCSRFHeader();
+      request.setCSRFHeader({});
       return data;
     });
   },
