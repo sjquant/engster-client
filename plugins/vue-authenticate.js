@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueAuthenticate from "vue-authenticate";
 
 Vue.use(VueAuthenticate, {
+  withCredentials: true,
   baseUrl: process.env.BASE_URL,
   storageType: null,
   tokenPath: "token",
