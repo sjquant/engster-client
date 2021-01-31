@@ -30,7 +30,7 @@ import BaseInput from "../components/common/BaseInput.vue";
 import SocialLoginGroup from "../components/sign/SocialLoginGroup.vue";
 import { mapActions } from "vuex";
 export default {
-  layout: "wrap-center",
+  layout: "center-with-logo",
   components: {
     SignForm,
     BaseInput,

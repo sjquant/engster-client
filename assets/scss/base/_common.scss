@@ -2,6 +2,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
+  > .center-container {
+    max-width: 78rem;
+    margin-top: 9.6rem;
+  }
 }
 
 .loading-bar {

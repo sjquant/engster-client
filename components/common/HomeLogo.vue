@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/">
+  <nuxt-link to="/" class="logo-container">
     <FullLogoIcon />
   </nuxt-link>
 </template>

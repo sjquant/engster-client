@@ -169,7 +169,7 @@
 </template>
 <script>
 export default {
-  layout: "wrap-center"
+  layout: "center-without-logo"
 };
 </script>
 <style>
