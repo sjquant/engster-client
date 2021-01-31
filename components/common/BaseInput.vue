@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ label }}</label>
+    <label class="label">{{ label }}</label>
     <input
       class="base-input"
       v-validate="validate"
@@ -11,7 +11,9 @@
       @input="$emit('input', $event.target.value)"
       ref="input"
     />
-    <div class="error-message" v-show="errors.collect(label).length > 0">{{ errors.first(label) }}</div>
+    <div class="error-message" v-show="errors.collect(label).length > 0">
+      {{ errors.first(label) }}
+    </div>
   </div>
 </template>
 <script>
@@ -46,7 +48,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~utils";
+
+.label {
+  display: block;
+}
+
 input.base-input {
+  width: 100%;
   margin-top: 0.8rem;
   margin-bottom: 1.6rem;
   padding: 0 0.8rem;

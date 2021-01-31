@@ -16,7 +16,9 @@
       v-model="password"
     />
     <div class="block-link">
-      <a href="#" class="lost-password-btn">비밀번호를 잊으셨나요?</a>
+      <nuxt-link to="/reset-password/request" class="lost-password-btn"
+        >비밀번호를 잊으셨나요?</nuxt-link
+      >
       <nuxt-link to="/sign-up" class="sign-up-btn">회원 가입하기</nuxt-link>
     </div>
     <button class="sign-in-btn" @click.prevent="signin">로그인</button>

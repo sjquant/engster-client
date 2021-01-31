@@ -8,13 +8,19 @@
 <style lang="scss" scoped>
 @import "~utils";
 .sign-container {
-  width: 48rem;
-  height: 40rem;
+  width: 40rem;
+  padding: 0 1.6rem;
+
+  @include media("<=xs") {
+    width: 32rem;
+  }
+
+  @include media(">=md") {
+    width: 48rem;
+  }
 
   .sign-form {
     width: 100%;
-    margin-top: 4.8rem;
-    padding: 0 1.6rem;
 
     /deep/ .base-input {
       width: 100%;

@@ -1,3 +1,4 @@
+$x-small-w: 320px;
 $small-w: 376px;
 $medium-w: 768px;
 $large-w: 1024px;
@@ -7,6 +8,7 @@ $xxx-large-w: 1600px;
 $xxxx-large-w: 1920px;
 
 $breakpoints: (
+  xs: $x-small-w,
   sm: $small-w,
   md: $medium-w,
   lg: $large-w,
