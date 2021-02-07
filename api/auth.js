@@ -37,5 +37,20 @@ export default {
         new_password: newPassword
       })
       .then(({ data }) => data);
+  },
+  requestResettingLostPassword(email) {
+    return request
+      .post("/auth/reset-lost-password/request", {
+        email: email
+      })
+      .then(({ data }) => data);
+  },
+  resetLostPassword({ token, password }) {
+    return request
+      .post("/auth/reset-lost-password", {
+        token,
+        password
+      })
+      .then(({ data }) => data);
   }
 };

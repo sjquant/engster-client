@@ -2,21 +2,25 @@
   <SignForm>
     <BaseInput
       ref="emailInput"
+      v-validate="'required|email'"
       label="이메일"
-      validate="required"
       type="email"
       placeholder="example@naver.com"
       v-model="email"
+      :error="errors.first('이메일')"
     />
     <BaseInput
       label="비밀번호"
-      validate="required"
+      v-validate="'required|min:8'"
       type="password"
       placeholder="********"
       v-model="password"
+      :error="errors.first('비밀번호')"
     />
     <div class="block-link">
-      <a href="#" class="lost-password-btn">비밀번호를 잊으셨나요?</a>
+      <nuxt-link to="/reset-lost-password/request" class="lost-password-btn"
+        >비밀번호를 잊으셨나요?</nuxt-link
+      >
       <nuxt-link to="/sign-up" class="sign-up-btn">회원 가입하기</nuxt-link>
     </div>
     <button class="sign-in-btn" @click.prevent="signin">로그인</button>
@@ -30,7 +34,7 @@ import BaseInput from "../components/common/BaseInput.vue";
 import SocialLoginGroup from "../components/sign/SocialLoginGroup.vue";
 import { mapActions } from "vuex";
 export default {
-  layout: "wrap-center",
+  layout: "center-with-logo",
   components: {
     SignForm,
     BaseInput,
@@ -49,17 +53,14 @@ export default {
   methods: {
     ...mapActions("user", ["SIGNIN"]),
     async signin() {
-      let validated = await this.$validator.validateAll();
-      if (validated) {
-        this.SIGNIN({
-          email: this.email,
-          password: this.password
-        }).then(() => {
-          this.$router.replace("/");
-        });
-      } else {
-        console.log("Validation Failed");
-      }
+      const validated = await this.$validator.validateAll();
+      if (!validated) return;
+
+      await this.SIGNIN({
+        email: this.email,
+        password: this.password
+      });
+      this.$router.replace("/");
     }
   }
 };

@@ -1,32 +1,26 @@
 <template>
   <div class="sign-container">
-    <HomeLogo />
     <form class="sign-form">
       <slot></slot>
     </form>
   </div>
 </template>
-<script>
-import HomeLogo from "../common/HomeLogo.vue";
-export default {
-  components: {
-    HomeLogo
-  }
-};
-</script>
 <style lang="scss" scoped>
 @import "~utils";
 .sign-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 48rem;
-  height: 40rem;
-  padding-top: 9.6rem;
+  width: 40rem;
+  padding: 0 1.6rem;
+
+  @include media("<=xs") {
+    width: 32rem;
+  }
+
+  @include media(">=md") {
+    width: 48rem;
+  }
+
   .sign-form {
     width: 100%;
-    margin-top: 4.8rem;
-    padding: 0 1.6rem;
 
     /deep/ .base-input {
       width: 100%;
