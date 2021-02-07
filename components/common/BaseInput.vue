@@ -3,7 +3,6 @@
     <label class="label">{{ label }}</label>
     <input
       class="base-input"
-      v-validate="validate"
       :type="type"
       :name="label"
       :placeholder="placeholder"
@@ -11,13 +10,22 @@
       @input="$emit('input', $event.target.value)"
       ref="input"
     />
-    <div class="error-message" v-show="errors.collect(label).length > 0">
-      {{ errors.first(label) }}
+    <div class="error-message">
+      {{ error }}
     </div>
   </div>
 </template>
 <script>
 export default {
+  $_veeValidate: {
+    value() {
+      console.log(this.value);
+      return this.value;
+    },
+    name() {
+      return this.label;
+    }
+  },
   props: {
     label: {
       type: String,
@@ -42,6 +50,10 @@ export default {
     autocomplete: {
       type: String,
       default: "on"
+    },
+    error: {
+      type: String,
+      default: ""
     }
   }
 };

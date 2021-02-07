@@ -1,20 +1,27 @@
 <template>
-  <div class="reset-container">
+  <div class="reset-request-container">
     <div class="container__wrapper">
       <h1>새로운 비밀번호를 설정해주세요</h1>
-      <p>
-        계정에 연결된 이메일 주소를 입력하면 암호를 재설정할 수 있는 <br />
-        링크를 이메일로 보내드립니다.
-      </p>
+      <p>8자리 이상의 새로운 비밀번호를 입력해주세요.</p>
       <BaseInput
-        ref="emailInput"
-        label="이메일"
-        validate="required"
-        type="email"
-        placeholder="example@naver.com"
-        v-model="email"
+        label="새 비밀번호"
+        v-validate="'required|min:8'"
+        type="password"
+        placeholder="********"
+        v-model="password1"
+        :error="errors.first('새 비밀번호')"
       />
-      <button class="submit-btn" @click.prevent="submit">제출하기</button>
+      <BaseInput
+        label="새 비밀번호 확인"
+        v-validate="'required'"
+        type="password"
+        placeholder="********"
+        v-model="password2"
+        :error="errors.first('새 비밀번호 확인')"
+      />
+      <button class="submit-btn" @click.prevent="submit">
+        비밀번호 재설정
+      </button>
     </div>
   </div>
 </template>
@@ -27,11 +34,14 @@ export default {
   },
   data() {
     return {
-      email: ""
+      password1: "",
+      password2: ""
     };
   },
   methods: {
-    submit() {
+    async submit() {
+      const validated = await this.$validator.validate("새 비밀번호");
+      if (!validated) return;
       alert("제출완료");
     }
   }
@@ -41,9 +51,9 @@ export default {
 <style lang="scss" scoped>
 @import "~utils";
 
-.reset-container {
-  display: flex;
+.reset-request-container {
   width: 100%;
+  display: flex;
   justify-content: center;
   margin-top: 8rem;
   padding: 1.6rem;

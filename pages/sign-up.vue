@@ -2,36 +2,40 @@
   <SignForm>
     <BaseInput
       id="email-fieled"
-      validate="required|email"
+      v-validate="'required|email'"
       type="email"
       label="이메일"
       placeholder="example@naver.com"
       autocomplete="new-password"
       v-model="email"
+      :error="errors.first('이메일')"
     />
     <BaseInput
-      validate="required"
-      type="nickname"
+      v-validate="'required|min:2'"
+      type="text"
       label="닉네임"
       placeholder="잉스터"
       autocomplete="new-password"
       v-model="nickname"
+      :error="errors.first('닉네임')"
     />
     <BaseInput
-      validate="required|min:8"
+      v-validate="'required|min:8'"
       label="비밀번호"
       type="password"
       placeholder="********"
       autocomplete="new-password"
       v-model="password1"
+      :error="errors.first('비밀번호')"
     />
     <BaseInput
-      validate="required"
+      v-validate="'required'"
       label="비밀번호 확인"
       type="password"
       placeholder="********"
       autocomplete="new-password"
       v-model="password2"
+      :error="errors.first('비밀번호 확인')"
     />
     <button class="sign-in-btn sign-up-btn" @click.prevent="signup">
       가입하기
@@ -68,18 +72,14 @@ export default {
   methods: {
     ...mapActions("user", ["SIGNUP"]),
     async signup() {
-      let validated = await this.$validator.validateAll();
-      if (validated) {
-        this.SIGNUP({
-          email: this.email,
-          nickname: this.nickname,
-          password: this.password1
-        }).then(() => {
-          this.$router.replace("/");
-        });
-      } else {
-        console.log("Validation Failed");
-      }
+      const validated = await this.$validator.validateAll();
+      if (!validated) return;
+      await this.SIGNUP({
+        email: this.email,
+        nickname: this.nickname,
+        password: this.password1
+      });
+      this.$router.replace("/");
     }
   }
 };

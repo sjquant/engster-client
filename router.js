@@ -27,18 +27,18 @@ export function createRouter() {
         name: "signIn"
       },
       {
-        path: "/reset-password",
+        path: "/reset-lost-password",
         component: () =>
-          import("./pages/reset-password.vue").then(m => m.default || m),
-        name: "resetPassword"
+          import("./pages/reset-lost-password.vue").then(m => m.default || m),
+        name: "resetLostPassword"
       },
       {
-        path: "/reset-password/request",
+        path: "/reset-lost-password/request",
         component: () =>
-          import("./pages/reset-password-request.vue").then(
+          import("./pages/reset-lost-password-request.vue").then(
             m => m.default || m
           ),
-        name: "resetPasswordRequest"
+        name: "resetLostPasswordRequest"
       },
       {
         path: "/search/subtitle",
