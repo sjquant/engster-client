@@ -10,10 +10,11 @@
         placeholder="********"
         v-model="password1"
         :error="errors.first('새 비밀번호')"
+        ref="password"
       />
       <BaseInput
         label="새 비밀번호 확인"
-        v-validate="'required'"
+        v-validate="'required|confirmed:password'"
         type="password"
         placeholder="********"
         v-model="password2"
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { auth } from "../api";
 import BaseInput from "../components/common/BaseInput.vue";
 export default {
   components: {
@@ -40,9 +42,18 @@ export default {
   },
   methods: {
     async submit() {
-      const validated = await this.$validator.validate("새 비밀번호");
+      const validated = await this.$validator.validateAll();
       if (!validated) return;
-      alert("제출완료");
+
+      const token = this.$route.query.t;
+      const password = this.password1;
+      try {
+        await auth.resetLostPassword({ token, password });
+        this.$router.push({ name: "signIn" });
+      } catch (e) {
+        console.error(e);
+        alert("문제가 발생했습니다.");
+      }
     }
   }
 };

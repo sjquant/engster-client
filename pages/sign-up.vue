@@ -27,9 +27,10 @@
       autocomplete="new-password"
       v-model="password1"
       :error="errors.first('비밀번호')"
+      ref="password"
     />
     <BaseInput
-      v-validate="'required'"
+      v-validate="'required|confirmed:password'"
       label="비밀번호 확인"
       type="password"
       placeholder="********"

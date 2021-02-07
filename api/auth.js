@@ -44,5 +44,13 @@ export default {
         email: email
       })
       .then(({ data }) => data);
+  },
+  resetLostPassword({ token, password }) {
+    return request
+      .post("/auth/reset-lost-password", {
+        token,
+        password
+      })
+      .then(({ data }) => data);
   }
 };
