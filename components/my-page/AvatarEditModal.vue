@@ -17,7 +17,7 @@
       </button>
       <div class="command-btn-container">
         <button class="cancel-btn" @click="closeModal">취소</button>
-        <button class="save-btn" @click="savePhoto">저장</button>
+        <button class="save-btn" @click="uploadPhoto">저장</button>
       </div>
     </div>
   </modal>
@@ -27,7 +27,7 @@
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import { mapState, mapActions } from "vuex";
-import { image } from "../../api";
+import { uploadFile } from "../../core/file-upload.js";
 
 export default {
   components: { VueCropper },
@@ -76,30 +76,32 @@ export default {
       if (this.user && this.user.photo && this.user.photo !== "") {
         this.imgSrc = this.user.photo;
       } else {
-        this.imgSrc = require("~/assets/images/null-avatar.png");
+        this.imgSrc = require("../../assets/images/null-avatar.png");
       }
     },
     closeModal() {
       this.cropping = false;
       this.$modal.hide("avatar-edit-modal");
     },
-    savePhoto() {
+    async uploadPhoto() {
       if (this.cropping) {
-        let data;
-        let cropped = this.$refs.cropper
+        this.$refs.cropper
           .getCroppedCanvas({
             width: 196,
             height: 196
           })
           .toBlob(
-            blob => {
-              const formData = new FormData();
-              formData.append("photo", blob);
-              data = image.uploadPhoto(formData).then(data => {
-                this.UPDATE_PROFILE({ photo: data.path }).then(() => {
-                  this.closeModal();
-                });
+            async blob => {
+              // Blob as file
+              blob.lastModifiedDate = new Date();
+              blob.name = "image.png";
+              const imagePath = await uploadFile({
+                file: blob,
+                filetype: "image",
+                app: "avatar"
               });
+              await this.UPDATE_PROFILE({ photo: imagePath });
+              this.closeModal();
             },
             "image/png",
             1
