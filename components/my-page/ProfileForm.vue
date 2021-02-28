@@ -14,12 +14,15 @@
         />
       </div>
       <EditInput
+        ref="nicknameInput"
         :label="'닉네임'"
-        :value.sync="nickname"
-        :validate="'required'"
+        :error="errors.first('닉네임')"
+        v-model="nickname"
+        v-validate="'required|min:2|max:12'"
         @save="updateNickname"
+        @cancel="cancleNickname"
       />
-      <ProfileFormPasswordInput @save="updatePassword" />
+      <ProfileFormPasswordInput />
     </form>
     <client-only>
       <AvatarEditModal />
@@ -34,7 +37,6 @@ import EditInput from "../common/EditInput.vue";
 import ProfileFormPasswordInput from "./ProfileFormPasswordInput.vue";
 import AvatarEditModal from "./AvatarEditModal.vue";
 import { mapState, mapActions } from "vuex";
-import { auth } from "~/api";
 
 export default {
   components: {
@@ -48,29 +50,19 @@ export default {
     if (!this.user) {
       this.$router.push("/");
     }
+    this.nickname = this.user?.nickname;
   },
   data() {
     return {
-      tNickname: null,
-      profileIconHovered: false
+      profileIconHovered: false,
+      nickname: ""
     };
   },
   computed: {
-    ...mapState("user", ["user"]),
-    nickname: {
-      set(value) {
-        this.tNickname = value;
-      },
-      get() {
-        if (typeof this.tNickname === "string") {
-          return this.tNickname;
-        } else {
-          return this.user ? this.user.nickname : "";
-        }
-      }
-    }
+    ...mapState("user", ["user"])
   },
   methods: {
+    ...mapActions("common", ["ADD_ALERT"]),
     ...mapActions("user", ["UPDATE_PROFILE"]),
     openAvatarEditModal() {
       this.$modal.show("avatar-edit-modal");
@@ -80,15 +72,32 @@ export default {
         this.UPDATE_PROFILE({ email });
       }
     },
-    updateNickname(nickname) {
-      if (nickname !== this.user.nickname) {
-        this.UPDATE_PROFILE({ nickname });
+    async updateNickname(nickname) {
+      const validated = await this.$validator.validate("닉네임");
+      if (!validated) {
+        this.ADD_ALERT({ msg: "올바른 닉네임을 입력해주세요.", type: "error" });
+        return;
       }
+
+      if (nickname == this.user.nickname) {
+        this.$refs.nicknameInput.close();
+        return;
+      }
+
+      try {
+        await this.UPDATE_PROFILE({ nickname });
+        this.ADD_ALERT({
+          msg: "닉네임이 업데이트 되었습니다.",
+          type: "success"
+        });
+      } catch (e) {
+        this.ADD_ALERT({ msg: "올바른 닉네임을 입력해주세요.", type: "error" });
+        this.nickname = this.user.nickname;
+      }
+      this.$refs.nicknameInput.close();
     },
-    updatePassword({ originalPassword, newPassword }) {
-      auth.resetPassword({ originalPassword, newPassword }).catch(() => {
-        alert("비밀번호가 틀립니다.");
-      });
+    cancleNickname() {
+      this.nickname = this.user.nickname;
     }
   }
 };

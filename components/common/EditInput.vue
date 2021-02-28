@@ -1,40 +1,48 @@
 <template>
-  <section class="container" :class="{editable: editable}">
+  <section class="container" :class="{ editable: editable }">
     <div v-show="!editable">
       <label>{{ label }}</label>
       <div class="input-container">
         <span>{{ value }}</span>
-        <button @click.prevent="editable=true">수정</button>
+        <button @click.prevent="editable = true">수정</button>
       </div>
     </div>
     <div v-show="editable">
-      <slot name="input">
-        <label>{{ label }}</label>
-        <div class="input-container">
-          <div>
-            <input
-              v-validate="validate"
-              :type="inputType"
-              :name="label"
-              :placeholder="placeholder"
-              :value="value"
-              @input="$emit('update:value', $event.target.value)"
-              ref="input"
-            />
+      <client-only>
+        <slot name="input">
+          <label>{{ label }}</label>
+          <div class="input-container">
+            <div>
+              <input
+                :type="inputType"
+                :name="label"
+                :placeholder="placeholder"
+                :value="value"
+                @input="$emit('input', $event.target.value)"
+                ref="input"
+              />
+            </div>
+            <button class="cancel-btn" @click.prevent="cancel">취소</button>
+            <button class="save-btn" @click.prevent="save">저장</button>
           </div>
-          <button class="cancel-btn" @click.prevent="cancel">취소</button>
-          <button class="save-btn" @click.prevent="save">저장</button>
-        </div>
-        <div
-          class="error-message"
-          v-show="errors.collect(label).length > 0"
-        >{{ errors.first(label) }}</div>
-      </slot>
+          <div class="error-message">
+            {{ error }}
+          </div>
+        </slot>
+      </client-only>
     </div>
   </section>
 </template>
 <script>
 export default {
+  $_veeValidate: {
+    value() {
+      return this.value;
+    },
+    name() {
+      return this.label;
+    }
+  },
   props: {
     label: {
       type: String,
@@ -52,7 +60,7 @@ export default {
       type: String,
       default: "text"
     },
-    validate: {
+    error: {
       type: String,
       default: ""
     }
@@ -64,15 +72,14 @@ export default {
   },
   methods: {
     async save() {
-      let validated = await this.$validator.validateAll();
-      if (validated) {
-        this.$emit("save", this.$refs.input.value);
-        this.editable = false;
-      }
+      this.$emit("save", this.$refs.input.value);
     },
     cancel() {
       this.editable = false;
-      this.$emit("update:value", null);
+      this.$emit("cancel", this.$refs.input.value);
+    },
+    close() {
+      this.editable = false;
     }
   }
 };

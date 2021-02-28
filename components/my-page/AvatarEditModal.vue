@@ -52,11 +52,12 @@ export default {
     ...mapState("user", ["user"])
   },
   methods: {
+    ...mapActions("common", ["ADD_ALERT"]),
     ...mapActions("user", ["UPDATE_PROFILE"]),
     setImage(e) {
       const file = e.target.files[0];
       if (file.type.indexOf("image/") === -1) {
-        alert("Please select an image file");
+        this.ADD_ALERT({ msg: "이미지 파일을 선택해주세요.", type: "error" });
         return;
       }
       if (typeof FileReader === "function") {
@@ -85,27 +86,34 @@ export default {
     },
     async uploadPhoto() {
       if (this.cropping) {
-        this.$refs.cropper
-          .getCroppedCanvas({
-            width: 196,
-            height: 196
-          })
-          .toBlob(
-            async blob => {
-              // Blob as file
-              blob.lastModifiedDate = new Date();
-              blob.name = "image.png";
-              const imagePath = await uploadFile({
-                file: blob,
-                filetype: "image",
-                app: "avatar"
-              });
-              await this.UPDATE_PROFILE({ photo: imagePath });
-              this.closeModal();
-            },
-            "image/png",
-            1
-          );
+        try {
+          this.$refs.cropper
+            .getCroppedCanvas({
+              width: 196,
+              height: 196
+            })
+            .toBlob(
+              async blob => {
+                // Blob as file
+                blob.lastModifiedDate = new Date();
+                blob.name = "image.png";
+                const imagePath = await uploadFile({
+                  file: blob,
+                  filetype: "image",
+                  app: "avatar"
+                });
+                await this.UPDATE_PROFILE({ photo: imagePath });
+                this.closeModal();
+              },
+              "image/png",
+              1
+            );
+        } catch (e) {
+          this.ADD_ALERT({
+            msg: "사진 업로드에 실패하였습니다.",
+            type: "error"
+          });
+        }
       }
     }
   }

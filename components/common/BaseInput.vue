@@ -19,7 +19,6 @@
 export default {
   $_veeValidate: {
     value() {
-      console.log(this.value);
       return this.value;
     },
     name() {
