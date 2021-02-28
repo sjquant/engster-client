@@ -17,7 +17,9 @@
           <div
             class="error-message"
             v-show="errors.collect('기존 비밀번호').length > 0"
-          >{{ errors.first('기존 비밀번호') }}</div>
+          >
+            {{ errors.first("기존 비밀번호") }}
+          </div>
           <div class="password-input-container">
             <label>비밀번호 (8자 이상)</label>
             <input
@@ -32,7 +34,9 @@
           <div
             class="error-message"
             v-show="errors.collect('비밀번호').length > 0"
-          >{{ errors.first('비밀번호') }}</div>
+          >
+            {{ errors.first("비밀번호") }}
+          </div>
           <div class="password-input-container">
             <label>비밀번호 확인</label>
             <input
@@ -47,11 +51,15 @@
           <div
             class="error-message"
             v-show="errors.collect('비밀번호 확인').length > 0"
-          >{{ errors.first('비밀번호 확인') }}</div>
+          >
+            {{ errors.first("비밀번호 확인") }}
+          </div>
         </div>
         <div class="btn-wrapper">
           <button class="cancel-btn" @click.prevent="cancel">취소</button>
-          <button class="save-btn" @click.prevent="updatePassword">저장</button>
+          <button class="save-btn" @click.prevent="updatePassword">
+            저장
+          </button>
         </div>
       </form>
     </template>
@@ -60,6 +68,8 @@
 
 <script>
 import EditInput from "../common/EditInput.vue";
+import { auth } from "~/api";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -75,6 +85,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("common", ["ADD_ALERT"]),
     async updatePassword() {
       this.passwordValue = "**********";
       let validated = await this.$validator.validateAll();
@@ -82,14 +93,26 @@ export default {
         this.originalPassword !== this.newPassword &&
         this.newPassword === this.newPassword2;
       if (validated && paswordMatched) {
-        this.$emit("save", {
-          originalPassword: this.originalPassword,
-          newPassword: this.newPassword
-        });
+        try {
+          await auth.resetPassword({
+            originalPassword: this.originalPassword,
+            newPassword: this.newPassword
+          });
+          this.ADD_ALERT({
+            msg: "비밀번호를 성공적으로 변경하였습니다.",
+            type: "success"
+          });
+        } catch (e) {
+          this.ADD_ALERT({
+            msg: "잘못된 비밀번호를 입력했습니다.",
+            type: "error"
+          });
+          return;
+        }
         this.originalPassword = "";
         this.newPassword = "";
         this.newPassword2 = "";
-        this.$refs.editInput.editable = false;
+        this.$refs.editInput.close();
       }
     },
     cancel() {

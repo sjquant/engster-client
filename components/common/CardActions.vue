@@ -13,7 +13,6 @@
 <script>
 import PencilIcon from "../icons/PencilIcon.vue";
 import LikeIcon from "../icons/LikeIcon.vue";
-import { mapMutations, mapActions } from "vuex";
 
 export default {
   components: {
