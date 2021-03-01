@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions } from "vuex";
 import SubtitleCard from "../components/common/SubtitleCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
@@ -32,7 +32,7 @@ export default {
       loading: false
     };
   },
-  fetch({ store, query }) {
+  fetch({ store }) {
     return store.dispatch("subtitle/FETCH_RANDOM_SUBTITLES");
   },
   computed: {

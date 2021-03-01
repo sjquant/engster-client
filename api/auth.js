@@ -25,8 +25,17 @@ export default {
       });
   },
   refreshToken() {
-    return request.post("/auth/refresh-token").then(({ data }) => {
+    return request.post("/auth/refresh-token").then(({ data, headers }) => {
+      request.setCookieHeader(headers["set-cookie"]); // For refreshing token on ssr
       request.setCSRFHeader({});
+      return data;
+    });
+  },
+  signOut() {
+    return request.post("/auth/sign-out").then(({ data }) => data);
+  },
+  validateToken() {
+    return request.post("/auth/validate-token").then(({ data }) => {
       return data;
     });
   },

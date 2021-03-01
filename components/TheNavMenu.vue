@@ -26,9 +26,9 @@ export default {
     ...mapState("user", ["user"])
   },
   methods: {
-    ...mapActions("user", ["SIGNOUT"]),
+    ...mapActions("user", ["SIGN_OUT"]),
     logout() {
-      this.SIGNOUT();
+      this.SIGN_OUT();
       this.$router.push("/").catch(e => {});
     },
     closeMenu() {
