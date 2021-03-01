@@ -1,6 +1,6 @@
 import { cookie as cookieUtils, request } from "../utils.js";
 
-export default function(context) {
+export default async function(context) {
   if (!process.server) {
     return;
   }
@@ -13,6 +13,14 @@ export default function(context) {
   }
 
   if (accessCSRF && refreshCSRF) {
-    request.setCSRFHeader({ accessCSRF, refreshCSRF });
+    request.setCSRFHeader({
+      accessCSRF,
+      refreshCSRF
+    });
+  }
+
+  const access_token = cookieUtils.parse("access_token_cookie", cookie);
+  if (access_token) {
+    await context.store.dispatch("user/VALIDATE_TOKEN");
   }
 }

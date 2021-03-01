@@ -28,6 +28,16 @@ import Alert from "../components/common/Alert.vue";
 import { mapState } from "vuex";
 
 export default {
+  mounted() {
+    this._interval = setInterval(() => {
+      if (this.user) {
+        this.$store.dispatch("user/VALIDATE_TOKEN");
+      }
+    }, 3600000);
+  },
+  beforeDestroy() {
+    clearInterval(this._interval);
+  },
   components: {
     TheHeader,
     TheContainerCenter,
@@ -35,7 +45,8 @@ export default {
     Alert
   },
   computed: {
-    ...mapState("common", ["alerts"])
+    ...mapState("common", ["alerts"]),
+    ...mapState("user", ["user"])
   }
 };
 </script>
