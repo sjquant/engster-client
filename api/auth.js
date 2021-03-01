@@ -1,4 +1,4 @@
-import { request } from "../utils";
+import { request, cookie as cookieUtils } from "../utils";
 
 export default {
   register(email, password, nickname) {
@@ -26,8 +26,17 @@ export default {
   },
   refreshToken() {
     return request.post("/auth/refresh-token").then(({ data, headers }) => {
-      request.setCookieHeader(headers["set-cookie"]); // For refreshing token on ssr
-      request.setCSRFHeader({});
+      let cookie = headers["set-cookie"];
+      if (cookie) {
+        cookie = cookie.join(";");
+        request.setCookieHeader(cookie); // For refreshing token on ssr
+        const accessCSRF = cookieUtils.parse("X-CSRF-Token", cookie);
+        if (accessCSRF) {
+          request.setCSRFHeader({ accessCSRF });
+        }
+      } else {
+        request.setCSRFHeader({});
+      }
       return data;
     });
   },

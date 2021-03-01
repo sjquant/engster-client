@@ -15,6 +15,7 @@ const actions = {
       const { user } = await auth.refreshToken();
       commit("SET_USER", user);
     } catch (error) {
+      console.error(error);
       await dispatch("SIGN_OUT");
     }
   },
@@ -32,6 +33,7 @@ const actions = {
       ) {
         await dispatch("REFRESH_TOKEN");
       } else {
+        console.error(error);
         await dispatch("SIGN_OUT");
       }
     }
