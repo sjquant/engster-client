@@ -21,7 +21,8 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "Learn Real English with Engster!"
+        content:
+          "실제 영화/미드에서 사용하는 영어. Engster와 함께 진짜 영어를 배워봅시다."
       }
     ],
     link: [
