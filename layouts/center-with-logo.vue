@@ -1,17 +1,19 @@
 <template>
-  <div class="wrap-center">
+  <Wrapper class="wrap-center">
     <div class="center-container">
       <div class="container__wrapper">
         <HomeLogo />
         <nuxt />
       </div>
     </div>
-  </div>
+  </Wrapper>
 </template>
 <script>
+import Wrapper from "./wrapper.vue";
 import HomeLogo from "../components/common/HomeLogo.vue";
 export default {
   components: {
+    Wrapper,
     HomeLogo
   }
 };

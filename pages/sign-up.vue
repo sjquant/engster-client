@@ -72,15 +72,36 @@ export default {
   },
   methods: {
     ...mapActions("user", ["SIGNUP"]),
+    ...mapActions("common", ["ADD_ALERT"]),
     async signup() {
       const validated = await this.$validator.validateAll();
-      if (!validated) return;
-      await this.SIGNUP({
-        email: this.email,
-        nickname: this.nickname,
-        password: this.password1
-      });
-      this.$router.replace("/");
+      if (!validated) {
+        this.ADD_ALERT({
+          msg: "올바른 형식의 정보를 입력해주세요.",
+          type: "error"
+        });
+        return;
+      }
+      try {
+        await this.SIGNUP({
+          email: this.email,
+          nickname: this.nickname,
+          password: this.password1
+        });
+        this.$router.replace("/");
+      } catch (error) {
+        if (error.response.data.message === "User already exists") {
+          this.ADD_ALERT({
+            msg: "같은 이메일 또는 닉네임이 이미 존재합니다.",
+            type: "error"
+          });
+        } else {
+          this.ADD_ALERT({
+            msg: "회원가입에 문제가 발생했습니다.",
+            type: "error"
+          });
+        }
+      }
     }
   }
 };

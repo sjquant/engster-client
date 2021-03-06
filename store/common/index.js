@@ -13,8 +13,8 @@ export default {
   getters: {},
   mutations: {
     ADD_ALERT(state, { msg, type }) {
-      const id = new Date().getTime();
-      state.alerts.unshift({ id, msg, type });
+      const timestamp = new Date().getTime();
+      state.alerts.unshift({ timestamp, msg, type });
     },
     TRIM_ALERT(state) {
       state.alerts = state.alerts.slice(0, -1);
