@@ -52,15 +52,28 @@ export default {
   },
   methods: {
     ...mapActions("user", ["SIGNIN"]),
+    ...mapActions("common", ["ADD_ALERT"]),
     async signin() {
       const validated = await this.$validator.validateAll();
-      if (!validated) return;
-
-      await this.SIGNIN({
-        email: this.email,
-        password: this.password
-      });
-      this.$router.replace("/");
+      if (!validated) {
+        this.ADD_ALERT({
+          msg: "올바른 이메일 또는 비밀번호를 입력해주세요.",
+          type: "error"
+        });
+        return;
+      }
+      try {
+        await this.SIGNIN({
+          email: this.email,
+          password: this.password
+        });
+        this.$router.replace("/");
+      } catch (_) {
+        this.ADD_ALERT({
+          msg: "이메일 또는 비밀번호를 확인해주세요.",
+          type: "error"
+        });
+      }
     }
   }
 };

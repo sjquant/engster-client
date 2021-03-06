@@ -90,8 +90,18 @@ export default {
           msg: "닉네임이 업데이트 되었습니다.",
           type: "success"
         });
-      } catch (e) {
-        this.ADD_ALERT({ msg: "올바른 닉네임을 입력해주세요.", type: "error" });
+      } catch (error) {
+        if (error.response.data.message === "User already exists")
+          this.ADD_ALERT({
+            msg: "이미 존재하는 닉네임입니다.",
+            type: "error"
+          });
+        else {
+          this.ADD_ALERT({
+            msg: "올바른 닉네임을 입력해주세요.",
+            type: "error"
+          });
+        }
         this.nickname = this.user.nickname;
       }
       this.$refs.nicknameInput.close();
