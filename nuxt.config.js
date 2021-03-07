@@ -21,7 +21,29 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: "Learn Real English with Engster!"
+        content:
+          "실제 영화/미드에서 사용하는 영어. Engster와 함께 진짜 영어를 배워봅시다."
+      },
+      {
+        hid: "og:type",
+        name: "og:type",
+        content: "website"
+      },
+      {
+        hid: "og:title",
+        name: "og:title",
+        content: "Engster"
+      },
+      {
+        hid: "og:description",
+        name: "og:description",
+        content:
+          "실제 영화/미드에서 사용하는 영어. Engster와 함께 진짜 영어를 배워봅시다."
+      },
+      {
+        hid: "og:image",
+        name: "og:image",
+        content: "/full-logo.png"
       }
     ],
     link: [

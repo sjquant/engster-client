@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /sign-up
+Disallow: /sign-in
+Disallow: /reset-lost-password
+Disallow: /my-page
+Disallow: /privacy
+Disallow: /service-terms
+Allow: /
