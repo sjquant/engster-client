@@ -53,6 +53,16 @@ export default {
           hid: "description",
           name: "description",
           content: `'${this.keyword}'의 Engster 검색결과 입니다. 실제 영화/미드를 통해 ${this.keyword}를 공부해보세요.`
+        },
+        {
+          hid: "og:title",
+          name: "og:title",
+          content: `${this.keyword} - Engster 검색`
+        },
+        {
+          hid: "og:description",
+          name: "og:description",
+          content: `'${this.keyword}'의 Engster 검색결과 입니다. 실제 영화/미드를 통해 ${this.keyword}를 공부해보세요.`
         }
       ]
     };
