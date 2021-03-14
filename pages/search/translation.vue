@@ -69,8 +69,8 @@ export default {
       ]
     };
   },
-  fetch({ store, query }) {
-    return store.dispatch("subtitle/SEARCH_TRANSLATIONS", {
+  async fetch({ store, query }) {
+    await store.dispatch("subtitle/SEARCH_TRANSLATIONS", {
       keyword: query.keyword
     });
   },

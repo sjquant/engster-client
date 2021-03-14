@@ -14,7 +14,7 @@ import { mapMutations } from "vuex";
 export default {
   async fetch({ store, route }) {
     const userid = route.params.userid;
-    store.dispatch("mypage/GET_ACTIVITY_SUMMARY", userid);
+    await store.dispatch("mypage/GET_ACTIVITY_SUMMARY", userid);
   },
   components: {
     MyPageHeader,
