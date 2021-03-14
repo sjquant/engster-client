@@ -1,7 +1,8 @@
-import { request } from "../utils";
+import { request, escapeRegex } from "../utils";
 
 export default {
   search({ keyword, cursor = null, limit = 20 }) {
+    keyword = escapeRegex(keyword);
     return request
       .get("/subtitles/search", {
         params: {
