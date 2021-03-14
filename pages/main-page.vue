@@ -32,8 +32,8 @@ export default {
       loading: false
     };
   },
-  fetch({ store }) {
-    return store.dispatch("subtitle/FETCH_RANDOM_SUBTITLES");
+  async fetch({ store }) {
+    await store.dispatch("subtitle/FETCH_RANDOM_SUBTITLES");
   },
   computed: {
     ...mapState("subtitle", ["searchLines", "keyword"])
