@@ -62,3 +62,19 @@ export const cookie = {
     return value ? value[2] : null;
   }
 };
+
+export const escapeRegex = (text, ignores = []) => {
+  // prettier-ignore
+  let escapeChars = new Set([
+      '.', '*',  '\\-', '\\?',
+      '^', '$', '{', '}',
+      '(', ')', '|', '[',
+      '\\]', '\\' + '\\',
+    ]);
+  for (let each of ignores) {
+    escapeChars.delete(each);
+  }
+  escapeChars = Array.from(escapeChars);
+  const escapePattern = new RegExp(`[${escapeChars.join("")}]`, "g");
+  return text.replace(escapePattern, "\\$&");
+};

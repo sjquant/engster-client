@@ -13,12 +13,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import MagnifyingGlassIcon from "./icons/MagnifyingGlassIcon.vue";
+
 export default {
   components: {
     MagnifyingGlassIcon
   },
   methods: {
+    ...mapActions("common", ["ADD_ALERT"]),
     onClickSearch() {
       let keyword = this.$refs.inputSearch.value;
       this.search(keyword);
@@ -29,7 +33,10 @@ export default {
     },
     search(keyword) {
       if (keyword.length < 2) {
-        // doNothing
+        this.ADD_ALERT({
+          msg: "최소 2글자 이상의 검색어를 입력해주세요.",
+          type: "error"
+        });
         return;
       }
 
