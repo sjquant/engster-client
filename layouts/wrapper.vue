@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 import Alert from "../components/common/Alert.vue";
 
 export default {
@@ -16,7 +17,17 @@ export default {
   components: {
     Alert
   },
+  created() {
+    // Validate First
+    if (this.user) this.$store.dispatch("user/VALIDATE_TOKEN");
+    this._interval = setInterval(() => {
+      if (this.user) {
+        this.$store.dispatch("user/VALIDATE_TOKEN");
+      }
+    }, 3600000);
+  },
   computed: {
+    ...mapState("user", ["user"]),
     alerts() {
       return [...this.$store.state.common.alerts].reverse();
     }
