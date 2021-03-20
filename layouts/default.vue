@@ -20,7 +20,6 @@ import Wrapper from "./wrapper.vue";
 import TheHeader from "../components/TheHeader.vue";
 import TheContainerCenter from "../components/TheContainerCenter.vue";
 import TheContainerSide from "../components/TheContainerSide.vue";
-import { mapState } from "vuex";
 
 export default {
   components: {
@@ -29,18 +28,8 @@ export default {
     TheContainerSide,
     Wrapper
   },
-  mounted() {
-    this._interval = setInterval(() => {
-      if (this.user) {
-        this.$store.dispatch("user/VALIDATE_TOKEN");
-      }
-    }, 3600000);
-  },
   beforeDestroy() {
     clearInterval(this._interval);
-  },
-  computed: {
-    ...mapState("user", ["user"])
   }
 };
 </script>
