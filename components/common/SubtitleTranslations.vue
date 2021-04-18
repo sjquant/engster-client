@@ -66,8 +66,6 @@ export default {
 @import "~utils";
 .card-container {
   width: 100%;
-  max-height: 24rem;
-  overflow: auto;
   background-color: $gray-lighter;
   margin-bottom: 1.6rem;
   border-radius: 4px;
