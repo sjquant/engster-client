@@ -1,12 +1,11 @@
 <template>
   <div>
-    <!-- Hide temporarily until I can manage translation quality -->
-    <!-- <SubtitleTranslationInput
+    <SubtitleTranslationInput
       :subtitle-id="subtitleId"
       :translation="translationValue"
       v-model="translationValue"
       @create-translation="createTranslation"
-    /> -->
+    />
     <div class="card-container" v-if="translations.length > 0">
       <SubtitleTranslationItem
         v-for="each in translations"
