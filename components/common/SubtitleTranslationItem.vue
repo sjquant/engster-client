@@ -24,10 +24,10 @@
       <button class="more-icon" @click="moreMenuOpened = !moreMenuOpened">
         <MoreIcon width="1.2rem" height="1.2rem" />
       </button>
-      <div class="more-list" v-if="moreMenuOpened" v-click-outside="closeMenu">
+      <!-- <div class="more-list" v-if="moreMenuOpened" v-click-outside="closeMenu">
         <button class="more-list__btn">수정</button>
         <button class="more-list__btn">삭제</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
