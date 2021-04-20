@@ -1,12 +1,11 @@
 <template>
   <div>
-    <!-- Hide temporarily until I can manage translation quality -->
-    <!-- <SubtitleTranslationInput
+    <SubtitleTranslationInput
       :subtitle-id="subtitleId"
       :translation="translationValue"
       v-model="translationValue"
       @create-translation="createTranslation"
-    /> -->
+    />
     <div class="card-container" v-if="translations.length > 0">
       <SubtitleTranslationItem
         v-for="each in translations"
@@ -67,8 +66,6 @@ export default {
 @import "~utils";
 .card-container {
   width: 100%;
-  max-height: 24rem;
-  overflow: auto;
   background-color: $gray-lighter;
   margin-bottom: 1.6rem;
   border-radius: 4px;
