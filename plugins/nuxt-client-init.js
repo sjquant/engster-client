@@ -1,4 +1,4 @@
-import { cookie as cookieUtils, request } from "../utils.js";
+import { request } from "../utils.js";
 
 export default async context => {
   // Set CSRF token as header
