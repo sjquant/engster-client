@@ -12,14 +12,17 @@ export default {
       })
       .then(({ data }) => data);
   },
-  like(lineid) {
+  delete(id) {
+    return request.delete(`/translations/${id}`).then(({ data }) => data);
+  },
+  like(id) {
     return request
-      .post(`/translations/${lineid}/like`, {})
+      .post(`/translations/${id}/like`, {})
       .then(({ data }) => data);
   },
-  unlike(lineid) {
+  unlike(id) {
     return request
-      .delete(`/translations/${lineid}/like`, {})
+      .delete(`/translations/${id}/like`, {})
       .then(({ data }) => data);
   },
   fetchUserWritten({ userid, cursor = null, limit = 20 }) {

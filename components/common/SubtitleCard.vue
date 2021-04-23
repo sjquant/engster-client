@@ -14,6 +14,7 @@
       v-if="translationsOpened"
       ref="transCard"
       :subtitle-id="subtitleId"
+      @translation-deleted="onTranslationDeleted"
     />
   </div>
 </template>
@@ -122,6 +123,9 @@ export default {
     openTranslations() {
       if (this.transCount === 0) return;
       this.translationsOpened = !this.translationsOpened;
+    },
+    onTranslationDeleted() {
+      this.transCount -= 1;
     }
   }
 };
