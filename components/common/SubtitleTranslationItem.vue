@@ -24,24 +24,32 @@
       <button class="more-icon" @click="moreMenuOpened = !moreMenuOpened">
         <MoreIcon width="1.2rem" height="1.2rem" />
       </button>
-      <!-- <div class="more-list" v-if="moreMenuOpened" v-click-outside="closeMenu">
-        <button class="more-list__btn">수정</button>
-        <button class="more-list__btn">삭제</button>
-      </div> -->
+      <div class="more-list" v-if="moreMenuOpened" v-click-outside="closeMenu">
+        <button class="more-list__btn" @click="confirmDelete">삭제</button>
+      </div>
     </div>
+    <ConfirmDialog
+      v-model="deleteDialogOpen"
+      cancelable
+      title="자막 삭제"
+      message="정말 삭제하시겠습니까?"
+      @confirmed="deleteTranslation"
+    />
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { translation as translationAPI } from "../../api";
 import LikeIcon from "../icons/LikeIcon.vue";
 import MoreIcon from "../icons/MoreIcon.vue";
+import ConfirmDialog from "../common/ConfirmDialog.vue";
 
 export default {
   components: {
     LikeIcon,
-    MoreIcon
+    MoreIcon,
+    ConfirmDialog
   },
   created() {
     this.likeCount = this.translation.like_count;
@@ -55,7 +63,8 @@ export default {
       liked: null,
       likeCount: 0,
       shouldCheck: false,
-      moreMenuOpened: false
+      moreMenuOpened: false,
+      deleteDialogOpen: false
     };
   },
   computed: {
@@ -74,6 +83,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions("common", ["ADD_ALERT"]),
     async _like(id) {
       await translationAPI.like(id);
       this.liked = true;
@@ -94,6 +104,19 @@ export default {
     },
     closeMenu() {
       this.moreMenuOpened = false;
+    },
+    confirmDelete() {
+      this.deleteDialogOpen = true;
+    },
+    async deleteTranslation() {
+      try {
+        await translationAPI.delete(this.translation.id);
+        this.$emit("translation-deleted", this.translation.id);
+        this.ADD_ALERT({ msg: "삭제가 완료되었습니다.", type: "success" });
+      } catch (e) {
+        this.ADD_ALERT({ msg: "삭제중 문제가 발생했습니다.", type: "error" });
+        throw e;
+      }
     }
   }
 };
@@ -148,10 +171,9 @@ export default {
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.15);
-    padding: 0.4rem 2.8rem;
 
     > .more-list__btn {
-      padding-bottom: 0.4rem;
+      padding: 0.4rem 2.8rem;
       &:hover {
         color: $red-dark;
       }

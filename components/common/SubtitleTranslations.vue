@@ -8,9 +8,10 @@
     />
     <div class="card-container" v-if="translations.length > 0">
       <SubtitleTranslationItem
-        v-for="each in translations"
+        v-for="(each, i) in translations"
         :key="each.id"
         :translation="each"
+        @translation-deleted="onTranslationDeleted(i)"
       />
     </div>
   </div>
@@ -58,6 +59,10 @@ export default {
           console.error(e);
         }
       }
+    },
+    onTranslationDeleted(index) {
+      this.translations.splice(index, 1);
+      this.$emit("translation-deleted");
     }
   }
 };

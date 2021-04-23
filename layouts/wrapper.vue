@@ -1,5 +1,6 @@
 <template>
   <div>
+    <portal-target name="outmost" />
     <slot />
     <div class="alert-list">
       <transition-group name="alert-transition">

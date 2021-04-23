@@ -106,6 +106,7 @@ module.exports = {
   plugins: [
     { src: "~plugins/vee-validate" },
     { src: "~plugins/v-click-outside" },
+    { src: "~plugins/portal-vue" },
     { src: "~plugins/infinite-scroll", mode: "client" },
     { src: "~plugins/nuxt-client-init", mode: "client" },
     { src: "~plugins/vue-js-modal", mode: "client" },
