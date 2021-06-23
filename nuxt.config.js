@@ -63,7 +63,8 @@ module.exports = {
             ? ".env.development"
             : ".env.production"
       }
-    ]
+    ],
+    ["@nuxtjs/google-gtag", { id: "G-K48K4MC3QJ" }]
   ],
   buildModules: [
     // With options
