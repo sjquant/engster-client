@@ -102,6 +102,11 @@ export function createRouter() {
         component: () =>
           import("./pages/service-terms.vue").then(m => m.default || m),
         name: "service-terms"
+      },
+      {
+        path: "/oauth/",
+        component: () => import("./pages/oauth.vue").then(m => m.default || m),
+        name: "oauth"
       }
     ]
   });
