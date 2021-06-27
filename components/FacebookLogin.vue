@@ -1,13 +1,16 @@
 <template>
-  <button class="fb-sign-in-btn sign-in-btn" @click.prevent="socialSignin('facebook')">
+  <button
+    class="fb-sign-in-btn sign-in-btn"
+    @click.prevent="socialSignin('facebook')"
+  >
     <div>
-      <img src="../../assets/images/facebook.svg" />
+      <img src="../assets/images/facebook.svg" />
       <span>페이스북으로 로그인</span>
     </div>
   </button>
 </template>
 <script>
-import { socialAuthMixin } from "../../mixins";
+import { socialAuthMixin } from "../mixins";
 
 export default {
   mixins: [socialAuthMixin]

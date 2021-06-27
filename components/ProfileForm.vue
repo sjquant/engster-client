@@ -7,7 +7,7 @@
         @mouseleave="profileIconHovered = false"
         @click="openAvatarEditModal"
       >
-        <ProfileCamera v-show="profileIconHovered" />
+        <ProfileFormCamera v-show="profileIconHovered" />
         <ProfileIcon
           :profilePath="user ? user.photo : ''"
           v-show="!profileIconHovered"
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import ProfileIcon from "../common/ProfileIcon";
-import ProfileCamera from "./ProfileCamera";
-import EditInput from "../common/EditInput.vue";
+import ProfileIcon from "./ProfileIcon";
+import ProfileFormCamera from "./ProfileFormCamera";
+import EditInput from "./EditInput.vue";
 import ProfileFormPasswordInput from "./ProfileFormPasswordInput.vue";
 import AvatarEditModal from "./AvatarEditModal.vue";
 import { mapState, mapActions } from "vuex";
@@ -41,7 +41,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   components: {
     ProfileIcon,
-    ProfileCamera,
+    ProfileFormCamera,
     EditInput,
     ProfileFormPasswordInput,
     AvatarEditModal

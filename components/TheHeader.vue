@@ -16,10 +16,10 @@
   </header>
 </template>
 <script>
-import TheLogo from "./TheLogo.vue";
+import TheLogo from "./Logo.vue";
 import TheSearchBar from "./TheSearchBar.vue";
 import TheNavMenu from "./TheNavMenu.vue";
-import ProfileIcon from "./common/ProfileIcon";
+import ProfileIcon from "./ProfileIcon";
 import { mapState } from "vuex";
 export default {
   components: {

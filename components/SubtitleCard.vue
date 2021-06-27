@@ -10,7 +10,7 @@
       @like="likeLine"
       @open-translations="openTranslations"
     />
-    <SubtitleTranslations
+    <CardTranslationList
       v-if="translationsOpened"
       ref="transCard"
       :subtitle-id="subtitleId"
@@ -20,19 +20,16 @@
 </template>
 
 <script>
-import CardContentDetail from "./CardContentDetail.vue";
-import CardActions from "./CardActions.vue";
-import SubtitleTranslations from "./SubtitleTranslations.vue";
-import {
-  subtitle as subtitleAPI,
-  translation as translationAPI
-} from "../../api";
+import CardContentDetail from "./SubtitleCardContentDetail.vue";
+import CardActions from "./SubtitleCardActions.vue";
+import CardTranslationList from "./SubtitleCardTranslationList.vue";
+import { subtitle as subtitleAPI, translation as translationAPI } from "../api";
 
 export default {
   components: {
     CardContentDetail,
     CardActions,
-    SubtitleTranslations
+    CardTranslationList
   },
   created() {
     this.likeCount = this.detail.like_count;

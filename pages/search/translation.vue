@@ -22,8 +22,8 @@
 
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-import SubtitleCard from "../../components/common/SubtitleCard.vue";
-import SearchSummary from "../../components/search/SearchSummary.vue";
+import SubtitleCard from "../../components/SubtitleCard.vue";
+import SearchSummary from "../../components/SearchSummary.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import scrollMixin from "../../mixins/scroll.js";
 

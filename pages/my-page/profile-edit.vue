@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import ProfileForm from "../../components/my-page/ProfileForm.vue";
+import ProfileForm from "../../components/ProfileForm.vue";
 export default {
   components: {
     ProfileForm

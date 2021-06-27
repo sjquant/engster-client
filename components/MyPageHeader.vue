@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ProfileIcon from "../common/ProfileIcon";
+import ProfileIcon from "./ProfileIcon";
 import { mapState } from "vuex";
 
 export default {

@@ -1,8 +1,13 @@
 <template>
   <div class="profile-icon-container">
-    <img :src="profilePath" class="profile-icon" v-show="profilePath" key="avatar" />
     <img
-      src="../../assets/images/null-avatar.png"
+      :src="profilePath"
+      class="profile-icon"
+      v-show="profilePath"
+      key="avatar"
+    />
+    <img
+      src="../assets/images/null-avatar.png"
       class="profile-icon"
       v-show="!profilePath"
       key="null-avatar"

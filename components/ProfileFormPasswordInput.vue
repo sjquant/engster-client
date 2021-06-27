@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import EditInput from "../common/EditInput.vue";
+import EditInput from "./EditInput.vue";
 import { auth } from "~/api";
 import { mapActions } from "vuex";
 

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import MyPageHeader from "../components/my-page/MyPageHeader";
-import MyPageNav from "../components/my-page/MyPageNav";
+import MyPageHeader from "../components/MyPageHeader";
+import MyPageNav from "../components/MyPageNav";
 import { mapMutations } from "vuex";
 
 export default {

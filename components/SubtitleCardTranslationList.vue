@@ -1,13 +1,13 @@
 <template>
   <div>
-    <SubtitleTranslationInput
+    <CardTranslationInput
       :subtitle-id="subtitleId"
       :translation="translationValue"
       v-model="translationValue"
       @create-translation="createTranslation"
     />
     <div class="card-container" v-if="translations.length > 0">
-      <SubtitleTranslationItem
+      <CardTranslationItem
         v-for="(each, i) in translations"
         :key="each.id"
         :translation="each"
@@ -17,14 +17,14 @@
   </div>
 </template>
 <script>
-import SubtitleTranslationInput from "./SubtitleTranslationInput.vue";
-import SubtitleTranslationItem from "./SubtitleTranslationItem.vue";
-import { subtitle as subtitleAPI } from "../../api";
+import CardTranslationInput from "./SubtitleCardTranslationInput.vue";
+import CardTranslationItem from "./SubtitleCardTranslationItem.vue";
+import { subtitle as subtitleAPI } from "../api";
 
 export default {
   components: {
-    SubtitleTranslationInput,
-    SubtitleTranslationItem
+    CardTranslationInput,
+    CardTranslationItem
   },
   created() {
     this.fetchTranslations();

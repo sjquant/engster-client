@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import SubtitleCard from "../../components/common/SubtitleCard.vue";
+import SubtitleCard from "../../components/SubtitleCard.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {

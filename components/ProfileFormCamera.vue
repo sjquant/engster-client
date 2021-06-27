@@ -1,6 +1,6 @@
 <template>
   <div class="camera-container">
-    <img src="../../assets/images/photo-camera.svg" />
+    <img src="../assets/images/photo-camera.svg" />
   </div>
 </template>
 

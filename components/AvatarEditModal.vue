@@ -27,7 +27,7 @@
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
 import { mapState, mapActions } from "vuex";
-import { uploadFile } from "../../core/file-upload.js";
+import { uploadFile } from "../core/file-upload.js";
 
 export default {
   components: { VueCropper },
@@ -77,7 +77,7 @@ export default {
       if (this.user && this.user.photo && this.user.photo !== "") {
         this.imgSrc = this.user.photo;
       } else {
-        this.imgSrc = require("../../assets/images/null-avatar.png");
+        this.imgSrc = require("../assets/images/null-avatar.png");
       }
     },
     closeModal() {

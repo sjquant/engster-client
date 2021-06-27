@@ -22,7 +22,7 @@
 
 <script>
 import { auth } from "../api";
-import BaseInput from "../components/common/BaseInput.vue";
+import BaseInput from "../components/BaseInput.vue";
 export default {
   components: {
     BaseInput

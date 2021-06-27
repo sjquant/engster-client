@@ -11,7 +11,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import Alert from "../components/common/Alert.vue";
+import Alert from "../components/ToastAlert.vue";
 
 export default {
   name: "Wrapper",

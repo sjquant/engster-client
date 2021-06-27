@@ -11,8 +11,8 @@
   </div>
 </template>
 <script>
-import PencilIcon from "../icons/PencilIcon.vue";
-import LikeIcon from "../icons/LikeIcon.vue";
+import PencilIcon from "./icons/PencilIcon.vue";
+import LikeIcon from "./icons/LikeIcon.vue";
 
 export default {
   components: {

@@ -46,9 +46,9 @@
   </SignForm>
 </template>
 <script>
-import SignForm from "../components/sign/SignForm.vue";
-import BaseInput from "../components/common/BaseInput.vue";
-import SocialLoginGroup from "../components/sign/SocialLoginGroup.vue";
+import SignForm from "../components/SignForm.vue";
+import BaseInput from "../components/BaseInput.vue";
+import SocialLoginGroup from "../components/SocialLoginGroup.vue";
 import { mapActions } from "vuex";
 
 export default {

@@ -2,7 +2,9 @@
   <Wrapper class="wrap-center">
     <div class="center-container">
       <div class="container__wrapper">
-        <HomeLogo />
+        <nuxt-link to="/" class="logo-container">
+          <FullLogoIcon />
+        </nuxt-link>
         <nuxt />
       </div>
     </div>
@@ -10,15 +12,21 @@
 </template>
 <script>
 import Wrapper from "./wrapper.vue";
-import HomeLogo from "../components/common/HomeLogo.vue";
+import FullLogoIcon from "../components/icons/FullLogoIcon.vue";
 export default {
   components: {
     Wrapper,
-    HomeLogo
+    FullLogoIcon
   }
 };
 </script>
 <style lang="scss" scoped>
+@import "~utils";
+
+/deep/ .full-logo {
+  width: 24rem;
+}
+
 .wrap-center {
   width: 100%;
 

@@ -40,10 +40,10 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import { translation as translationAPI } from "../../api";
-import LikeIcon from "../icons/LikeIcon.vue";
-import MoreIcon from "../icons/MoreIcon.vue";
-import ConfirmDialog from "../common/ConfirmDialog.vue";
+import { translation as translationAPI } from "../api";
+import LikeIcon from "./icons/LikeIcon.vue";
+import MoreIcon from "./icons/MoreIcon.vue";
+import ConfirmDialog from "./ConfirmDialog.vue";
 
 export default {
   components: {

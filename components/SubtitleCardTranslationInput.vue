@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import PlusIcon from "../icons/PlusIcon.vue";
+import PlusIcon from "./icons/PlusIcon.vue";
 import { mapState } from "vuex";
 export default {
   components: {
