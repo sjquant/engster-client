@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueAuthenticate from "vue-authenticate";
 
+import { uuid4hex } from "../utils.js";
+
 Vue.use(VueAuthenticate, {
   withCredentials: true,
   baseUrl: process.env.BASE_URL,
@@ -9,22 +11,22 @@ Vue.use(VueAuthenticate, {
   providers: {
     facebook: {
       clientId: process.env.FB_CLIENT_ID,
-      redirectUri: `${location.protocol}//${location.host}/`,
+      redirectUri: `${process.env.REDIRECT_URI}/`,
       url: "/auth/obtain-token/facebook"
     },
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
-      redirectUri: `${location.protocol}//${location.host}`,
+      redirectUri: `${process.env.REDIRECT_URI}`,
       url: "/auth/obtain-token/google"
     },
     naver: {
       name: "naver",
       url: "/auth/obtain-token/naver",
       authorizationEndpoint: "https://nid.naver.com/oauth2.0/authorize",
-      redirectUri: `${location.protocol}//${location.host}`,
+      redirectUri: `${process.env.REDIRECT_URI}`,
       requiredUrlParams: ["state"],
       optionalUrlParams: [],
-      state: "STATE",
+      state: uuid4hex(),
       clientId: process.env.NAVER_CLIENT_ID,
       display: "popup",
       oauthType: "2.0",
